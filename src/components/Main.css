@@ -1,0 +1,12 @@
+#main {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  width: calc(100vw - 250px);
+  height: calc(100vh + 50px);
+  padding: 30px;
+}
+
+#main.extra {
+  width: calc(100vw - 50px);
+}
