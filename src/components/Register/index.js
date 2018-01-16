@@ -16,11 +16,15 @@ class Register extends Component {
     const username = this.refs.username.value
     const password = this.refs.password.value
     const rePassword = this.refs.rePassword.value
-    if (password !== rePassword) {
-      this.props.pushAlert('Retype password not match', 'danger', 3000)
-    } else {
-      this.props.register(username, password)
+    if (username === '' || password === '') {
+      return this.props.pushAlert('Username and Password is required', 'danger')
     }
+
+    if (password !== rePassword) {
+      return this.props.pushAlert('Retype password not match', 'danger')
+    }
+    
+    this.props.register(username, password)
   }
 
   render() {

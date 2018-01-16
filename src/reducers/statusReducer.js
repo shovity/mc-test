@@ -52,7 +52,6 @@ const statusReducer = (state=initialStatusState, action) => {
         return { ...state, alert: {
             message: data.err,
             type: 'danger',
-            time: 3000,
             isOpen: true
           }
         }

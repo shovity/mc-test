@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
 import { getAccessToken } from '../../actions/authActions';
+import { pushAlert } from '../../actions/statusActions';
 
 
 class Login extends Component {
@@ -14,6 +15,9 @@ class Login extends Component {
   handleLogin() {
     const username = this.refs.username.value
     const password = this.refs.password.value
+    if (username === '' || password === '') {
+      return this.props.pushAlert('Username and Password is required', 'danger')
+    }
     this.props.login(username, password)
   }
 
@@ -42,7 +46,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToState = (dispatch) => {
   return {
-    login: (username, password) => dispatch(getAccessToken(username, password))
+    login: (username, password) => dispatch(getAccessToken(username, password)),
+    pushAlert: (message, type, time) => dispatch(pushAlert(message, type, time))
   }
 }
 

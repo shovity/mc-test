@@ -10,11 +10,7 @@ class Alert extends Component {
 
   render() {
     const { type, message, time, isOpen, close } = this.props
-
-    if (isOpen && time && +time > 0) {
-      close(time)
-    }
-
+    isOpen && close(time)
     return (
       <div className={`alert ${type} ${isOpen? 'open' : ''}`} onClick={() => close(0)}>
         {message}
@@ -28,7 +24,7 @@ const mapStateTopProps = (state) => {
   return {
     type: alert.type || 'default',
     message: alert.message || '',
-    time: alert.time,
+    time: alert.time || 3000,
     isOpen: alert.isOpen
   }
 }

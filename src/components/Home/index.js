@@ -5,9 +5,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Link to='/register'>Register</Link>
-        <br/>
-        <Link to='/login'>Login</Link>
+        Home
       </div>
     )
   }
