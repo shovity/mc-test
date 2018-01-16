@@ -15,6 +15,8 @@ const authRecuder = (state=initialAuthState, action) => {
       if (!action.data || !action.data.token) return state
       const { token, username } = action.data
       history.push('/home')
+      window.localStorage.token = token
+      window.localStorage.username = username
       return { ...state, token, username }
 
     case LOG_OUT:

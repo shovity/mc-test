@@ -7,10 +7,15 @@ import dotenv from 'dotenv'
 
 import App from './components/App'
 import configureStore from './store/configureStore'
+import boot from './boot'
 import registerServiceWorker from './registerServiceWorker'
 
 import './index.css'
 
+const root = document.getElementById('root')
+const store = configureStore()
+
+// setting environment
 if (process.env.NODE_ENV === 'development') {
   console.log('loading environment for development')
   dotenv.config()
@@ -19,8 +24,8 @@ if (process.env.NODE_ENV === 'development') {
   dotenv.config()
 }
 
-const root = document.getElementById('root')
-const store = configureStore()
+// boot
+boot(store)
 
 ReactDOM.render(
   <Provider store={store}>
