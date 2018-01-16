@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Main from './Main';
 import Navbar from './Navbar'
 import SideBar from './SideBar'
+import Alert from './Alert'
 
 class App extends Component {
 
@@ -27,6 +28,7 @@ class App extends Component {
         <Navbar isOpen={isNavbarOpen} toggle={this.toggleNavbar} />
         <SideBar isOpen={isNavbarOpen}/>
         <Main isExtra={!isNavbarOpen} /> { /* routing here */ }
+        <Alert />
       </div>
     );
   }

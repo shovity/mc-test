@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import  { connect } from 'react-redux';
 import Dumb from './Dumb';
+import history from '../../history'
+
+import { logout } from '../../actions/authActions'
 
 import './style.css'
 
@@ -8,8 +11,12 @@ class Navbar extends Component {
   // constructor(props) {
   //   super(props)
   // }
+  login() {
+    history.push('/login')
+  }
+
   render() {
-    const { toggle, isOpen, isLoading, currentWork, username } = this.props
+    const { toggle, isOpen, isLoading, currentWork, username, logout } = this.props
 
     return (
       <Dumb
@@ -18,6 +25,8 @@ class Navbar extends Component {
         isLoading={isLoading}
         currentWork={currentWork}
         username={username}
+        logout={logout}
+        login={this.login}
       />
     )
   }
@@ -31,6 +40,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-Navbar = connect(mapStateToProps)(Navbar)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => dispatch(logout())
+  }
+}
+
+Navbar = connect(mapStateToProps, mapDispatchToProps)(Navbar)
 
 export default Navbar

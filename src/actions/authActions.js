@@ -1,5 +1,5 @@
 import {
-   RECEIVE_TOKEN
+  REQUEST_TOKEN, RECEIVE_TOKEN, LOG_OUT
 } from '../constants/actionTypes'
 
 import {
@@ -20,9 +20,21 @@ export const getAccessToken = (username, password) => {
 }
 
 // plain actions
+export const requestToken = (data) => {
+  return {
+    type: REQUEST_TOKEN,
+  }
+}
+
 export const receiveToken = (data) => {
   return {
     type: RECEIVE_TOKEN,
     data
+  }
+}
+
+export const logout = () => {
+  return {
+    type: LOG_OUT
   }
 }

@@ -1,6 +1,8 @@
 import {
-  RECEIVE_TOKEN
+  RECEIVE_TOKEN, LOG_OUT
 } from '../constants/actionTypes'
+
+import history from '../history'
 
 const initialAuthState = {
   token: '',
@@ -12,7 +14,12 @@ const authRecuder = (state=initialAuthState, action) => {
     case RECEIVE_TOKEN:
       if (!action.data || !action.data.token) return state
       const { token, username } = action.data
+      history.push('/home')
       return { ...state, token, username }
+
+    case LOG_OUT:
+      history.push('/login')
+      return { ...state, token: '', username: 'Guest' }
 
     default:
       return state

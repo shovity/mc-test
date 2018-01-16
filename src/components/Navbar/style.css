@@ -20,6 +20,7 @@
 }
 
 i.menu {
+  color: #fff;
   padding: 0 15px;
   line-height: 50px;
   cursor: pointer;
@@ -53,6 +54,11 @@ i.menu:hover {
 
 .nameLabel {
   display: inline-block;
+}
+
+.log {
+  color: #f5a99f;
+  line-height: 50px;
 }
 
 

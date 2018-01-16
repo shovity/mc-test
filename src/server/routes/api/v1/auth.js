@@ -11,7 +11,9 @@ auth.post('/', (req, res, next) => {
     if (err) {
       res.json({ err })
     } else {
-      res.json({ token, username })
+      setTimeout(() => {
+        res.json({ token, username })
+      }, 1000)
     }
   })
 })

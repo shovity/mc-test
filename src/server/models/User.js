@@ -34,11 +34,11 @@ User.addUser = (username = '', password = '', callback) => {
 
   // validate
   if (username.length < 6 || username.length > 12) {
-    errors.push('username.length < 6 || username.length > 12')
+    errors.push('Username length invalid. ')
   }
 
   if (password.length < 6 || password.length > 12) {
-    errors.push('password.length < 6 || password.length > 12')
+    errors.push('Password length invalid. ')
   }
 
   if (errors.length !== 0) {

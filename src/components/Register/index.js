@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
 import { createUser } from '../../actions/userActions';
+import { pushAlert } from '../../actions/statusActions';
 
 
 class Register extends Component {
@@ -14,7 +15,12 @@ class Register extends Component {
   handleRegister() {
     const username = this.refs.username.value
     const password = this.refs.password.value
-    this.props.register(username, password)
+    const rePassword = this.refs.rePassword.value
+    if (password !== rePassword) {
+      this.props.pushAlert('Retype password not match', 'danger', 3000)
+    } else {
+      this.props.register(username, password)
+    }
   }
 
   render() {
@@ -45,7 +51,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToState = (dispatch) => {
   return {
-    register: (username, password) => dispatch(createUser(username, password))
+    register: (username, password) => dispatch(createUser(username, password)),
+    pushAlert: (message, type, time) => dispatch(pushAlert(message, type, time))
   }
 }
 
