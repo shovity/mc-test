@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 import './style.css'
 
@@ -7,8 +8,24 @@ const Dumb = ({ isOpen }) => {
     <div id="sidebar" className={isOpen? 'open' : ''}>
       <ul className="sidebar-menu">
         <li className="header">QUICK ACCESS</li>
-        <li className="item active">News Feed</li>
-        <li className="item">Test Now</li>
+
+        <Link to='/news'>
+          <li className="item"><i className="fa fa-newspaper-o"></i>News Feed</li>
+        </Link>
+
+        <Link to='/news'>
+          <li className="item"><i className="fa fa-newspaper-o"></i>News Feed</li>
+        </Link>
+
+        <li className="header">QUICK ACCESS</li>
+
+        <Link to='/news'>
+          <li className="item"><i className="fa fa-newspaper-o"></i>News Feed</li>
+        </Link>
+
+        <Link to='/news'>
+          <li className="item"><i className="fa fa-newspaper-o"></i>News Feed</li>
+        </Link>
       </ul>
     </div>
   )

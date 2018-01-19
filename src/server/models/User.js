@@ -16,7 +16,6 @@ userSchema.methods.show = function () {
 const User = mongoose.model('User', userSchema)
 
 User.auth = (username, password, callback) => {
-  console.log(username, password + '.')
   User.findOne({ username, password: md5(password) }, (err, user) => {
     if (err) return callback(err)
 

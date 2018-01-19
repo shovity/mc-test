@@ -14,11 +14,15 @@ const Dumb = ({ username, toggle, isOpen, isLoading, currentWork, logout, login 
 
       <div className='log'>{currentWork}</div>
 
+
       <div className={`lds-css ng-scope ${isLoading? '' : 'hidden'}`}>
         <div className="lds-dual-ring">
           <div></div>
         </div>
       </div>
+
+      <i className='fa fa-globe menu'></i>
+      <i className='fa fa-envelope-o menu'></i>
 
       <div className="user-box">
         <img src="/images/unknown-user.png" alt="" id="avatar" className="avatar"/>
