@@ -3,7 +3,7 @@ import {
 } from '../constants/actionTypes'
 
 import {
-  setWork, doneWork
+  setWork, doneWork, pushAlert
 } from './statusActions'
 
 // call api chain actiosn
@@ -14,7 +14,7 @@ export const getAccessToken = (username, password) => {
       method: 'post',
       body: { username, password },
       casStart: setWork('request access token'),
-      casSuccess: [receiveToken, doneWork]
+      casSuccess: [receiveToken, doneWork, pushAlert('Logged in!', 'success')]
     }
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './style.css'
 
@@ -9,23 +9,23 @@ const Dumb = ({ isOpen }) => {
       <ul className="sidebar-menu">
         <li className="header">QUICK ACCESS</li>
 
-        <Link to='/news'>
-          <li className="item"><i className="fa fa-newspaper-o"></i>News Feed</li>
-        </Link>
+        <NavLink to='/home'>
+          <li className="item"><i className="fa fa-newspaper-o"></i>Home</li>
+        </NavLink>
 
-        <Link to='/news'>
+        <NavLink to='/news1'>
           <li className="item"><i className="fa fa-newspaper-o"></i>News Feed</li>
-        </Link>
+        </NavLink>
 
         <li className="header">QUICK ACCESS</li>
 
-        <Link to='/news'>
+        <NavLink to='/news2'>
           <li className="item"><i className="fa fa-newspaper-o"></i>News Feed</li>
-        </Link>
+        </NavLink>
 
-        <Link to='/news'>
+        <NavLink to='/news3'>
           <li className="item"><i className="fa fa-newspaper-o"></i>News Feed</li>
-        </Link>
+        </NavLink>
       </ul>
     </div>
   )

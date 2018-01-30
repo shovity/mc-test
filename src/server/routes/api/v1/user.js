@@ -11,8 +11,9 @@ user.get('/', (req, res, next) => {
 // POST
 user.post('/', (req, res, next) => {
   const { username, password } = req.body
-  User.addUser(username, password, (err, token) => {
-    res.json({ err, token })
+  User.addUser(username, password, (err, data) => {
+    const { username, token } = data
+    res.json({ err, token, username })
   })
 })
 

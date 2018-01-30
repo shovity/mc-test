@@ -6,7 +6,10 @@ const Dumb = ({ username, toggle, isOpen, isLoading, currentWork, logout, login 
 
   return (
     <div id="navbar" className={isOpen? 'open' : ''}>
-      <Link to='/home' className="logo-box"></Link>
+      <Link to='/home' className="logo-box">
+        <div className="logo-text">MCT</div>
+        <i className="fa fa-ravelry"></i>
+      </Link>
 
       <i className="fa fa-bars menu" aria-hidden="true" onClick={toggle}></i>
 

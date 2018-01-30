@@ -1,5 +1,5 @@
 import {  receiveToken } from './authActions'
-import {  setWork, doneWork } from './statusActions'
+import {  setWork, doneWork, pushAlert } from './statusActions'
 
 // call chain api
 export const createUser = (username, password) => {
@@ -9,7 +9,7 @@ export const createUser = (username, password) => {
       method: 'post',
       body: { username, password },
       casStart: setWork('create user'),
-      casSuccess: [receiveToken, doneWork]
+      casSuccess: [receiveToken, doneWork, pushAlert('Register sucess, logged in!', 'success')]
     }
   }
 }

@@ -17,6 +17,38 @@
   background-color: #d73925;
   height: 100%;
   width: 50px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 32px;
+  padding: 6px 3px;
+  position: relative;
+}
+
+.logo-text {
+  display: inline-block;
+  transform: translate(-63px);
+  transition: all .3s ease-in-out;
+  opacity: 0;
+  font-size: 24px;
+  margin-left: 20px;
+}
+
+#navbar.open .logo-text {
+  opacity: 1;
+  transform: translate(0);
+}
+
+#navbar .logo-box i {
+  position: absolute;
+  top: 10px;
+  left: 72px;
+  transition: transform .35s ease-in-out;
+  transform: translateX(-68px);
+  pointer-events: none;
+}
+
+#navbar.open .logo-box i {
+  transform: translateX(0)
 }
 
 i.menu {

@@ -17,17 +17,17 @@
   height: 41px;
 }
 
-ul.sidebar-menu {
+#sidebar ul.sidebar-menu {
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-ul.sidebar-menu a {
+#sidebar ul.sidebar-menu a {
   text-decoration: none;
 }
 
-li.item {
+#sidebar li.item {
   color: #fff;
   padding: 12px 5px 12px 15px;
   display: block;
@@ -36,16 +36,16 @@ li.item {
   white-space: nowrap;
 }
 
-li.item > i {
+#sidebar li.item > i {
   margin-right: 15px;
 }
 
-li.item.active, li.item:hover {
+#sidebar a.active li.item, #sidebar a:hover li.item {
   border-left-color: #dd4b39;
   background-color: #1e282c;
 }
 
-li.header {
+#sidebar li.header {
   transition: transform .3s ease-in-out, height .3s ease-in-out;
   transform: rotateX(90deg);
   height: 0;

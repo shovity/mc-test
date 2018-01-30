@@ -10,7 +10,7 @@ const initialStatusState = {
   alert: {
     isOpen: true,
     message: 'Hello!!',
-    type: 'danger',
+    type: 'success',
     time: 1000
   }
 }
