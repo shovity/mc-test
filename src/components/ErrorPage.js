@@ -5,9 +5,11 @@ import './ErrorPage.css';
 class ErrorPage extends Component {
 
   render() {
-    console.log('render')
     return (
-      <div id='error'>404 Notfound</div>
+      <div id='errorPage'>
+        <h2>404</h2>
+        <h4>Page not found</h4>
+      </div>
     );
   }
 

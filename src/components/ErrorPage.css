@@ -1,4 +1,9 @@
-#error {
-    margin-left: 100px;
-    transition: all 1s;
+#errorPage {
+    font-size: 80px;
+    padding: 50px 100px;
+}
+
+#errorPage h2, h4 {
+    color: #ccc;
+    margin: 0;
 }

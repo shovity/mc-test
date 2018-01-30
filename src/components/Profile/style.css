@@ -1,0 +1,21 @@
+#profile .avatar-box {
+    background-image: url(/images/unknown-user.png);
+    display: inline-block;
+    width: 234px;
+    height: 234px;
+    border: 1px #777 solid;
+    border-radius: 2px;
+}
+
+#profile .avatar-box img {
+    width: 1005px;
+    height: 100%;
+}
+
+#profile .info-row {
+    display: flex;
+}
+
+#profile .info-text {
+    margin-left: 50px;
+}
