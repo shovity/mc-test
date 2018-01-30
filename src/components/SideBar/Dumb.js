@@ -3,14 +3,14 @@ import { NavLink } from 'react-router-dom';
 
 import './style.css'
 
-const Dumb = ({ isOpen, isConnected }) => {
+const Dumb = ({ isOpen, isConnected, username }) => {
   return (
     <div id="sidebar" className={isOpen? 'open' : ''}>
       <ul className="sidebar-menu">
 
         <li className="user-status">
           <img src="/images/unknown-user.png" alt="" id="avatar" className="avatar"/>
-          <div className="name-label">shovity</div>
+          <div className="name-label">{username}</div>
           <i className={`fa fa-circle ${isConnected? 'active' : ''}`}></i>
         </li>
 

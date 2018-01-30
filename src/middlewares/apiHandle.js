@@ -69,7 +69,6 @@ const apiHandleMiddleware = store => next => action => {
       options.body = JSON.stringify(body)
     }
 
-    console.log('call api ' + path)
     fetch(path, options).then(res => res.json()).then(data => {
       superDispatch(store, casSuccess, data)
     }).catch(error => {

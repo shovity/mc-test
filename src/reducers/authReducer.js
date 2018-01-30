@@ -20,6 +20,8 @@ const authRecuder = (state=initialAuthState, action) => {
 
     case LOG_OUT:
       history.push('/login')
+      window.localStorage.removeItem('username');
+      window.localStorage.removeItem('token');
       return { ...state, token: '', username: 'Guest' }
 
     default:

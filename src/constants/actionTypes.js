@@ -12,3 +12,6 @@ export const CLOSE_ALERT = 'CLOSE_ALERT'
 
 // news feed actions
 export const SEND_POST = 'SEND_POST'
+export const REQUEST_POST = 'REQUEST_POST'
+export const RECEIVE_POST = 'RECEIVE_POST'
+export const REQUEST_UPDATE_POST = 'REQUEST_UPDATE_POST'

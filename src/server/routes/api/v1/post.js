@@ -18,4 +18,29 @@ post.post('/', (req, res, next) => {
   })
 })
 
+// PUT
+post.put('/', (req, res, next) => {
+  const { content, id } = req.body;
+  const { username } = req;
+
+  Post.findById(id, (err, post) => {
+    if (err) return res.json({ err: 'post not found' })
+
+    Post.findByIdAndUpdate(
+      id,
+      { $set: { comments: post.comments.concat({ username, content }) } },
+      (err) => {
+        res.json({ err })
+      }
+    )
+  })
+})
+
+// GET
+post.get('/', (req, res, next) => {
+  Post.find({}).sort({ createdDate: 'desc' }).exec((err, posts) => {
+    res.json({ err, posts })
+  })
+})
+
 module.exports = post

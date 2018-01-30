@@ -21,10 +21,6 @@ class Login extends Component {
     this.props.login(username, password)
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps()')
-  }
-
   render() {
     const { isLogged } = this.props
 

@@ -53,19 +53,6 @@ input {
   color: #fff;
 }
 
-.al {
-  padding: 15px;
-  margin-bottom: 20px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-}
-
-.al-err {
-  color: #a94442;
-  background-color: #f2dede;
-  border-color: #ebccd1;
-}
-
 /* heading */
 h1, h2, h3, h4, h5 {
   font-weight: 400;

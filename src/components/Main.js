@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route, /*Redirect*/ } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import Home from './Home'
 import Login from './Login'
@@ -10,7 +10,6 @@ import ErrorPage from './ErrorPage'
 
 import './Main.css'
 
-// <Route exact path='/' render={() => <Redirect to='/home' />} />
 class Main extends Component {
 
   render() {
@@ -21,6 +20,7 @@ class Main extends Component {
         <div className="main-content">
           <Switch>
 
+            <Route exact path='/' render={() => <Redirect to='/home' />} />
             <Route exact path='/home' component={Home}/>
             <Route exact path='/profile' component={Profile}/>
             <Route exact path='/news-feed' component={NewsFeed}/>

@@ -19,13 +19,11 @@
 
 #newsFeed .posts .comments .comment {
     display: flex;
-    border: 1px #c4c4c4 solid;
-    margin-top: -1px;
+    border-top: 1px #c4c4c4 solid;
     border-radius: 2px;
 }
 
 #newsFeed .posts .input {
-    margin-top: 20px;
     display: flex;
     background: #f5f5f5;
 }
@@ -48,6 +46,7 @@
 
 #newsFeed .posts .comments .comment-content {
     margin: 17px 0;
+    padding-right: 5px;
 }
 
 #newsFeed .post {
