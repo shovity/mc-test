@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
-import { getAccessToken } from '../../actions/authActions';
-import { pushAlert } from '../../actions/statusActions';
-
+import { getAccessToken } from '../../actions/authActions'
+import { pushAlert } from '../../actions/statusActions'
 
 class Login extends Component {
   constructor(props) {
@@ -21,10 +21,19 @@ class Login extends Component {
     this.props.login(username, password)
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps()')
+  }
+
   render() {
+    const { isLogged } = this.props
+
+    // redirect to home if logged
+    if (isLogged) return <Redirect to='/home' />
+
     return (
       <div>
-        <h2>Login</h2>
+        <h2>Login {this.props.isLogged? 'da login' : ''}</h2>
 
         <label htmlFor='username'>Username</label>
         <input type='text' ref='username' />
@@ -40,7 +49,8 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    error: state.auth.error
+    error: state.auth.error,
+    isLogged: state.auth.token !== ''
   }
 }
 

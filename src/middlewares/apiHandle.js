@@ -13,6 +13,11 @@ const extractParams = params => {
   return { ...params, path: path.join(API_BASE, params.path) }
 }
 
+const injectToken = (header, store) => {
+  const token = store.getState().auth.token
+  return { ...header, 'x-access-token': token }
+}
+
 const superDispatch = (store, actions, data) => {
   const dispatch = store.dispatch
   let foods = actions
@@ -47,6 +52,9 @@ const apiHandleMiddleware = store => next => action => {
       casError = { type: 'NO_CALL_ERROR'}
     } = extractParams(action.call)
 
+    // Inject x-access-token
+    header = injectToken(header, store)
+
     // Execute action start
     superDispatch(store, casStart)
 
@@ -61,6 +69,7 @@ const apiHandleMiddleware = store => next => action => {
       options.body = JSON.stringify(body)
     }
 
+    console.log('call api ' + path)
     fetch(path, options).then(res => res.json()).then(data => {
       superDispatch(store, casSuccess, data)
     }).catch(error => {

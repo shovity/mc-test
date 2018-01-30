@@ -14,7 +14,6 @@ const authRecuder = (state=initialAuthState, action) => {
     case RECEIVE_TOKEN:
       if (!action.data || !action.data.token) return state
       const { token, username } = action.data
-      history.push('/home')
       window.localStorage.token = token
       window.localStorage.username = username
       return { ...state, token, username }

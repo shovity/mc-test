@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
-import { createUser } from '../../actions/userActions';
-import { pushAlert } from '../../actions/statusActions';
-
+import { createUser } from '../../actions/userActions'
+import { pushAlert } from '../../actions/statusActions'
 
 class Register extends Component {
   constructor(props) {
@@ -23,11 +23,16 @@ class Register extends Component {
     if (password !== rePassword) {
       return this.props.pushAlert('Retype password not match', 'danger')
     }
-    
+
     this.props.register(username, password)
   }
 
   render() {
+    const { isLogged } = this.props
+
+    // redirect to home if logged
+    if (isLogged) return <Redirect to='/home' />
+
     return (
       <div>
         <h2>Register</h2>
@@ -49,7 +54,8 @@ class Register extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    error: state.auth.error
+    error: state.auth.error,
+    isLogged: state.auth.token !== ''
   }
 }
 

@@ -9,12 +9,10 @@ const router = express.Router()
 
 const jwtSecrect = process.env.SECRET_KEY_JWT
 
-// REST api
-router.use('/api/v1', v1)
 
 // authen middleware
 router.use((req, res, next) => {
-  const { token } = req.cookies || {}
+  const token = req.get('x-access-token') || ''
   if (!token) return next()
   jwt.verify(token, jwtSecrect, (err, decoded) => {
     if (err) return next(err)
@@ -24,6 +22,9 @@ router.use((req, res, next) => {
     return next()
   })
 })
+
+// REST api
+router.use('/api/v1', v1)
 
 // GET root
 router.get('/', (req, res, next) => {

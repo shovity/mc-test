@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route, /*Redirect*/ } from 'react-router-dom'
 
 import Home from './Home'
 import Login from './Login'
@@ -10,6 +10,7 @@ import ErrorPage from './ErrorPage'
 
 import './Main.css'
 
+// <Route exact path='/' render={() => <Redirect to='/home' />} />
 class Main extends Component {
 
   render() {
@@ -17,17 +18,20 @@ class Main extends Component {
 
     return (
       <div id='main' className={isExtra? 'extra' : ''}>
-        <Switch>
-          <Route exact path='/xxx' render={() => <Redirect to='/home' />} />
+        <div className="main-content">
+          <Switch>
 
-          <Route exact path='/home' component={Home}/>
-          <Route exact path='/profile' component={Profile}/>
-          <Route exact path='/news-feed' component={NewsFeed}/>
+            <Route exact path='/home' component={Home}/>
+            <Route exact path='/profile' component={Profile}/>
+            <Route exact path='/news-feed' component={NewsFeed}/>
 
-          <Route exact path='/login' component={Login}/>
-          <Route exact path='/register' component={Register}/>
-          <Route component={ErrorPage}/>
-        </Switch>
+            <Route exact path='/login' component={Login}/>
+            <Route exact path='/register' component={Register}/>
+            <Route component={ErrorPage}/>
+          </Switch>
+        </div>
+
+        <div className="main-ad"></div>
       </div>
     )
   }

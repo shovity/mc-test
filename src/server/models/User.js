@@ -6,7 +6,8 @@ const jwtSecrect = process.env.SECRET_KEY_JWT
 
 const userSchema = mongoose.Schema({
   username: String,
-  password: String
+  password: String,
+  createdDate: { type: Date, default: Date.now }
 })
 
 userSchema.methods.show = function () {

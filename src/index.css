@@ -48,6 +48,11 @@ input {
   margin: 10px 10px 10px 0;
 }
 
+.btn.btn-success {
+  background-color: #5cb85c;
+  color: #fff;
+}
+
 .al {
   padding: 15px;
   margin-bottom: 20px;

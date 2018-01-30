@@ -38,7 +38,7 @@
 }
 
 #sidebar li.item > i {
-  margin-right: 15px;
+  width: 31px;
 }
 
 #sidebar a.active li.item {
