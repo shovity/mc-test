@@ -31,7 +31,17 @@ class Main extends Component {
           </Switch>
         </div>
 
-        <div className="main-ad"></div>
+        <div className="main-ad">
+          <div className="banner">
+            <div>BANNER ADs</div>
+          </div>
+          <div className="banner">
+            <div>BANNER ADs</div>
+          </div>
+          <div className="banner">
+            <div>BANNER ADs</div>
+          </div>
+        </div>
       </div>
     )
   }
