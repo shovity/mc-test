@@ -74,16 +74,6 @@ i.menu:hover {
   line-height: 50px;
 }
 
-.avatar {
-  pointer-events: none;
-  background-color: #fff;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  margin: 9px;
-  vertical-align: middle;
-}
-
 .nameLabel {
   display: inline-block;
 }

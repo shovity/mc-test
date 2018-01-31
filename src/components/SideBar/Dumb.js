@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import './style.css'
 
@@ -32,15 +32,23 @@ const Dumb = ({ isOpen, isConnected, username }) => {
           <li className="item"><i className="fa fa-info-circle"></i>Profile</li>
         </NavLink>
 
-        <li className="header">QUICK ACCESS</li>
-
-        <NavLink to='/news2'>
-          <li className="item"><i className="fa fa-newspaper-o"></i>News Feed</li>
+        <NavLink to='/members'>
+          <li className="item"><i className="fa fa-group"></i>Members</li>
         </NavLink>
 
-        <NavLink to='/news3'>
-          <li className="item"><i className="fa fa-newspaper-o"></i>News Feed</li>
+        <NavLink to='/about'>
+          <li className="item"><i className="fa fa-question-circle-o"></i>About</li>
         </NavLink>
+
+        <li className="header">Other</li>
+
+        <Link to='/test/1'>
+          <li className="item"><i className="fa fa-newspaper-o"></i>Test 1</li>
+        </Link>
+
+        <Link to='/news3'>
+          <li className="item"><i className="fa fa-newspaper-o"></i>News Feed</li>
+        </Link>
       </ul>
     </div>
   )

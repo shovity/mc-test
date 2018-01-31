@@ -6,6 +6,7 @@ import Login from './Login'
 import Register from './Register'
 import Profile from './Profile'
 import NewsFeed from './NewsFeed'
+import Test from './Test'
 import ErrorPage from './ErrorPage'
 
 import './Main.css'
@@ -27,6 +28,9 @@ class Main extends Component {
 
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>
+
+            <Route exact path='/test/:id' component={Test}/>
+
             <Route component={ErrorPage}/>
           </Switch>
         </div>

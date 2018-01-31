@@ -7,14 +7,14 @@ const v1 = require('./api/v1')
 
 const router = express.Router()
 
-const jwtSecrect = process.env.SECRET_KEY_JWT
+const secret = process.env.SECRET_KEY_JWT
 
 
 // authen middleware
 router.use((req, res, next) => {
   const token = req.get('x-access-token') || ''
   if (!token) return next()
-  jwt.verify(token, jwtSecrect, (err, decoded) => {
+  jwt.verify(token, secret, (err, decoded) => {
     if (err) return next(err)
 
     const { username } = decoded || {}

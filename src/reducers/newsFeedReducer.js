@@ -12,7 +12,7 @@ const newsFeedReducer = (state=initialNewsFeedState, action) => {
   switch (action.type) {
     case RECEIVE_POST:
       const posts = data.posts || []
-      return { ...state, posts}
+      return { ...state, posts }
 
     case RECEIVE_COMMENT:
       const { comment, id } = data

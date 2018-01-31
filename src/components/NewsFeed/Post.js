@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Comment from './Comment'
+
 class Post extends Component {
 
   constructor(props) {
@@ -36,7 +38,9 @@ class Post extends Component {
           <strong className="name">{post.onwer}</strong>
         </div>
 
-        <div className="content">{ post.content }</div>
+        <div className="content">
+          <pre>{ post.content }</pre>
+        </div>
 
         <div className="comments">
           { listComments }
@@ -49,19 +53,6 @@ class Post extends Component {
       </div>
     )
   }
-}
-
-
-const Comment = ({ comment }) => {
-  return (
-    <div className="comment">
-      <img src="/images/unknown-user.png" alt="avatar" className="avatar"/>
-      <div className="comment-content">
-        <strong className="name">{comment.username || 'Guest'}</strong>
-        {comment.content}
-      </div>
-    </div>
-  )
 }
 
 export default Post

@@ -7,12 +7,12 @@ const jwtSecrect = process.env.SECRET_KEY_JWT
 const userSchema = mongoose.Schema({
   username: String,
   password: String,
-  createdDate: { type: Date, default: Date.now }
+  adress: String,
+  email: String,
+  phone: String,
+  fullName: String,
+  created_date: { type: Date, default: Date.now }
 })
-
-userSchema.methods.show = function () {
-  console.log(`Hi! i am ${this.name}`)
-}
 
 const User = mongoose.model('User', userSchema)
 

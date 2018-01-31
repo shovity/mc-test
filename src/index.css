@@ -11,6 +11,10 @@ body {
   overflow: hidden;
 }
 
+pre {
+  display: inline;
+}
+
 .hidden {
   display: none;
 }
@@ -21,6 +25,16 @@ body {
 
 .logo-box, #sidebar, #main {
   transition: width .3s ease-in-out;
+}
+
+.avatar {
+  pointer-events: none;
+  background-color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin: 9px;
+  vertical-align: middle;
 }
 
 /* form */

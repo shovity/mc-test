@@ -1,17 +1,18 @@
 const socket = require('socket.io')
 const jwt = require('jsonwebtoken')
 
-const jwtSecrect = process.env.JWT_SECRET
-
-
+const secret = process.env.SECRET_KEY_JWT
 const io = socket()
 
-let users = [] // { id: string, username: string, status: string }
+// { id(socket-id): string, username: string, status: string }
+let users = []
 
+// emit update event to all client
 const updateUsers = () => {
   io.emit('update users', users)
 }
 
+// CONNECTION
 io.on('connection', (socket) => {
   // event login
   socket.on('login', (token) => {
@@ -19,8 +20,8 @@ io.on('connection', (socket) => {
       // guest
       users.push({ username: 'Guest', id: socket.id, status: 'online' })
     } else {
-      // user login
-      jwt.verify(token, jwtSecrect, (err, decoded) => {
+      // user
+      jwt.verify(token, secret, (err, decoded) => {
         if (err) return socket.emit('login failed')
         const user = users.find(user => user.username === decoded.username)
         if (!user) {
@@ -34,6 +35,7 @@ io.on('connection', (socket) => {
     updateUsers()
   })
 
+  // disconent event
   socket.on('disconnect', () => {
     const userIndex = users.findIndex(user => user.id === socket.id)
     if (userIndex !== -1) users.splice(userIndex, 1)

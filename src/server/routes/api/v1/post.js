@@ -38,7 +38,7 @@ post.put('/', (req, res, next) => {
 
 // GET
 post.get('/', (req, res, next) => {
-  Post.find({}).sort({ createdDate: 'desc' }).exec((err, posts) => {
+  Post.find({}).sort({ created_date: 'desc' }).exec((err, posts) => {
     res.json({ err, posts })
   })
 })

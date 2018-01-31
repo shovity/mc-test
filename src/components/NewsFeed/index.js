@@ -44,6 +44,7 @@ class NewsFeed extends Component {
     return (
       <div id="newsFeed">
         <div className="posts">
+          <h2>Share a post for everyone</h2>
           <div className="post-box">
             <textarea ref="input" placeholder="Post's content..."></textarea>
             <button onClick={this.handlePost} className="btn btn-success btn-post">POST</button>

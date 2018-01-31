@@ -5,6 +5,17 @@ const socket = websocket()
 
 const socketMiddleWare = ({ dispatch }) => {
 
+  /**
+   *       client |                                    | server
+   *  ----------- |                                    | ------------
+   *  pick test   | -----emit make_quest/test--------> | find test
+   *              |                                    | pick quest
+   *              |                                    | list done
+   *  render      | <-----emit start/quest------------ | emit timeout
+   *  timer       |                                    |
+   *  get answer  | ------emit answer/time-----------> |
+   */
+
   socket.on('connect', () => {
     dispatch(setStatus({ isConnected: true }))
   })

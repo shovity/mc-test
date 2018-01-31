@@ -1,0 +1,50 @@
+#test {
+  text-align: center;
+  margin: 0 100px;
+}
+
+#test .quest {
+
+}
+
+#test .test-header {
+  text-align: left;
+}
+
+#test .title {
+  text-align: left;
+  background-color: #ddd;
+  padding: 30px;
+  border-top: 3px solid #e91e63;
+}
+
+#test .answers {
+  margin: 30px 0;
+}
+
+#test .answers .answer {
+  cursor: pointer;
+  display: flex;
+  background: #eee;
+  padding: 20px;
+  margin: 10px 0;
+}
+
+#test .answers .answer.choice {
+  background: #16d6c4;
+}
+#test .answers .answer.focus {
+  background: #d4d4d4;
+}
+
+#test .answers .answer .answer-label {
+  width: 50px;
+  background: #00BCD4;
+  margin: -20px;
+  margin-right: 10px;
+  padding: 20px 10px;
+  font-weight: bold;
+  color: #fff;
+  border-right: 3px solid #2196f3;
+  text-transform: uppercase;
+}

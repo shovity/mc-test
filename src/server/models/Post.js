@@ -1,14 +1,14 @@
 const mongoose = require('mongoose')
 
-const userSchema = mongoose.Schema({
+const postSchema = mongoose.Schema({
   content: String,
   onwer: String,
-  createdDate: { type: Date, default: Date.now },
   comments: [{ username: String, content: String }],
-  voteUp: { type: Number, default: 0 },
-  voteDown: { type: Number, default: 0 }
+  vote_up: { type: Number, default: 0 },
+  vote_down: { type: Number, default: 0 },
+  created_date: { type: Date, default: Date.now }
 })
 
-const Post = mongoose.model('Post', userSchema)
+const Post = mongoose.model('Post', postSchema)
 
 module.exports = Post
