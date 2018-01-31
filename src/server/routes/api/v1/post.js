@@ -30,7 +30,7 @@ post.put('/', (req, res, next) => {
       id,
       { $set: { comments: post.comments.concat({ username, content }) } },
       (err) => {
-        res.json({ err })
+        res.json({ err, id, comment: { content, username } })
       }
     )
   })

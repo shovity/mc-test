@@ -1,5 +1,5 @@
 import {
-  SEND_POST, REQUEST_POST, RECEIVE_POST
+  SEND_POST, REQUEST_POST, RECEIVE_POST, RECEIVE_COMMENT
 } from '../constants/actionTypes'
 
 import {
@@ -36,7 +36,7 @@ export const sendComment = (id, content) => {
       method: 'put',
       body: { id, content },
       casStart: [setWork('send comment')],
-      casSuccess: [fetchPost, doneWork]
+      casSuccess: [receiveComment, doneWork]
     }
   }
 }
@@ -58,6 +58,13 @@ export const requestPost = () => {
 export const receivePost = (data) => {
   return {
     type: RECEIVE_POST,
+    data
+  }
+}
+
+export const receiveComment = (data) => {
+  return {
+    type: RECEIVE_COMMENT,
     data
   }
 }
