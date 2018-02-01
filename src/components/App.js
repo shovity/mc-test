@@ -4,6 +4,7 @@ import Main from './Main';
 import Navbar from './Navbar'
 import SideBar from './SideBar'
 import Alert from './Alert'
+import Chat from './Chat'
 
 class App extends Component {
 
@@ -29,6 +30,7 @@ class App extends Component {
         <SideBar isOpen={isNavbarOpen}/>
         <Main isExtra={!isNavbarOpen} /> { /* routing here */ }
         <Alert />
+        <Chat />
       </div>
     );
   }

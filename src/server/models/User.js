@@ -34,7 +34,7 @@ User.addUser = (username = '', password = '', callback) => {
   const errors = []
 
   // validate
-  if (username.length < 6 || username.length > 12) {
+  if (username.length < 2 || username.length > 12) {
     errors.push('Username length invalid. ')
   }
 

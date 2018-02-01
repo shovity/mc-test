@@ -10,7 +10,7 @@ const cors = require('cors')
 require('dotenv').config()
 
 const io = require('./io')
-const index = require('./routes/index')
+const api = require('./api')
 
 // open mongodb connect
 const connect = require('./connect')
@@ -30,7 +30,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
-app.use(index)
+app.use(api)
 
 server.listen(port)
 
