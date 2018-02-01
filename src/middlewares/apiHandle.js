@@ -10,7 +10,7 @@ const API_BASE = process.env.REACT_APP_API_BASE
 if (!API_BASE) console.log('API_BASE env is null')
 
 const extractParams = params => {
-  return { ...params, path: path.join(API_BASE, params.path) }
+  return { ...params, path: path.join(API_BASE, params.path || '') }
 }
 
 const injectToken = (header, store) => {
@@ -68,6 +68,9 @@ const apiHandleMiddleware = store => next => action => {
     if (method !== 'get' && method !== 'GET' && method !== 'head' && method !== 'HEAD') {
       options.body = JSON.stringify(body)
     }
+
+    // done work here if lost path
+    if (path === API_BASE) return
 
     fetch(path, options).then(res => res.json()).then(data => {
       if (data.err) return superDispatch(store, casError, data.err)

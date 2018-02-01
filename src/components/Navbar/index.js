@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import  { connect } from 'react-redux';
-import Dumb from './Dumb';
-import history from '../../history'
+import { Link } from 'react-router-dom';
 
-import { logout, logoutSocket } from '../../actions/authActions'
+import UnreadMessage from './UnreadMessage';
+import Notifications from './Notifications';
+
+import history from '../../history'
+import { destroy } from '../../actions/authActions'
 
 import './style.css'
 
@@ -16,18 +19,54 @@ class Navbar extends Component {
   }
 
   render() {
-    const { toggle, isOpen, isLoading, currentWork, username, logout } = this.props
+    const {
+      toggle, isOpen, isLoading, currentWork, username, logout
+    } = this.props
+
+    const isLogged = username !== 'Guest'
 
     return (
-      <Dumb
-        toggle={toggle}
-        isOpen={isOpen}
-        isLoading={isLoading}
-        currentWork={currentWork}
-        username={username}
-        logout={logout}
-        login={this.login}
-      />
+      <div id="navbar" className={isOpen? 'open' : ''}>
+        <Link to='/home' className="logo-box">
+          <div className="logo-text">MCT</div>
+          <i className="fa fa-ravelry"></i>
+        </Link>
+
+        <i className="fa fa-bars menu" aria-hidden="true" onClick={toggle}></i>
+
+        <div className="items-box"></div>
+
+        <div className='log'>{currentWork}</div>
+
+
+        <div className={`lds-css ng-scope ${isLoading? '' : 'hidden'}`}>
+          <div className="lds-dual-ring">
+            <div></div>
+          </div>
+        </div>
+
+        <Notifications />
+        <UnreadMessage />
+
+        <div className="user-box">
+          <img src="/images/unknown-user.png" alt="" id="avatar" className="avatar"/>
+          <div className="nameLabel">{username}</div>
+        </div>
+
+        <i className={`fa fa-sign-${isLogged? 'out':'in'} menu`}
+          aria-hidden="true"
+          onClick={isLogged? logout : this.login}>
+        </i>
+        {
+          !isLogged &&
+          <Link to='/register'>
+            <i className={`fa fa-pencil menu`}
+            aria-hidden="true"
+            onClick={isLogged? logout : this.login}>
+            </i>
+          </Link>
+        }
+      </div>
     )
   }
 }
@@ -42,10 +81,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logout: () => {
-      dispatch(logoutSocket())
-      dispatch(logout())
-    }
+    logout: () => dispatch(destroy())
   }
 }
 

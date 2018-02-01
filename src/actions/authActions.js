@@ -2,6 +2,8 @@ import {
   REQUEST_TOKEN, RECEIVE_TOKEN, LOG_OUT
 } from '../constants/actionTypes'
 
+import { receiveChatHistory, hideChat } from './chatActions'
+
 import {
   setWork, doneWork, pushAlert
 } from './statusActions'
@@ -16,6 +18,20 @@ export const getAccessToken = (username, password) => {
       casStart: setWork('request access token'),
       casSuccess: [ receiveToken, loginSocket, pushAlert('Logged in!', 'success'), doneWork ],
       casError: [ pushAlert, doneWork ]
+    }
+  }
+}
+
+// when use logout
+export const destroy = () => {
+  return {
+    call: {
+      casStart: [
+        logoutSocket,
+        logout,
+        hideChat,
+        receiveChatHistory({ messages: [], target: '' }),
+      ]
     }
   }
 }

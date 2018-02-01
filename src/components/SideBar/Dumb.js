@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 
 import './style.css'
 
-const Dumb = ({ isOpen, isConnected, username }) => {
+const Dumb = ({ isOpen, isConnected, username, messageUs }) => {
   return (
     <div id="sidebar" className={isOpen? 'open' : ''}>
       <ul className="sidebar-menu">
@@ -11,7 +11,7 @@ const Dumb = ({ isOpen, isConnected, username }) => {
         <li className="user-status">
           <img src="/images/unknown-user.png" alt="" id="avatar" className="avatar"/>
           <div className="name-label">{username}</div>
-          <i className={`fa fa-circle ${isConnected? 'active' : ''}`}></i>
+          <i className={`fa fa-circle ${isConnected? 'online' : ''}`}></i>
         </li>
 
         <li>
@@ -46,7 +46,7 @@ const Dumb = ({ isOpen, isConnected, username }) => {
           <li className="item"><i className="fa fa-newspaper-o"></i>Test 1</li>
         </Link>
 
-        <a>
+        <a onClick={messageUs}>
           <li className="item"><i className="fa fa-send"></i>Message Us</li>
         </a>
       </ul>

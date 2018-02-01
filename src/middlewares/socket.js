@@ -1,9 +1,3 @@
-import websocket from 'socket.io-client'
-import { setStatus } from '../actions/statusActions'
-import { receiveMembers } from '../actions/membersActions'
-
-const socket = websocket()
-
 /**
  *       client |                                    | server
  *  ----------- |                                    | ------------
@@ -14,25 +8,47 @@ const socket = websocket()
  *  timer       |                                    |
  *  get answer  | ------emit answer/time-----------> |
  */
+import websocket from 'socket.io-client'
+import { setStatus } from '../actions/statusActions'
+import { receiveMembers } from '../actions/membersActions'
+import { receiveChatMessage } from '../actions/chatActions'
+
+const socket = websocket()
+
+// listen with middleware
+socket.listen = (eventName, callback) => {
+  socket.on(eventName, (data) => {
+    const extend = {}
+    callback({ ...data, ...extend })
+  })
+}
+
 const socketMiddleWare = ({ dispatch, getState }) => {
 
-  socket.on('update users', (data) => {
+  socket.listen('update users', (data) => {
     dispatch(receiveMembers(data))
   })
 
-  socket.on('connect', () => {
+  socket.listen('connect', () => {
     dispatch(setStatus({ isConnected: true }))
   })
 
-  socket.on('disconnect', () => {
+  socket.listen('disconnect', () => {
     dispatch(setStatus({ isConnected: false }))
   })
 
-  // socket.on('reconnect', () => {
+  socket.listen('send message', (data) => {
+    console.log('receive message in soket middleware')
+    dispatch(receiveChatMessage(data))
+    // { err, message: { sender: username, content: message } }
+
+  })
+
+  // socket.listen('reconnect', () => {
   //   console.log('reconnected')
   // })
   //
-  // socket.on('reconnect_error', () => {
+  // socket.listen('reconnect_error', () => {
   //   console.log('reconnected error')
   // })
 

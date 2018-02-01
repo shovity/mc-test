@@ -17,9 +17,10 @@
     "socket.io": "^2.0.4"
   },
   "scripts": {
-    "dev": "concurrently --kill-others --names 'MONGODB,SERVER,CLIENT' 'npm run mongodb' 'npm run server' 'npm run client'",
+    "devc": "concurrently --kill-others --names 'MONGODB,SERVER,CLIENT' 'npm run mongodb' 'npm run server' 'npm run client'",
+    "dev": "gnome-terminal -e 'npm run mongodb'; gnome-terminal -e 'npm run server'; npm run client",
     "mongodb": "mongod --dbpath ./database",
-    "server": "nodemon -w ./src/server ./src/server/app.js",
+    "server": "nodemon -w ./src ./src/server/app.js",
     "client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

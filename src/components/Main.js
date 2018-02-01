@@ -41,12 +41,6 @@ class Main extends Component {
           <div className="banner">
             <div>BANNER ADs</div>
           </div>
-          <div className="banner">
-            <div>BANNER ADs</div>
-          </div>
-          <div className="banner">
-            <div>BANNER ADs</div>
-          </div>
         </div>
       </div>
     )

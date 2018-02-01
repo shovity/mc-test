@@ -77,10 +77,6 @@
   line-height: 50px;
 }
 
-#sidebar .user-status i.active {
-  color: #5cb85c;
-}
-
 #sidebar.open #search {
   display: block;
 }

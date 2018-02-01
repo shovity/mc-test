@@ -52,6 +52,7 @@
 }
 
 i.menu {
+  position: relative;
   color: #fff;
   padding: 0 15px;
   line-height: 50px;
@@ -61,6 +62,66 @@ i.menu {
 i.menu:hover {
   background-color: #d73925;
 }
+
+i.menu .label {
+  position: absolute;
+  background: #4caf50;
+  border-radius: 3px;
+  top: 7px;
+  left: 25px;
+  padding: 2px 4px;
+  line-height: normal;
+  font-size: 9px;
+}
+
+i.menu .hide {
+  display: none;
+}
+
+#navbar .pop-up {
+  position: absolute;
+  top: 55px;
+  left: 0;
+  background: #fff;
+  border-radius: 3px;
+  color: #222;
+}
+
+#navbar .pop-up ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#navbar .pop-up ul li {
+  margin-top: -1px;
+  border: 1px #ddd solid;
+  display: flex;
+  line-height: normal;
+  padding: 0 15px;
+  line-height: 25px;
+}
+
+#navbar .pop-up ul .unread-name {
+  width: 100%;
+}
+
+
+#navbar .pop-up ul li:hover {
+  background-color: #f1f0f0;
+}
+
+#navbar .pop-up ul li i {
+  line-height: 25px;
+  padding-left: 10px;
+  color: #ccc;
+}
+
+#navbar .pop-up ul li i.online {
+  color: #5cb85c;
+}
+
+
 
 .items-box {
   flex-grow: 1;
@@ -72,6 +133,7 @@ i.menu:hover {
   background-color: #d84431;
   width: 200px;
   line-height: 50px;
+  margin-left: 10px;
 }
 
 .nameLabel {

@@ -15,6 +15,10 @@ class App extends Component {
       isNavbarOpen: true
     }
 
+    setTimeout(() => {
+      this.setState({ isNavbarOpen: false })
+    }, 600)
+
     this.toggleNavbar = this.toggleNavbar.bind(this)
   }
 
@@ -26,11 +30,11 @@ class App extends Component {
     const { isNavbarOpen } = this.state
     return (
       <div>
-        <Navbar isOpen={isNavbarOpen} toggle={this.toggleNavbar} />
-        <SideBar isOpen={isNavbarOpen}/>
         <Main isExtra={!isNavbarOpen} /> { /* routing here */ }
-        <Alert />
+        <SideBar isOpen={isNavbarOpen}/>
         <Chat />
+        <Navbar isOpen={isNavbarOpen} toggle={this.toggleNavbar} />
+        <Alert />
       </div>
     );
   }

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const chatHistorySchema = mongoose.Schema({
-  users: [ String ],
+  userx: String,
   messages: [
     { sender: String, content: String, users_readed: [ String ] }
   ],

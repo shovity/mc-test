@@ -1,10 +1,12 @@
 const socket = require('socket.io')
 const jwt = require('jsonwebtoken')
 
+const ChatHistory = require('./models/ChatHistory')
+
 const secret = process.env.SECRET_KEY_JWT
 const io = socket()
 
-// { id(socket-id): string, username: string, status: string }
+// { socketId: string, username: string, status: string }
 let members = []
 let total = 0
 
@@ -24,42 +26,102 @@ io.on('connection', (socket) => {
   total++
   updateUsers()
 
-  // event login
-  socket.on('login', data => {
-    jwt.verify(data.token, secret, (err, decoded) => {
-      if (err) return console.log(err)
-      const user = members.find(user => user.username === decoded.username)
+  // listen with middleware
+  socket.listen = (eventName, callback) => {
+    socket.on(eventName, (data) => {
+      // middleware
 
-      if (!user) {
-        members.push({
-          username: decoded.username,
-          socketId: socket.id,
-          status: 'online'
-        })
-      } else {
-        user.id = socket.id
-      }
+      jwt.verify(data.token, secret, (err, decoded) => {
+        if (err) return socket.emit('err', err)
+        const extend = { username: decoded.username }
+        callback({ ...data, ...extend })
+      })
     })
+  }
+
+  // LISTENER
+
+  socket.listen('login', data => {
+    const username = data.username
+    const user = members.find(user => user.username === username)
+
+    if (!user) {
+      console.log(`${data.username}(${socket.id}) new login`)
+      members.push({
+        username: username,
+        socketId: socket.id,
+        status: 'online'
+      })
+    } else {
+      console.log(`${data.username}(${socket.id}) remaping id`)
+      user.id = socket.id
+    }
 
     updateUsers()
   })
 
-  // logout
-  socket.on('logout', data => {
-    jwt.verify(data.token, secret, (err, decoded) => {
-      if (err) return console.log(err)
-      const userIndex = members.findIndex(user => user.username === decoded.username)
-      if (userIndex !== -1) members.splice(userIndex, 1)
-      updateUsers()
-    })
+  socket.listen('logout', data => {
+    const memberIndex = members.findIndex(user => user.username === data.username)
+    if (memberIndex !== -1) {
+      console.log(`${data.username}(${socket.id}) logout`)
+      members.splice(memberIndex, 1)
+    } else {
+      console.log('logout not match any exist user in members')
+    }
+    updateUsers()
   })
 
-  // disconent event
+  // disconnect dont need middleware
   socket.on('disconnect', () => {
     total--
-    const userIndex = members.findIndex(user => user.id === socket.id)
-
+    const memberIndex = members.findIndex(user => user.socketId === socket.id)
+    if (memberIndex !== -1) {
+      console.log(`${members[memberIndex].username}(${socket.id}) disconnect`)
+      members.splice(memberIndex, 1)
+    } else {
+      console.log('Guest disconnect')
+    }
     updateUsers()
+  })
+
+  // send chat message event
+  socket.listen('send message', (data) => {
+    const { target, message, username } = data
+    const userx = [username, target].sort().join('-')
+
+    ChatHistory.findOne({ userx }, (err, data) => {
+      if (err) return socket.emit('err', err)
+
+      if (!data) {
+        // history exists
+        if (err) return socket.emit('err', 'chat history not found. userx=' + userx)
+      } else {
+        ChatHistory.findOneAndUpdate(
+          { userx },
+          {
+            $set: {
+              messages: data.messages.concat({ sender: username, content: message })
+            }
+          },
+          (err) => {
+            // send message back
+            socket.emit('send message', {
+              err,
+              message: { sender: username, content: message },
+              userx
+            })
+            // if target is online, send realtime to it
+            const t = members.find(m => m.username === target)
+            if (t) {
+              socket.broadcast.to(t.socketId).emit('send message', {
+                message: { sender: username, content: message },
+                userx
+              });
+            }
+          }
+        )
+      }
+    })
   })
 })
 

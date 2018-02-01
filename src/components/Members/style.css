@@ -1,0 +1,29 @@
+#member ul.member-list {
+  list-style: none;
+}
+
+#member .member-list li {
+  background-color: #f1f0f0;
+  display: flex;
+  line-height: 50px;
+  margin: 5px 0;
+}
+
+#member .member-list i {
+  line-height: 50px;
+  padding: 0 10px;
+}
+
+#member .status {
+  width: 100%;
+}
+
+#member .member-btn {
+  line-height: 50px;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+#member .member-btn:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}

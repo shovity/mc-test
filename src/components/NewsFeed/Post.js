@@ -39,7 +39,7 @@ class Post extends Component {
         </div>
 
         <div className="content">
-          <pre>{ post.content }</pre>
+          {post.content}
         </div>
 
         <div className="comments">
