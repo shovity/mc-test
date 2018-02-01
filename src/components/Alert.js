@@ -22,7 +22,7 @@ class Alert extends Component {
 const mapStateTopProps = (state) => {
   const alert = state.status.alert
   return {
-    type: alert.type || 'default',
+    type: alert.type || 'danger',
     message: alert.message || '',
     time: alert.time || 3000,
     isOpen: alert.isOpen

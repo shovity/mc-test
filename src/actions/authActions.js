@@ -14,7 +14,8 @@ export const getAccessToken = (username, password) => {
       method: 'post',
       body: { username, password },
       casStart: setWork('request access token'),
-      casSuccess: [receiveToken, doneWork, pushAlert('Logged in!', 'success')]
+      casSuccess: [ receiveToken, loginSocket, pushAlert('Logged in!', 'success'), doneWork ],
+      casError: [ pushAlert, doneWork ]
     }
   }
 }
@@ -36,5 +37,22 @@ export const receiveToken = (data) => {
 export const logout = () => {
   return {
     type: LOG_OUT
+  }
+}
+
+export const loginSocket = token => {
+  return {
+    socket: {
+      event: 'login',
+      data: token
+    }
+  }
+}
+
+export const logoutSocket = () => {
+  return {
+    socket: {
+      event: 'logout'
+    }
   }
 }

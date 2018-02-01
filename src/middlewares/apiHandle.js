@@ -70,6 +70,7 @@ const apiHandleMiddleware = store => next => action => {
     }
 
     fetch(path, options).then(res => res.json()).then(data => {
+      if (data.err) return superDispatch(store, casError, data.err)
       superDispatch(store, casSuccess, data)
     }).catch(error => {
       console.log(error)

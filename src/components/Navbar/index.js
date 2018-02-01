@@ -3,7 +3,7 @@ import  { connect } from 'react-redux';
 import Dumb from './Dumb';
 import history from '../../history'
 
-import { logout } from '../../actions/authActions'
+import { logout, logoutSocket } from '../../actions/authActions'
 
 import './style.css'
 
@@ -42,7 +42,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logout: () => dispatch(logout())
+    logout: () => {
+      dispatch(logoutSocket())
+      dispatch(logout())
+    }
   }
 }
 

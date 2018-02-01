@@ -1,20 +1,24 @@
 import websocket from 'socket.io-client'
 import { setStatus } from '../actions/statusActions'
+import { receiveMembers } from '../actions/membersActions'
 
 const socket = websocket()
 
-const socketMiddleWare = ({ dispatch }) => {
+/**
+ *       client |                                    | server
+ *  ----------- |                                    | ------------
+ *  pick test   | -----emit make_quest/test--------> | find test
+ *              |                                    | pick quest
+ *              |                                    | list done
+ *  render      | <-----emit start/quest------------ | emit timeout
+ *  timer       |                                    |
+ *  get answer  | ------emit answer/time-----------> |
+ */
+const socketMiddleWare = ({ dispatch, getState }) => {
 
-  /**
-   *       client |                                    | server
-   *  ----------- |                                    | ------------
-   *  pick test   | -----emit make_quest/test--------> | find test
-   *              |                                    | pick quest
-   *              |                                    | list done
-   *  render      | <-----emit start/quest------------ | emit timeout
-   *  timer       |                                    |
-   *  get answer  | ------emit answer/time-----------> |
-   */
+  socket.on('update users', (data) => {
+    dispatch(receiveMembers(data))
+  })
 
   socket.on('connect', () => {
     dispatch(setStatus({ isConnected: true }))
@@ -32,13 +36,14 @@ const socketMiddleWare = ({ dispatch }) => {
   //   console.log('reconnected error')
   // })
 
-  // return a middle ware handle
+  // catch socket actions
   return next => action => {
     if (!action.socket) {
       next(action)
     } else {
       const { event, data } = action.socket
-      socket.emit(event, data)
+      const token = getState().auth.token
+      socket.emit(event, { ...data, token })
     }
   }
 }

@@ -1,5 +1,5 @@
 import {
-  RECEIVE_TOKEN, LOG_OUT
+  
 } from '../constants/actionTypes'
 
 const initialTestState = {

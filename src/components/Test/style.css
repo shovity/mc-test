@@ -25,7 +25,7 @@
 #test .answers .answer {
   cursor: pointer;
   display: flex;
-  background: #eee;
+  background: #e0e0e0;
   padding: 20px;
   margin: 10px 0;
 }
@@ -34,7 +34,7 @@
   background: #16d6c4;
 }
 #test .answers .answer.focus {
-  background: #d4d4d4;
+  background: #c0c0c0;
 }
 
 #test .answers .answer .answer-label {

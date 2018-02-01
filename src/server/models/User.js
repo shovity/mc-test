@@ -11,6 +11,7 @@ const userSchema = mongoose.Schema({
   email: String,
   phone: String,
   fullName: String,
+  level: { type: Number, default: 0 },
   created_date: { type: Date, default: Date.now }
 })
 
@@ -49,7 +50,7 @@ User.addUser = (username = '', password = '', callback) => {
     if (err) {
       return callback([ err ])
     }
-
+    console.log('exists', user)
     // check exists
     if (user !== null) {
       return callback(['username is exists'])

@@ -14,7 +14,8 @@ export const requestSendPost = (content) => {
       method: 'post',
       body: { content },
       casStart: [sendPost, setWork('send post')],
-      casSuccess: [fetchPost, doneWork, pushAlert('Send post success!', 'success')]
+      casSuccess: [fetchPost, doneWork, pushAlert('Send post success!', 'success')],
+        casError: [ pushAlert, doneWork ]
     }
   }
 }

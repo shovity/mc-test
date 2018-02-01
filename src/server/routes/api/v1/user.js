@@ -12,7 +12,7 @@ user.get('/', (req, res, next) => {
 user.post('/', (req, res, next) => {
   const { username, password } = req.body
   User.addUser(username, password, (err, data) => {
-    const { username, token } = data
+    const { username, token } = data || {}
     res.json({ err, token, username })
   })
 })

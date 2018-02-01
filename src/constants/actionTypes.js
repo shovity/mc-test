@@ -16,3 +16,6 @@ export const REQUEST_POST = 'REQUEST_POST'
 export const RECEIVE_POST = 'RECEIVE_POST'
 export const REQUEST_SEND_COMMENT = 'REQUEST_SEND_COMMENT'
 export const RECEIVE_COMMENT = 'RECEIVE_COMMENT'
+
+// members actions
+export const RECEIVE_MEMBERS = 'RECEIVE_MEMBERS'

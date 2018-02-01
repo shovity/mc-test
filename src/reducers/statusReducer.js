@@ -48,14 +48,6 @@ const statusReducer = (state=initialStatusState, action) => {
       }
 
     default:
-      if (data && data.err) {
-        return { ...state, alert: {
-            message: data.err,
-            type: 'danger',
-            isOpen: true
-          }
-        }
-      }
       return state
   }
 }

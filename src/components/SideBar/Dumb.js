@@ -46,9 +46,9 @@ const Dumb = ({ isOpen, isConnected, username }) => {
           <li className="item"><i className="fa fa-newspaper-o"></i>Test 1</li>
         </Link>
 
-        <Link to='/news3'>
-          <li className="item"><i className="fa fa-newspaper-o"></i>News Feed</li>
-        </Link>
+        <a>
+          <li className="item"><i className="fa fa-send"></i>Message Us</li>
+        </a>
       </ul>
     </div>
   )

@@ -5,40 +5,60 @@ const secret = process.env.SECRET_KEY_JWT
 const io = socket()
 
 // { id(socket-id): string, username: string, status: string }
-let users = []
+let members = []
+let total = 0
 
 // emit update event to all client
 const updateUsers = () => {
-  io.emit('update users', users)
+  io.emit('update users', { members, total })
 }
+
+// middleware
+io.use((socket, next) => {
+  // console.log(socket.request.headers.cookie)
+  return next();
+});
 
 // CONNECTION
 io.on('connection', (socket) => {
+  total++
+  updateUsers()
+
   // event login
-  socket.on('login', (token) => {
-    if (!token) {
-      // guest
-      users.push({ username: 'Guest', id: socket.id, status: 'online' })
-    } else {
-      // user
-      jwt.verify(token, secret, (err, decoded) => {
-        if (err) return socket.emit('login failed')
-        const user = users.find(user => user.username === decoded.username)
-        if (!user) {
-          users.push({ username: decoded.username, id: socket.id, status: 'online' })
-        } else {
-          user.id = socket.id
-        }
-      })
-    }
+  socket.on('login', data => {
+    jwt.verify(data.token, secret, (err, decoded) => {
+      if (err) return console.log(err)
+      const user = members.find(user => user.username === decoded.username)
+
+      if (!user) {
+        members.push({
+          username: decoded.username,
+          socketId: socket.id,
+          status: 'online'
+        })
+      } else {
+        user.id = socket.id
+      }
+    })
 
     updateUsers()
   })
 
+  // logout
+  socket.on('logout', data => {
+    jwt.verify(data.token, secret, (err, decoded) => {
+      if (err) return console.log(err)
+      const userIndex = members.findIndex(user => user.username === decoded.username)
+      if (userIndex !== -1) members.splice(userIndex, 1)
+      updateUsers()
+    })
+  })
+
   // disconent event
   socket.on('disconnect', () => {
-    const userIndex = users.findIndex(user => user.id === socket.id)
-    if (userIndex !== -1) users.splice(userIndex, 1)
+    total--
+    const userIndex = members.findIndex(user => user.id === socket.id)
+
     updateUsers()
   })
 })

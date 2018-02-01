@@ -4,8 +4,9 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import Home from './Home'
 import Login from './Login'
 import Register from './Register'
-import Profile from './Profile'
 import NewsFeed from './NewsFeed'
+import Profile from './Profile'
+import Members from './Members'
 import Test from './Test'
 import ErrorPage from './ErrorPage'
 
@@ -23,8 +24,9 @@ class Main extends Component {
 
             <Route exact path='/' render={() => <Redirect to='/home' />} />
             <Route exact path='/home' component={Home}/>
-            <Route exact path='/profile' component={Profile}/>
             <Route exact path='/news-feed' component={NewsFeed}/>
+            <Route exact path='/profile' component={Profile}/>
+            <Route exact path='/members' component={Members}/>
 
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>
