@@ -8,6 +8,7 @@ import NewsFeed from './NewsFeed'
 import Profile from './Profile'
 import Members from './Members'
 import Test from './Test'
+import Messages from './Messages'
 import ErrorPage from './ErrorPage'
 
 import './Main.css'
@@ -25,8 +26,9 @@ class Main extends Component {
             <Route exact path='/' render={() => <Redirect to='/home' />} />
             <Route exact path='/home' component={Home}/>
             <Route exact path='/news-feed' component={NewsFeed}/>
-            <Route exact path='/profile' component={Profile}/>
+            <Route exact path='/profile/:name' component={Profile}/>
             <Route exact path='/members' component={Members}/>
+            <Route exact path='/messages' component={Messages}/>
 
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>

@@ -5,7 +5,10 @@ const User = require('../../models/User')
 const user = express.Router()
 
 user.get('/', (req, res, next) => {
-  res.json({ what: 'user apis' })
+  User.find({}, (err, allMembers) => {
+    if (err) return res.json({ err })
+    return res.json({ allMembers })
+  })
 })
 
 // POST

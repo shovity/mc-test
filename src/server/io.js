@@ -87,19 +87,24 @@ io.on('connection', (socket) => {
   // send chat message event
   socket.listen('send message', (data) => {
     const { target, message, username } = data
-    const userx = [username, target].sort().join('-')
+    const userx = [username, target]
 
-    ChatHistory.findOne({ userx }, (err, data) => {
+    ChatHistory.findOne({ userx: username }, (err, data) => {
       if (err) return socket.emit('err', err)
 
       if (!data) {
         // history exists
         if (err) return socket.emit('err', 'chat history not found. userx=' + userx)
       } else {
+        const t = members.find(m => m.username === target)
+        const unread = target
+
         ChatHistory.findOneAndUpdate(
-          { userx },
+          { userx: username },
           {
             $set: {
+              modified_date: Date.now(),
+              unread,
               messages: data.messages.concat({ sender: username, content: message })
             }
           },
@@ -110,8 +115,8 @@ io.on('connection', (socket) => {
               message: { sender: username, content: message },
               userx
             })
+
             // if target is online, send realtime to it
-            const t = members.find(m => m.username === target)
             if (t) {
               socket.broadcast.to(t.socketId).emit('send message', {
                 message: { sender: username, content: message },

@@ -28,12 +28,16 @@ const Dumb = ({ isOpen, isConnected, username, messageUs }) => {
           <li className="item"><i className="fa fa-newspaper-o"></i>News Feed</li>
         </NavLink>
 
-        <NavLink to='/profile'>
+        <NavLink to={`/profile/${username}`}>
           <li className="item"><i className="fa fa-info-circle"></i>Profile</li>
         </NavLink>
 
         <NavLink to='/members'>
           <li className="item"><i className="fa fa-group"></i>Members</li>
+        </NavLink>
+
+        <NavLink to='/messages'>
+          <li className="item"><i className="fa fa-envelope"></i>Messages</li>
         </NavLink>
 
         <NavLink to='/about'>

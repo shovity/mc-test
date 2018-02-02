@@ -1,35 +1,37 @@
-#member ul.member-list {
+#message ul.member-list {
   list-style: none;
 }
 
-#member .member-list li {
+#message .member-list li {
   background-color: #f1f0f0;
   display: flex;
   line-height: 50px;
   margin: 5px 0;
+  cursor: pointer;
 }
 
-#member .member-list i {
+#message .member-list i {
   line-height: 50px;
   padding: 0 10px;
   color: #aaa;
 }
 
-#member .member-list i.online {
+#message .member-list i.online {
   color: #5cb85c;
 }
 
-#member .status {
+#message .message {
   width: 100%;
+  padding: 0 10px;
 }
 
-#member i.member-btn {
+#message .member-btn {
   line-height: 50px;
   padding: 0 20px;
   cursor: pointer;
   color: #222;
 }
 
-#member .member-btn:hover {
+#message .member-btn:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }

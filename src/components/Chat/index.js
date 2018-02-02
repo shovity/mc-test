@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import Message from './Message'
 
-import { hideChat, showChat, minusChat, sendChatMessageSocket } from '../../actions/chatActions'
+import { hideChat, showChat, minusChat, sendChatMessageSocket, requestReaded } from '../../actions/chatActions'
 import { pushAlert } from '../../actions/statusActions'
 
 import './style.css'
@@ -31,8 +31,11 @@ class Chat extends Component {
   }
 
   componentWillUpdate(nextProps) {
-    // focus input when show chat box
-    if (nextProps.show === 2) this.refs.chatInput.focus()
+    // focus input and request readed when show chat box
+    if (nextProps.show === 2) {
+      this.refs.chatInput.focus()
+      this.props.requestReaded(this.props.target)
+    }
   }
 
   componentDidUpdate() {
@@ -101,7 +104,8 @@ const mapDispatchToProps = (dispatch) => {
     minusChat: () => dispatch(minusChat()),
     showChat: () => dispatch(showChat()),
     send: (target, message) => dispatch(sendChatMessageSocket(target, message)),
-    alert: (message, type, time) => dispatch(pushAlert(message, type, time))
+    alert: (message, type, time) => dispatch(pushAlert(message, type, time)),
+    requestReaded: (target) => dispatch(requestReaded(target))
   }
 }
 

@@ -4,16 +4,20 @@ import {
   RECEIVE_CHAT_MESSAGE,
   SHOW_CHAT,
   HIDE_CHAT,
-  MINUS_CHAT
+  MINUS_CHAT,
+  RECEIVE_UNREADED,
+  RECEIVE_RECENTS_CHAT
 } from '../constants/actionTypes'
 
 const initialState = {
   // 0, 1, 2 -> hide, minus, show
   show: 0,
-  // [{ sender, content }]
+  // [{ String: sender, String: content }]
   messages: [],
   target: '',
-  unreads: []
+  // [String: username]
+  unreads: [],
+  recents: []
 }
 
 const testRecuder = (state=initialState, action) => {
@@ -32,10 +36,9 @@ const testRecuder = (state=initialState, action) => {
     case RECEIVE_CHAT_MESSAGE:
       const { userx, message } = action.data
 
-      if (userx.split('-').indexOf(state.target) === -1) {
+      if (userx.indexOf(state.target) === -1) {
         // not focus chat, push to unreads if not exists on it
         const exists = state.unreads.indexOf(message.sender) !== -1
-        console.log(exists)
         return exists? state : { ...state, unreads: state.unreads.concat(message.sender) }
       }
 
@@ -46,10 +49,16 @@ const testRecuder = (state=initialState, action) => {
       return { ...state, show: 2 }
 
     case HIDE_CHAT:
-      return { ...state, show: 0 }
+      return { ...state, show: 0, target: '', messages: [] }
 
     case MINUS_CHAT:
       return { ...state, show: 1 }
+
+    case RECEIVE_UNREADED:
+      return { ...state, unreads: action.data.unreads }
+
+    case RECEIVE_RECENTS_CHAT:
+      return { ...state, recents: action.data.recents }
 
     default:
       return state

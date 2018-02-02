@@ -19,6 +19,7 @@ export const RECEIVE_COMMENT = 'RECEIVE_COMMENT'
 
 // members actions
 export const RECEIVE_MEMBERS = 'RECEIVE_MEMBERS'
+export const RECEIVE_ALL_MEMBERS = 'RECEIVE_ALL_MEMBERS'
 
 // chat actions
 export const RECEIVE_CHAT_HISTORY = 'RECEIVE_CHAT_HISTORY'
@@ -27,3 +28,5 @@ export const RECEIVE_CHAT_MESSAGE = 'RECEIVE_CHAT_MESSAGE'
 export const SHOW_CHAT = 'SHOW_CHAT'
 export const HIDE_CHAT = 'HIDE_CHAT'
 export const MINUS_CHAT = 'MINUS_CHAT'
+export const RECEIVE_UNREADED = 'RECEIVE_UNREADED'
+export const RECEIVE_RECENTS_CHAT = 'RECEIVE_RECENTS_CHAT'

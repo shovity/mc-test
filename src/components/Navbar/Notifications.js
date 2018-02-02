@@ -22,7 +22,7 @@ class Notifications extends Component {
   render() {
     return (
       <i className='fa fa-globe menu' onClick={this.toggleShowPopup}>
-        <span className={`${0!==0? 'label' : 'hide'}`}>{0}</span>
+        <span className={`${false? 'label' : 'hide'}`}>{0}</span>
         { this.state.isShowPopup && <Popup /> }
       </i>
     );
