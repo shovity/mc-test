@@ -15,7 +15,7 @@ class Messages extends Component {
 
     const memberList = recents.map((m, i) => {
       const targetName = m.userx.filter(u => u !== username)[0]
-      const lastMessage = m.messages.slice(-1)[0]
+      const lastMessage = m.messages.slice(-1)[0] || { content: '' }
       return (
         <Member
           key={i}

@@ -11,11 +11,11 @@ class Post extends Component {
   }
 
   handleComment() {
-    const { alert, comment, post } = this.props
+    const { alert, comment, post, username } = this.props
     if (!this.refs.input.value) {
       alert('comment is null', 'danger', 1000)
     } else {
-      comment(post._id, this.refs.input.value)
+      comment(post._id, this.refs.input.value, username)
       // clear input
       this.refs.input.value = ''
     }

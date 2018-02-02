@@ -13,7 +13,7 @@ auth.post('/', (req, res, next) => {
     } else {
       setTimeout(() => {
         res.json({ token, username })
-      }, 1000)
+      }, 500)
     }
   })
 })

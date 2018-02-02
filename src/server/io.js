@@ -71,7 +71,7 @@ io.on('connection', (socket) => {
     updateUsers()
   })
 
-  // disconnect dont need middleware
+  // disconnect don't need middleware
   socket.on('disconnect', () => {
     total--
     const memberIndex = members.findIndex(user => user.socketId === socket.id)
@@ -89,7 +89,7 @@ io.on('connection', (socket) => {
     const { target, message, username } = data
     const userx = [username, target]
 
-    ChatHistory.findOne({ userx: username }, (err, data) => {
+    ChatHistory.findOne({ userx: { $all: userx } }, (err, data) => {
       if (err) return socket.emit('err', err)
 
       if (!data) {
@@ -100,7 +100,7 @@ io.on('connection', (socket) => {
         const unread = target
 
         ChatHistory.findOneAndUpdate(
-          { userx: username },
+          { userx: { $all: userx } },
           {
             $set: {
               modified_date: Date.now(),
@@ -121,7 +121,7 @@ io.on('connection', (socket) => {
               socket.broadcast.to(t.socketId).emit('send message', {
                 message: { sender: username, content: message },
                 userx
-              });
+              })
             }
           }
         )

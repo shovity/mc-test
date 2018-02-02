@@ -33,12 +33,22 @@ class NewsFeed extends Component {
   }
 
   render() {
-    const { posts, alert, comment } = this.props
+    const { posts, alert, comment, username } = this.props
 
     let postList = <div>Loading...</div>
 
     if (posts.length > 0) {
-      postList = posts.map((p, i) => <Post key={i} post={p} alert={alert} comment={comment} />)
+      postList = posts.map((p, i) => {
+        return (
+          <Post
+            key={i}
+            post={p}
+            alert={alert}
+            comment={comment}
+            username={username}
+          />
+        )
+      })
     }
 
     return (
@@ -69,7 +79,7 @@ const mapDispatchToProp = (dispatch) => {
     post: (content) => dispatch(requestSendPost(content)),
     alert: (message, type, time) => dispatch(pushAlert(message, type, time)),
     fetchPost: (query) => dispatch(fetchPost(query)),
-    comment: (id, content) => dispatch(sendComment(id, content))
+    comment: (id, content, username) => dispatch(sendComment(id, content, username))
   }
 }
 

@@ -15,7 +15,7 @@ class Alert extends Component {
       <div className={`alert ${type} ${isOpen? 'open' : ''}`} onClick={() => close(0)}>
         {message}
       </div>
-    );
+    )
   }
 }
 

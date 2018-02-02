@@ -16,11 +16,10 @@ const newsFeedReducer = (state=initialNewsFeedState, action) => {
 
     case RECEIVE_COMMENT:
       const { comment, id } = data
+      console.log({ comment, id })
       if (comment && id) {
         const clonePosts = state.posts.slice()
         clonePosts.find(p => p._id === id).comments.push(comment)
-        console.log(clonePosts)
-        console.log(clonePosts.find(p => p._id === id).comments)
         return {
           ...state,
           posts: clonePosts

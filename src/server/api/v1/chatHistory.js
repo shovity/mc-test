@@ -15,7 +15,6 @@ chatHistoryApi.get('/', (req, res, next) => {
 
   // get recents messages
   if (recents) {
-    console.log('get recents ' + username)
     return ChatHistory.find({ userx: username }).sort({ modified_date: 'desc' }).exec((err, recents) => {
       res.json({ err, recents })
     })
@@ -24,7 +23,7 @@ chatHistoryApi.get('/', (req, res, next) => {
   // throw err when send chat to own
   if (username === target) return res.json({ err: 'you can not make chat to you' })
 
-  ChatHistory.findOne({ userx: { $in: [target, username] } }, (err, data) => {
+  ChatHistory.findOne({ userx: { $all: [target, username] } }, (err, data) => {
     if (err) return res.json({ err })
 
     if (data) {
@@ -67,7 +66,7 @@ chatHistoryApi.put('/', (req, res, next) => {
 
   ChatHistory.findOneAndUpdate(
     {
-      userx: { $in: [ target, username ] },
+      userx: { $all: [ target, username ] },
       unread: username
     },
     {

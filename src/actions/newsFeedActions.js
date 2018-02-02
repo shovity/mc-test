@@ -15,7 +15,7 @@ export const requestSendPost = (content) => {
       body: { content },
       casStart: [sendPost, setWork('send post')],
       casSuccess: [fetchPost, doneWork, pushAlert('Send post success!', 'success')],
-        casError: [ pushAlert, doneWork ]
+      casError: [ pushAlert, doneWork ]
     }
   }
 }
@@ -25,19 +25,21 @@ export const fetchPost = (query = '') => {
     call: {
       path: 'post?' + query,
       casStart: [requestPost, setWork('fetch post')],
-      casSuccess: [receivePost, doneWork]
+      casSuccess: [receivePost, doneWork],
+      casError: [ pushAlert, doneWork ]
     }
   }
 }
 
-export const sendComment = (id, content) => {
+export const sendComment = (id, content, username) => {
   return {
     call: {
       path: 'post',
       method: 'put',
       body: { id, content },
-      casStart: [setWork('send comment')],
-      casSuccess: [receiveComment, doneWork]
+      casStart: [ receiveComment({ id, comment: { content, username } }), setWork('send comment') ],
+      casSuccess: [ doneWork ],
+      casError: [ pushAlert, fetchPost, doneWork ]
     }
   }
 }
