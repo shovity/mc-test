@@ -24,13 +24,18 @@ io.attach(server)
 app.set('view engine', 'pug')
 app.set('view cache', false)
 
-app.use(express.static(path.join(__dirname, 'public')))
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
+app.use(express.static(path.join(__dirname, 'static')))
 app.use(api)
+
+// GET root
+api.get('*', (req, res, next) => {
+  res.sendFile(path.join(__dirname, 'client', 'index.html'))
+})
 
 server.listen(port)
 

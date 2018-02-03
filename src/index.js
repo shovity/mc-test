@@ -10,6 +10,7 @@ import configureStore from './store/configureStore'
 import boot from './boot'
 import registerServiceWorker from './registerServiceWorker'
 
+import 'font-awesome/css/font-awesome.min.css'
 import './index.css'
 
 const root = document.getElementById('root')

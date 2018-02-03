@@ -1,5 +1,6 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom'
+import avatarImage from '../../static/images/unknown-user.png'
 
 import './style.css'
 
@@ -9,7 +10,7 @@ const Dumb = ({ isOpen, isConnected, username, messageUs }) => {
       <ul className="sidebar-menu">
 
         <li className="user-status">
-          <img src="/images/unknown-user.png" alt="" id="avatar" className="avatar"/>
+          <img src={avatarImage} alt="" id="avatar" className="avatar"/>
           <div className="name-label">{username}</div>
           <i className={`fa fa-circle ${isConnected? 'online' : ''}`}></i>
         </li>

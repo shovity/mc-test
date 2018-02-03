@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import { fetchChatHistory } from '../../actions/chatActions'
 import { fetchAllMembers } from '../../actions/membersActions'
 
+import avatarImage from '../../static/images/unknown-user.png'
+
 import './style.css'
 
 class Members extends Component {
@@ -58,7 +60,7 @@ class Members extends Component {
 const Member = ({ username, status, makeMessage, isOnline }) => {
   return (
     <li>
-      <img src="/images/unknown-user.png" alt="" id="avatar" className="avatar"/>
+      <img src={avatarImage} alt="" id="avatar" className="avatar"/>
       <div className="name-label"><strong>{username}</strong></div>
       <i className={`fa fa-circle ${isOnline? 'online' : ''}`}></i>
       <div className='status'>{status}</div>

@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 import Comment from './Comment'
+import avatarImage from '../../static/images/unknown-user.png'
 
 class Post extends Component {
 
@@ -34,7 +35,7 @@ class Post extends Component {
     return (
       <div className="post">
         <div className="title">
-          <img src="/images/unknown-user.png" alt="avatar" className="avatar"/>
+          <img src={avatarImage} alt="avatar" className="avatar"/>
           <strong className="name">{post.onwer}</strong>
         </div>
 

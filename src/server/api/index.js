@@ -9,11 +9,11 @@ const secret = process.env.SECRET_KEY_JWT
 
 
 // fake server's delay
-api.use((req, res, next) => {
-  setTimeout(() => {
-    next()
-  }, 300)
-})
+// api.use((req, res, next) => {
+//   setTimeout(() => {
+//     next()
+//   }, 300)
+// })
 
 // authen middleware
 api.use((req, res, next) => {
@@ -30,10 +30,5 @@ api.use((req, res, next) => {
 
 // REST api
 api.use('/api/v1', v1)
-
-// GET root
-api.get('/', (req, res, next) => {
-  res.json({ what: 'only api'})
-})
 
 module.exports = api

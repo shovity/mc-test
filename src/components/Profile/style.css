@@ -1,5 +1,5 @@
 #profile .avatar-box {
-    background-image: url(/images/unknown-user.png);
+    background-image: url(../../static/images/unknown-user.png);
     display: inline-block;
     width: 234px;
     height: 234px;

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchRecents, fetchChatHistory } from '../../actions/chatActions'
 
+import avatarImage from '../../static/images/unknown-user.png'
+
 import './style.css'
 
 class Messages extends Component {
@@ -43,7 +45,7 @@ const Member = ({ targetName, message, makeMessage, isOnline }) => {
   return (
     <li onClick={() => makeMessage(targetName)}>
       <i className={`fa fa-circle ${isOnline? 'online' : ''}`}></i>
-      <img src="/images/unknown-user.png" alt="" id="avatar" className="avatar"/>
+      <img src={avatarImage} alt="" id="avatar" className="avatar"/>
       <div className="name-label"><strong>{targetName}</strong></div>
       <div className='message'>{message}</div>
     </li>

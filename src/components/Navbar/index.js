@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import  { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react'
+import  { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-import UnreadMessage from './UnreadMessage';
-import Notifications from './Notifications';
-
+import UnreadMessage from './UnreadMessage'
+import Notifications from './Notifications'
 import history from '../../history'
 import { destroy } from '../../actions/authActions'
+
+import avatarImage from '../../static/images/unknown-user.png'
 
 import './style.css'
 
@@ -49,7 +50,7 @@ class Navbar extends Component {
         <UnreadMessage />
 
         <div className="user-box">
-          <img src="/images/unknown-user.png" alt="" id="avatar" className="avatar"/>
+          <img src={avatarImage} alt="" id="avatar" className="avatar"/>
           <div className="nameLabel">{username}</div>
         </div>
 
