@@ -1,10 +1,13 @@
 {
   "name": "mc-test-server",
   "version": "1.0.0",
-  "description": "A test application for student",
+  "description": "Server API and websocket for mc-test",
   "main": "app.js",
   "author": "Huong Nguyen <shovity@gmail.com>",
   "private": true,
+  "scripts": {
+    "start": "ndoe app"
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",
