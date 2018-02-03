@@ -29,16 +29,15 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
-app.use(express.static(path.join(__dirname, 'static')))
 app.use(api)
+app.use(express.static(path.join(__dirname, 'client')))
 
-// GET root
-api.get('*', (req, res, next) => {
+app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'client', 'index.html'))
 })
 
 server.listen(port)
 
 server.on('listening', () => {
-  console.log(`server multiple choice test is listening at port http://127.0.0.1:${port}`)
+  console.log(`server multiple choice test is listening at http://127.0.0.1:${port}`)
 })

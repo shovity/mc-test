@@ -48,9 +48,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
     // if you're in it, you don't end up in Trash
     fs.emptyDirSync(paths.appBuild);
     // Merge with the public folder
-    copyPublicFolder();
-    // Merge with the server folder
-    copyServerFolder();
+    makeRelease();
     // Start the webpack build
     return build(previousFileSizes);
   })
@@ -144,16 +142,21 @@ function build(previousFileSizes) {
   });
 }
 
-function copyPublicFolder() {
+// Merge with the serve and public folder
+function makeRelease() {
+  // copy public folder
   fs.copySync(paths.appPublic, paths.appBuild, {
     dereference: true,
     filter: file => file !== paths.appHtml,
   });
-}
 
-// copy server to /build
-function copyServerFolder() {
+  // copy server folder
   fs.copySync(paths.server, paths.release, {
+    dereference: true,
+  });
+
+  // copy .env
+  fs.copySync(paths.dotenv, paths.release + '/.env', {
     dereference: true,
   });
 }

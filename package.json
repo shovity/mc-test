@@ -60,8 +60,7 @@
     "server": "nodemon -w ./src ./src/server/app.js",
     "client": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
-    "gulp": "gulp hello"
+    "test": "node scripts/test.js --env=jsdom"
   },
   "proxy": "http://127.0.0.1:3001",
   "jest": {
@@ -105,6 +104,5 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  },
-  "homepage": "."
+  }
 }
