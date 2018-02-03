@@ -6,7 +6,7 @@
   "author": "Huong Nguyen <shovity@gmail.com>",
   "private": true,
   "scripts": {
-    "start": "node app"
+    "start": "node app.js"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
