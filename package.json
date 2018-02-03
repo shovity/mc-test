@@ -6,7 +6,7 @@
   "author": "Huong Nguyen <shovity@gmail.com>",
   "private": true,
   "scripts": {
-    "start": "ndoe app"
+    "start": "node app"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
