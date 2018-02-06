@@ -47,7 +47,7 @@ const Dumb = ({ isOpen, isConnected, username, messageUs }) => {
 
         <li className="header">Other</li>
 
-        <Link to='/test/1'>
+        <Link to='/test/5a7949d13bc21c3f7c569c1c'>
           <li className="item"><i className="fa fa-newspaper-o"></i>Test 1</li>
         </Link>
 

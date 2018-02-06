@@ -14,9 +14,11 @@ const testSchema = mongoose.Schema({
       ]
     }
   ],
+  require_level: Number,
+  time: Number,
   created_date: { type: Date, default: Date.now }
 })
 
-const Post = mongoose.model('Test', testSchema)
+const Test = mongoose.model('Test', testSchema)
 
-module.exports = Post
+module.exports = Test

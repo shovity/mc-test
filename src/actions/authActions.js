@@ -37,7 +37,7 @@ export const destroy = () => {
 }
 
 // plain actions
-export const requestToken = (data) => {
+export const requestToken = () => {
   return {
     type: REQUEST_TOKEN,
   }

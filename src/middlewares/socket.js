@@ -1,56 +1,44 @@
 /**
- *       client |                                    | server
- *  ----------- |                                    | ------------
- *  pick test   | -----emit make_quest/test--------> | find test
- *              |                                    | pick quest
- *              |                                    | list done
- *  render      | <-----emit start/quest------------ | emit timeout
- *  timer       |                                    |
- *  get answer  | ------emit answer/time-----------> |
+ * SOCKET MIDDLEWARE
+ * action - { socket: { event, payload } }
  */
+
 import websocket from 'socket.io-client'
-import { setStatus } from '../actions/statusActions'
+import { setStatus, pushAlert } from '../actions/statusActions'
 import { receiveMembers } from '../actions/membersActions'
 import { receiveChatMessage } from '../actions/chatActions'
+import { receiveQuestion, testFinished } from '../actions/testActions'
 
 const socket = websocket()
 
-// listen with middleware
-socket.listen = (eventName, callback) => {
-  socket.on(eventName, (data) => {
-    const extend = {}
-    callback({ ...data, ...extend })
-  })
-}
-
 const socketMiddleWare = ({ dispatch, getState }) => {
+  socket.on('err', (data) => {
+    dispatch(pushAlert(data))
+  })
 
-  socket.listen('update users', (data) => {
+  socket.on('update users', (data) => {
     dispatch(receiveMembers(data))
   })
 
-  socket.listen('connect', () => {
+  socket.on('connect', () => {
     dispatch(setStatus({ isConnected: true }))
   })
 
-  socket.listen('disconnect', () => {
+  socket.on('disconnect', () => {
     dispatch(setStatus({ isConnected: false }))
   })
 
-  socket.listen('send message', (data) => {
-    console.log('receive message in soket middleware')
+  socket.on('send message', (data) => {
     dispatch(receiveChatMessage(data))
-    // { err, message: { sender: username, content: message } }
-
   })
 
-  // socket.listen('reconnect', () => {
-  //   console.log('reconnected')
-  // })
-  //
-  // socket.listen('reconnect_error', () => {
-  //   console.log('reconnected error')
-  // })
+  socket.on('fetch question', data => {
+    dispatch(receiveQuestion(data))
+  })
+
+  socket.on('test finished', data => {
+    dispatch(testFinished(data))
+  })
 
   // catch socket actions
   return next => action => {

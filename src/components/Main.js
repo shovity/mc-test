@@ -8,6 +8,7 @@ import NewsFeed from './NewsFeed'
 import Profile from './Profile'
 import Members from './Members'
 import Test from './Test'
+import TestStatus from './TestStatus'
 import Messages from './Messages'
 import ErrorPage from './ErrorPage'
 
@@ -34,6 +35,7 @@ class Main extends Component {
             <Route exact path='/register' component={Register}/>
 
             <Route exact path='/test/:id' component={Test}/>
+            <Route exact path='/test-status/:id' component={TestStatus}/>
 
             <Route component={ErrorPage}/>
           </Switch>

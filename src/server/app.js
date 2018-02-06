@@ -30,11 +30,14 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
 app.use(api)
-app.use(express.static(path.join(__dirname, 'client')))
 
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'client', 'index.html'))
-})
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client')))
+
+  app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'client', 'index.html'))
+  })
+}
 
 server.listen(port)
 

@@ -32,8 +32,9 @@ const statusReducer = (state=initialStatusState, action) => {
       return { ...state, isLoading: false, currentWork: '' }
 
     case PUSH_ALERT:
+      const message = typeof data.message === 'string'? data.message : JSON.stringify(data.message)
       return { ...state, alert: {
-          message: data.message,
+          message,
           type: data.type,
           time: data.time,
           isOpen: true
