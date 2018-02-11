@@ -14,9 +14,9 @@ export const fetchTest = (id) => {
   return {
     call: {
       path: 'test?id=' + id,
-      casStart: [setWork('fetch test'), requestTest],
-      casSuccess: [ receiveTest, doneWork ],
-      casError: [ pushAlert, doneWork ]
+      start_calls: [setWork('fetch test'), requestTest],
+      success_calls: [ receiveTest, doneWork ],
+      error_calls: [ pushAlert, doneWork ]
     }
   }
 }
@@ -25,9 +25,9 @@ export const fetchTestStatus = (id) => {
   return {
     call: {
       path: 'test/status?id=' + id,
-      casStart: [setWork('fetch test status')],
-      casSuccess: [ receiveTestStatus, doneWork ],
-      casError: [ pushAlert, doneWork ]
+      start_calls: [setWork('fetch test status')],
+      success_calls: [ receiveTestStatus, doneWork ],
+      error_calls: [ pushAlert, doneWork ]
     }
   }
 }

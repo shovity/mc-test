@@ -15,9 +15,9 @@ export const getAccessToken = (username, password) => {
       path: 'auth',
       method: 'post',
       body: { username, password },
-      casStart: setWork('request access token'),
-      casSuccess: [ receiveToken, loginSocket, pushAlert('Logged in!', 'success'), doneWork ],
-      casError: [ pushAlert, doneWork ]
+      start_calls: setWork('request access token'),
+      success_calls: [ receiveToken, loginSocket, pushAlert('Logged in!', 'success'), doneWork ],
+      error_calls: [ pushAlert, doneWork ]
     }
   }
 }
@@ -26,7 +26,7 @@ export const getAccessToken = (username, password) => {
 export const destroy = () => {
   return {
     call: {
-      casStart: [
+      start_calls: [
         logoutSocket,
         logout,
         hideChat,

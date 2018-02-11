@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('../mongoose')
 const md5 = require('md5')
 const jwt = require('jsonwebtoken')
 

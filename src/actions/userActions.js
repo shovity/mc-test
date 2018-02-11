@@ -8,9 +8,9 @@ export const createUser = (username, password) => {
       path: 'user',
       method: 'post',
       body: { username, password },
-      casStart: setWork('create user'),
-      casSuccess: [receiveToken, loginSocket, doneWork, pushAlert('Register sucess, logged in!', 'success')],
-      casError: [ pushAlert, doneWork ]
+      start_calls: setWork('create user'),
+      success_calls: [receiveToken, loginSocket, doneWork, pushAlert('Register sucess, logged in!', 'success')],
+      error_calls: [ pushAlert, doneWork ]
     }
   }
 }

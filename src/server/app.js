@@ -7,13 +7,10 @@ const dotenv = require('dotenv')
 const cors = require('cors')
 
 // initial environment
-require('dotenv').config()
+dotenv.config()
 
 const io = require('./io')
 const api = require('./api')
-
-// open mongodb connect
-const connect = require('./connect')
 
 const app = express()
 const server = http.createServer(app)

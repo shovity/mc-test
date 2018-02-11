@@ -1,6 +1,6 @@
 /**
  * CALL API CHAIN SYSTEM
- * action - { call: { path, method, header, body .... casStart, casSuccess, casError } }
+ * action - { call: { path, method, header, body .... start_calls, success_calls, error_calls } }
  */
 
 import path from 'path'
@@ -47,16 +47,16 @@ const apiHandleMiddleware = store => next => action => {
       method = 'GET',
       body = {},
       header = {'Content-Type': 'application/json'},
-      casStart = { type: 'NO_CALL_START'},
-      casSuccess = { type: 'NO_CALL_SUCCESS'},
-      casError = { type: 'NO_CALL_ERROR'}
+      start_calls = { type: 'NO_CALL_START'},
+      success_calls = { type: 'NO_CALL_SUCCESS'},
+      error_calls = { type: 'NO_CALL_ERROR'}
     } = extractParams(action.call)
 
     // Inject x-access-token
     header = injectToken(header, store)
 
     // Execute action start
-    superDispatch(store, casStart)
+    superDispatch(store, start_calls)
 
     // Init default options
     const options = {
@@ -73,11 +73,11 @@ const apiHandleMiddleware = store => next => action => {
     if (path === API_BASE) return
 
     fetch(path, options).then(res => res.json()).then(data => {
-      if (data.err) return superDispatch(store, casError, data.err)
-      superDispatch(store, casSuccess, data)
+      if (data.err) return superDispatch(store, error_calls, data.err)
+      superDispatch(store, success_calls, data)
     }).catch(error => {
       console.log(error)
-      superDispatch(store, casError, error)
+      superDispatch(store, error_calls, error)
     })
   }
 }

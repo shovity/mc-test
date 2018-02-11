@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('../mongoose')
 
 const testLogSchema = mongoose.Schema({
   test_id: String,

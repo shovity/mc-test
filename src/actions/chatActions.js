@@ -15,9 +15,9 @@ export const fetchRecents = (num) => {
   return {
     call: {
       path: 'chatHistory?recents=' + num || 10,
-      casStart: setWork('fetch recents message'),
-      casSuccess: [ receiveRecentsChat, doneWork ],
-      casError: [ pushAlert, doneWork ]
+      start_calls: setWork('fetch recents message'),
+      success_calls: [ receiveRecentsChat, doneWork ],
+      error_calls: [ pushAlert, doneWork ]
     }
   }
 }
@@ -28,9 +28,9 @@ export const requestReaded = (target) => {
       path: 'chatHistory',
       method: 'put',
       body: { target },
-      casStart: setWork('request readed message'),
-      casSuccess: [ doneWork ],
-      casError: [ pushAlert, doneWork ]
+      start_calls: setWork('request readed message'),
+      success_calls: [ doneWork ],
+      error_calls: [ pushAlert, doneWork ]
     }
   }
 }
@@ -39,9 +39,9 @@ export const fetchChatHistory = (target) => {
   return {
     call: {
       path: `chatHistory?target=${target}`,
-      casStart: setWork('fetch chat history'),
-      casSuccess: [ receiveChatHistory, showChat, doneWork ],
-      casError: [ pushAlert, doneWork ]
+      start_calls: setWork('fetch chat history'),
+      success_calls: [ receiveChatHistory, showChat, doneWork ],
+      error_calls: [ pushAlert, doneWork ]
     }
   }
 }
@@ -73,9 +73,9 @@ export const fetchUnread = () => {
   return {
     call: {
       path: 'chatHistory/unread',
-      casStart: setWork('fetch unread message'),
-      casSuccess: [ receiveUnread, doneWork ],
-      casError: [ pushAlert, doneWork ]
+      start_calls: setWork('fetch unread message'),
+      success_calls: [ receiveUnread, doneWork ],
+      error_calls: [ pushAlert, doneWork ]
     }
   }
 }

@@ -8,9 +8,9 @@ export const fetchAllMembers = () => {
   return {
     call: {
       path: 'user',
-      casStart: setWork('fetch all members'),
-      casSuccess: [ receiveAllMembers, doneWork ],
-      casError: [ pushAlert, doneWork ]
+      start_calls: setWork('fetch all members'),
+      success_calls: [ receiveAllMembers, doneWork ],
+      error_calls: [ pushAlert, doneWork ]
     }
   }
 }
