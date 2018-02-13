@@ -1,9 +1,4 @@
-const express = require('express')
-const TestControllers = require('../../controllers/TestController')
-
-const test = express.Router()
-
-test.get('/', TestControllers.getTest)
-test.get('/status', TestControllers.getTestStatus)
-
-module.exports = test
+module.exports = {
+  'get /'       : 'TestControllers.getTest',
+  'get /status' : 'TestControllers.getTestStatus'
+}

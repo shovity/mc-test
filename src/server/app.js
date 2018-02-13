@@ -7,7 +7,13 @@ const dotenv = require('dotenv')
 const cors = require('cors')
 
 // initial environment
-dotenv.config()
+if (process.env.NODE_ENV === 'production') {
+  console.log('load environment for production')
+  dotenv.config()
+} else {
+  console.log('load environment for development')
+  dotenv.config('.env.development')
+}
 
 const io = require('./io')
 const api = require('./api')

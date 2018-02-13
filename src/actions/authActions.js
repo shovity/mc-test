@@ -8,7 +8,7 @@ import {
   setWork, doneWork, pushAlert
 } from './statusActions'
 
-// call api chain actiosn
+// call api chain actions
 export const getAccessToken = (username, password) => {
   return {
     call: {
@@ -22,16 +22,10 @@ export const getAccessToken = (username, password) => {
   }
 }
 
-// when use logout
 export const destroy = () => {
   return {
     call: {
-      start_calls: [
-        logoutSocket,
-        logout,
-        hideChat,
-        receiveChatHistory({ messages: [], target: '' }),
-      ]
+      start_calls: [ logoutSocket, logout, hideChat, receiveChatHistory({ messages: [], target: '' }), ]
     }
   }
 }
