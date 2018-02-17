@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom'
 import { fetchChatHistory } from '../../actions/chatActions'
 import { fetchAllMembers } from '../../actions/membersActions'
 
-import avatarImage from '../../static/images/unknown-user.png'
-
 import './style.css'
 
 class Members extends Component {
@@ -16,15 +14,18 @@ class Members extends Component {
   }
 
   render() {
-    const { members, makeMessage, allMembers } = this.props
+    const { members, makeMessage, allMembers, avatar_base, my_username, my_avatar } = this.props
     const memberOnlineList = members.map((m, i) => {
       return (
         <Member
           key={i}
           username={m.username}
+          avatar_base={avatar_base}
           status={m.status}
           isOnline={true}
           makeMessage={makeMessage}
+          my_avatar={my_avatar}
+          my_username={my_username}
         />
       )
     })
@@ -34,9 +35,12 @@ class Members extends Component {
         <Member
           key={i}
           username={m.username}
+          avatar_base={avatar_base}
           status={m.status}
           isOnline={!!members.find(u => u.username === m.username)}
           makeMessage={makeMessage}
+          my_avatar={my_avatar}
+          my_username={my_username}
         />
       )
     })
@@ -57,10 +61,11 @@ class Members extends Component {
 
 }
 
-const Member = ({ username, status, makeMessage, isOnline }) => {
+const Member = ({ username, status, makeMessage, isOnline, avatar_base, my_username, my_avatar }) => {
+  const avatar = (username === my_username)? my_avatar : avatar_base + username
   return (
     <li>
-      <img src={avatarImage} alt="" id="avatar" className="avatar"/>
+      <img src={avatar} alt="" id="avatar" className="avatar"/>
       <div className="name-label"><strong>{username}</strong></div>
       <i className={`fa fa-circle ${isOnline? 'online' : ''}`}></i>
       <div className='status'>{status}</div>
@@ -74,7 +79,10 @@ const mapStateTopProps = state => {
   return {
     total: state.members.total,
     members: state.members.members,
-    allMembers: state.members.allMembers
+    allMembers: state.members.allMembers,
+    avatar_base: state.auth.avatar_base,
+    my_username: state.auth.username,
+    my_avatar: state.auth.avatar,
   }
 }
 

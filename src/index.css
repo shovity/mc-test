@@ -33,7 +33,9 @@ pre {
 
 .avatar {
   pointer-events: none;
-  background-color: #fff;
+  background: url(./static/images/unknown-user.png);
+  background-size: 100% 100%;
+
   width: 32px;
   height: 32px;
   border-radius: 50%;

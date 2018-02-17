@@ -66,7 +66,11 @@ const apiHandleMiddleware = store => next => action => {
 
     // GET/HEAD can not have body
     if (method !== 'get' && method !== 'GET' && method !== 'head' && method !== 'HEAD') {
-      options.body = JSON.stringify(body)
+      if (body instanceof FormData) {
+        options.body = body
+      } else {
+        options.body = JSON.stringify(body)
+      }
     }
 
     // done work here if lost path

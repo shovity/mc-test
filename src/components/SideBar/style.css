@@ -68,7 +68,7 @@
 }
 
 #sidebar .user-status .name-label {
-  width: 100%;
+  flex: auto;
 }
 
 #sidebar .user-status i {

@@ -2,6 +2,7 @@
 export const REQUEST_TOKEN = 'REQUEST_TOKEN'
 export const RECEIVE_TOKEN = 'RECEIVE_TOKEN'
 export const LOG_OUT = 'LOG_OUT'
+export const RELOAD_AVATAR = 'RELOAD_AVATAR'
 
 // status actions
 export const SET_STATUS = 'SET_STATUS'

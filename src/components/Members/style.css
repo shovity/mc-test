@@ -20,7 +20,7 @@
 }
 
 #member .status {
-  width: 100%;
+  flex: auto;
 }
 
 #member i.member-btn {

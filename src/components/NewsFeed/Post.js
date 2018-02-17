@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import Comment from './Comment'
-import avatarImage from '../../static/images/unknown-user.png'
 
 class Post extends Component {
 
@@ -23,19 +22,25 @@ class Post extends Component {
   }
 
   render() {
-    const { post } = this.props
+    const { post, avatar_base, avatar, username } = this.props
     const { comments } = post
 
     let listComments = <div></div>
 
     if (comments.length > 0) {
-      listComments = comments.map((c, i) => <Comment key={i} comment={c} />)
+      listComments = comments.map((c, i) => <Comment
+        key={i}
+        comment={c}
+        avatar_base={avatar_base}
+        my_avatar={avatar}
+        my_username={username}
+      />)
     }
 
     return (
       <div className="post">
         <div className="title">
-          <img src={avatarImage} alt="avatar" className="avatar"/>
+          <img src={avatar} alt="" className="avatar"/>
           <strong className="name">{post.onwer}</strong>
         </div>
 

@@ -1,21 +1,19 @@
 #profile .avatar-box {
-    background-image: url(../../static/images/unknown-user.png);
-    display: inline-block;
-    width: 234px;
-    height: 234px;
-    border: 1px #777 solid;
-    border-radius: 2px;
-}
-
-#profile .avatar-box img {
-    width: 1005px;
-    height: 100%;
+  background-image: url(../../static/images/unknown-user.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  width: 234px;
+  height: 234px;
+  border: 1px #777 solid;
+  border-radius: 2px;
 }
 
 #profile .info-row {
-    display: flex;
+  display: flex;
 }
 
 #profile .info-text {
-    margin-left: 50px;
+  margin-left: 50px;
 }

@@ -7,8 +7,6 @@ import Notifications from './Notifications'
 import history from '../../history'
 import { destroy } from '../../actions/authActions'
 
-import avatarImage from '../../static/images/unknown-user.png'
-
 import './style.css'
 
 class Navbar extends Component {
@@ -21,7 +19,7 @@ class Navbar extends Component {
 
   render() {
     const {
-      toggle, isOpen, isLoading, currentWork, username, logout
+      toggle, isOpen, isLoading, currentWork, username, logout, avatar
     } = this.props
 
     const isLogged = username !== 'Guest'
@@ -50,7 +48,7 @@ class Navbar extends Component {
         <UnreadMessage />
 
         <div className="user-box">
-          <img src={avatarImage} alt="" id="avatar" className="avatar"/>
+          <img src={avatar} alt="" id="avatar" className="avatar"/>
           <div className="nameLabel">{username}</div>
         </div>
 
@@ -76,7 +74,8 @@ const mapStateToProps = (state) => {
   return {
     isLoading: state.status.isLoading,
     currentWork: state.status.currentWork,
-    username: state.auth.username
+    username: state.auth.username,
+    avatar: state.auth.avatar,
   }
 }
 

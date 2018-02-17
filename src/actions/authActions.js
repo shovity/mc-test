@@ -1,5 +1,5 @@
 import {
-  REQUEST_TOKEN, RECEIVE_TOKEN, LOG_OUT
+  REQUEST_TOKEN, RECEIVE_TOKEN, LOG_OUT, RELOAD_AVATAR
 } from '../constants/actionTypes'
 
 import { receiveChatHistory, hideChat } from './chatActions'
@@ -64,5 +64,11 @@ export const logoutSocket = () => {
     socket: {
       event: 'logout'
     }
+  }
+}
+
+export const reloadAvatar = () => {
+  return {
+    type: RELOAD_AVATAR
   }
 }

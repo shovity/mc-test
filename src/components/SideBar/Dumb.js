@@ -1,16 +1,15 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import avatarImage from '../../static/images/unknown-user.png'
 
 import './style.css'
 
-const Dumb = ({ isOpen, isConnected, username, messageUs }) => {
+const Dumb = ({ isOpen, isConnected, username, messageUs, avatar }) => {
   return (
     <div id="sidebar" className={isOpen? 'open' : ''}>
       <ul className="sidebar-menu">
 
         <li className="user-status">
-          <img src={avatarImage} alt="" id="avatar" className="avatar"/>
+          <img src={avatar} alt="" id="avatar" className="avatar"/>
           <div className="name-label">{username}</div>
           <i className={`fa fa-circle ${isConnected? 'online' : ''}`}></i>
         </li>

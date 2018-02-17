@@ -3,8 +3,10 @@ import React from 'react';
 const Dumb = ({ avatar }) => (
     <div id='profile'>
         <div className="info-row">
-            <div className="avatar-box">
-                { avatar && <img src={avatar} alt="avatar"/> }
+            <div
+                className="avatar-box"
+                style={{ backgroundImage: avatar? `url(${avatar})` : '' }}>
+
             </div>
 
             <div className="info-text">
