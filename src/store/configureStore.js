@@ -1,16 +1,14 @@
-import { createStore, applyMiddleware } from 'redux'
-import rootReducer from '../reducers'
-import middlewares from '../middlewares'
+import configureStoreDevelopment from './configureStore.development'
+import configureStoreProduction from './configureStore.production'
 
-const createStoreWithMiddleWare = applyMiddleware(...middlewares)(createStore)
-const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+let configureStore
 
-const configureStore = (initialStore) => {
-  return createStoreWithMiddleWare(
-    rootReducer,
-    initialStore,
-    devTools
-  )
+if (process.env.NODE_ENV === 'production') {
+  console.log('load config store for production')
+  configureStore = configureStoreProduction
+} else {
+  console.log('load config store for development')
+  configureStore = configureStoreDevelopment
 }
 
 export default configureStore

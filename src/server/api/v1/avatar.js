@@ -25,7 +25,6 @@ avatar.post('/', upload.single('avatar'), (req, res, next) => {
 // GET username
 avatar.get('/:username', (req, res, next) => {
   const username = req.params.username
-  console.log('fetch ava', username)
   const avatarName = `avatar-${crypto.createHash('md5').update(username).digest('hex')}`
   const avatarNameGuest = `avatar-${crypto.createHash('md5').update('guest').digest('hex')}`
   const avatarUri = path.join(UPLOAD_PATH, avatarName)

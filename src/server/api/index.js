@@ -10,7 +10,6 @@ const secret = process.env.SECRET_KEY_JWT
 // authen middleware
 api.use((req, res, next) => {
   const token = req.get('x-access-token') || ''
-  console.log(token)
   if (!token) return next()
   jwt.verify(token, secret, (err, decoded) => {
     if (err) return next(err)

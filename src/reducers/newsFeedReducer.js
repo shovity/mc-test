@@ -1,5 +1,5 @@
 import {
-  RECEIVE_POST, RECEIVE_COMMENT, LOG_OUT
+  RECEIVE_POST, RECEIVE_COMMENT
 } from '../constants/actionTypes'
 
 const initialState = {

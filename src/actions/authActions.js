@@ -2,7 +2,7 @@ import {
   REQUEST_TOKEN, RECEIVE_TOKEN, LOG_OUT, RELOAD_AVATAR
 } from '../constants/actionTypes'
 
-import { receiveChatHistory, hideChat } from './chatActions'
+import { receiveChatHistory } from './chatActions'
 
 import {
   setWork, doneWork, pushAlert
