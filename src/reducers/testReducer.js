@@ -5,9 +5,10 @@ import {
   TEST_FINISHED,
   REQUEST_TEST_STATUS,
   RECEIVE_TEST_STATUS,
+  LOG_OUT,
 } from '../constants/actionTypes'
 
-const initialTestState = {
+const initialState = {
   id: '',
   title: '',
   current: 0,
@@ -22,7 +23,7 @@ const initialTestState = {
   status: {}
 }
 
-const testRecuder = (state=initialTestState, action) => {
+const testRecuder = (state=initialState, action) => {
   const type = action.type
   const data = action.data || {}
 
@@ -51,6 +52,9 @@ const testRecuder = (state=initialTestState, action) => {
 
     case RECEIVE_TEST_STATUS:
       return { ...state, status: data.status }
+
+    case LOG_OUT:
+      return initialState
 
     default:
       return state

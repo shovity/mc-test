@@ -4,14 +4,14 @@ import {
 
 import history from '../history'
 
-const initialAuthState = {
+const initialState = {
   token: '',
   username: 'Guest',
   avatar_base: process.env.REACT_APP_API_BASE + '/avatar/',
-  avatar: ''
+  avatar: process.env.REACT_APP_API_BASE + '/avatar/guest',
 }
 
-const authRecuder = (state=initialAuthState, action) => {
+const authRecuder = (state=initialState, action) => {
   switch (action.type) {
     case RECEIVE_TOKEN:
       if (!action.data || !action.data.token) return state
@@ -27,7 +27,7 @@ const authRecuder = (state=initialAuthState, action) => {
       history.push('/login')
       window.localStorage.removeItem('username');
       window.localStorage.removeItem('token');
-      return { ...state, token: '', username: 'Guest', avatar: state.avatar_base + 'guest' }
+      return initialState
 
     default:
       return state

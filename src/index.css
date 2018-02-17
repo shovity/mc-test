@@ -35,7 +35,7 @@ pre {
   pointer-events: none;
   background: url(./static/images/unknown-user.png);
   background-size: 100% 100%;
-
+  object-fit: cover;
   width: 32px;
   height: 32px;
   border-radius: 50%;

@@ -1,21 +1,21 @@
 import {
   SET_STATUS, SET_WORK, DONE_WORK,
-  PUSH_ALERT, CLOSE_ALERT
+  PUSH_ALERT, CLOSE_ALERT, LOG_OUT
 } from '../constants/actionTypes'
 
-const initialStatusState = {
+const initialState = {
   isConnected: false,
   isLoading: false,
   currentWork: '',
   alert: {
-    isOpen: true,
-    message: 'Hello!!',
-    type: 'success',
+    isOpen: false,
+    message: '',
+    type: '',
     time: 1000
   }
 }
 
-const statusReducer = (state=initialStatusState, action) => {
+const statusReducer = (state=initialState, action) => {
   const data = action.data
 
   switch (action.type) {
@@ -47,6 +47,9 @@ const statusReducer = (state=initialStatusState, action) => {
           isOpen: false
         }
       }
+
+    case LOG_OUT:
+      return initialState
 
     default:
       return state

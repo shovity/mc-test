@@ -25,7 +25,7 @@ export const getAccessToken = (username, password) => {
 export const destroy = () => {
   return {
     call: {
-      start_calls: [ logoutSocket, logout, hideChat, receiveChatHistory({ messages: [], target: '' }), ]
+      start_calls: [ logoutSocket, logout, receiveChatHistory({ messages: [], target: '' }), ]
     }
   }
 }

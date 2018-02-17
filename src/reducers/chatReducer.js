@@ -6,7 +6,8 @@ import {
   HIDE_CHAT,
   MINUS_CHAT,
   RECEIVE_UNREADED,
-  RECEIVE_RECENTS_CHAT
+  RECEIVE_RECENTS_CHAT,
+  LOG_OUT,
 } from '../constants/actionTypes'
 
 const initialState = {
@@ -17,7 +18,7 @@ const initialState = {
   target: '',
   // [String: username]
   unreads: [],
-  recents: []
+  recents: [],
 }
 
 const testRecuder = (state=initialState, action) => {
@@ -59,6 +60,9 @@ const testRecuder = (state=initialState, action) => {
 
     case RECEIVE_RECENTS_CHAT:
       return { ...state, recents: action.data.recents }
+
+    case LOG_OUT:
+      return initialState
 
     default:
       return state

@@ -7,14 +7,6 @@ const v1 = require('./v1')
 const api = express.Router()
 const secret = process.env.SECRET_KEY_JWT
 
-
-// fake server's delay
-// api.use((req, res, next) => {
-//   setTimeout(() => {
-//     next()
-//   }, 300)
-// })
-
 // authen middleware
 api.use((req, res, next) => {
   const token = req.get('x-access-token') || ''

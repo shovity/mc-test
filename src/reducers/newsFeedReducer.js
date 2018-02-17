@@ -1,12 +1,12 @@
 import {
-  RECEIVE_POST, RECEIVE_COMMENT
+  RECEIVE_POST, RECEIVE_COMMENT, LOG_OUT
 } from '../constants/actionTypes'
 
-const initialNewsFeedState = {
-  posts: []
+const initialState = {
+  posts: [],
 }
 
-const newsFeedReducer = (state=initialNewsFeedState, action) => {
+const newsFeedReducer = (state=initialState, action) => {
   const data = action.data
 
   switch (action.type) {

@@ -8,13 +8,8 @@ auth.post('/', (req, res, next) => {
   const { username, password } = req.body
 
   User.auth(username, password, (err, token) => {
-    if (err) {
-      res.json({ err })
-    } else {
-      setTimeout(() => {
-        res.json({ token, username })
-      }, 500)
-    }
+    if (err) return res.json({ err })
+    res.json({ token, username })
   })
 })
 
