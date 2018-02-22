@@ -2,7 +2,7 @@ import {
   REQUEST_TOKEN, RECEIVE_TOKEN, LOG_OUT, RELOAD_AVATAR
 } from '../constants/actionTypes'
 
-import { receiveChatHistory } from './chatActions'
+import { receiveChatHistory, fetchUnread } from './chatActions'
 
 import {
   setWork, doneWork, pushAlert
@@ -16,7 +16,7 @@ export const getAccessToken = (username, password) => {
       method: 'post',
       body: { username, password },
       start_calls: setWork('request access token'),
-      success_calls: [ receiveToken, loginSocket, pushAlert('Logged in!', 'success'), doneWork ],
+      success_calls: [ receiveToken, loginSocket, fetchUnread, pushAlert('Logged in!', 'success'), doneWork ],
       error_calls: [ pushAlert, doneWork ]
     }
   }

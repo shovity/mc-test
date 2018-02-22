@@ -9,8 +9,8 @@ const UPLOAD_PATH = path.join(__dirname, '../../uploads')
 const avatar = express.Router()
 
 
-// POST
-avatar.post('/', upload.single('avatar'), (req, res, next) => {
+// PUT
+avatar.put('/', upload.single('avatar'), (req, res, next) => {
   const path = req.pathAvatarUploaded
   if (req.err) return res.json('You must login before upload')
 

@@ -5,6 +5,7 @@ import newsFeed from './newsFeedReducer'
 import test from './testReducer'
 import members from './membersReducer'
 import chat from './chatReducer'
+import user from './userReducer'
 
 const rootReducer = combineReducers({
   status,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   test,
   members,
   chat,
+  user
 })
 
 export default rootReducer

@@ -15,6 +15,10 @@ pre {
   display: inline;
 }
 
+.tac {
+  text-align: center;
+}
+
 .online {
   color: #5cb85c;
 }

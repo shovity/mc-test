@@ -33,7 +33,7 @@ class NewsFeed extends Component {
   }
 
   render() {
-    const { posts, alert, comment, username, avatar, avatar_base } = this.props
+    const { posts, alert, comment, username, my_avatar, avatar_base } = this.props
 
     let postList = <div>Loading...</div>
 
@@ -46,7 +46,7 @@ class NewsFeed extends Component {
             alert={alert}
             comment={comment}
             username={username}
-            avatar={avatar}
+            my_avatar={my_avatar}
             avatar_base={avatar_base}
           />
         )
@@ -63,6 +63,7 @@ class NewsFeed extends Component {
           </div>
 
           { postList }
+          <div className="tac"><button className="btn">Load More</button></div>
         </div>
       </div>
     )
@@ -74,7 +75,7 @@ const mapStateToProp = (state) => {
     username: state.auth.username,
     posts: state.newsFeed.posts,
     avatar_base: state.auth.avatar_base,
-    avatar: state.auth.avatar,
+    my_avatar: state.auth.avatar,
   }
 }
 

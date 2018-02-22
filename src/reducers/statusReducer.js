@@ -1,6 +1,6 @@
 import {
   SET_STATUS, SET_WORK, DONE_WORK,
-  PUSH_ALERT, CLOSE_ALERT, LOG_OUT
+  PUSH_ALERT, CLOSE_ALERT
 } from '../constants/actionTypes'
 
 const initialState = {
@@ -47,9 +47,6 @@ const statusReducer = (state=initialState, action) => {
           isOpen: false
         }
       }
-
-    case LOG_OUT:
-      return initialState
 
     default:
       return state

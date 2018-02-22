@@ -11,7 +11,7 @@ export const setStatus = (data) => {
 }
 
 export const setWork = (data) => {
-  return () => ({
+  return (store) => ({
     type: SET_WORK,
     data
   })

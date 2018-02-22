@@ -12,7 +12,8 @@ if (process.env.NODE_ENV === 'production') {
   dotenv.config()
 } else {
   console.log('load environment for development')
-  dotenv.config('.env.development')
+  dotenv.config({ path: path.join(__dirname, '../../.env.development') })
+  console.log(process.env.MONGODB_CONNECT_URL)
 }
 
 const io = require('./io')
@@ -31,6 +32,13 @@ app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
+
+// fake delay
+app.use((req, res, next) => {
+  setTimeout(() => {
+    next()
+  }, 300)
+})
 
 app.use(api)
 

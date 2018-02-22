@@ -11,6 +11,14 @@ user.get('/', (req, res, next) => {
   })
 })
 
+// Get user info
+user.get('/:name', (req, res, next) => {
+  User.findOne({ username: req.params.name }, { password: 0 }, (err, userInfo) => {
+    if (err) return res.json({ err })
+    return res.json({ userInfo })
+  })
+})
+
 // POST
 user.post('/', (req, res, next) => {
   const { username, password } = req.body

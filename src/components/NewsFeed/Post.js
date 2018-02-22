@@ -22,8 +22,9 @@ class Post extends Component {
   }
 
   render() {
-    const { post, avatar_base, avatar, username } = this.props
+    const { post, avatar_base, my_avatar, username } = this.props
     const { comments } = post
+      const avatar = username===post.onwer? my_avatar : avatar_base + post.onwer;
 
     let listComments = <div></div>
 
@@ -32,8 +33,8 @@ class Post extends Component {
         key={i}
         comment={c}
         avatar_base={avatar_base}
-        my_avatar={avatar}
-        my_username={username}
+        my_avatar={my_avatar}
+        username={username}
       />)
     }
 
@@ -42,6 +43,8 @@ class Post extends Component {
         <div className="title">
           <img src={avatar} alt="" className="avatar"/>
           <strong className="name">{post.onwer}</strong>
+          <i className="fa fa-chevron-up"><span>100</span></i>
+          <i className="fa fa-chevron-down"><span>12</span></i>
         </div>
 
         <div className="content">
@@ -53,7 +56,7 @@ class Post extends Component {
         </div>
 
         <div className="input">
-          <input ref="input" type="text"/>
+          <input ref="input" type="text" placeholder="Write your comment ..."/>
           <button onClick={this.handleComment} className="btn btn-send">SEND</button>
         </div>
       </div>

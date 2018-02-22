@@ -74,7 +74,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: none;
+  background: #009688;
   color: #fff;
   width: 100px;
   height: 100px;
@@ -97,9 +97,6 @@
 @keyframes accept-spinner {
   0% {
     transform: translate(-50%, -50%) rotate(0deg);
-  }
-  70% {
-    transform: translate(-50%, -50%) rotate(360deg);
   }
   100% {
     transform: translate(-50%, -50%) rotate(360deg);

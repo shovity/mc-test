@@ -7,7 +7,6 @@ const storage = multer.diskStorage({
     callback(null, path.join(__dirname, 'uploads'))
   },
   filename: (req, file, callback) => {
-    console.log('catch upload file')
     const username = req.username
     const fieldname = file.fieldname
     if (!username) {

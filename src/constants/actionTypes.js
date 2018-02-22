@@ -4,6 +4,9 @@ export const RECEIVE_TOKEN = 'RECEIVE_TOKEN'
 export const LOG_OUT = 'LOG_OUT'
 export const RELOAD_AVATAR = 'RELOAD_AVATAR'
 
+// user actions
+export const RECEIVE_USER_INFO = 'RECEIVE_USER_INFO'
+
 // status actions
 export const SET_STATUS = 'SET_STATUS'
 export const SET_WORK  = 'SET_WORK'

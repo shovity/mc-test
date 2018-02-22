@@ -1,4 +1,5 @@
 #profile .avatar-box {
+  position: relative;
   background-image: url(../../static/images/unknown-user.png);
   background-position: center;
   background-repeat: no-repeat;
@@ -15,5 +16,52 @@
 }
 
 #profile .info-text {
-  margin-left: 50px;
+  flex: auto;
+  background-color: #f1f0f0;
+}
+
+#profile .info-text div {
+  padding: 10px;
+  padding-left: 30px;
+  border-top: 1px solid #e1e0e0;
+}
+
+#profile .info-text .username {
+  background-color: #e1e0e0;
+  font-size: 32px;
+}
+
+#profile .avatar-box .overlay {
+  text-align: right;
+  background: rgba(0, 0, 0, .3);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  display: none;
+}
+
+#profile .avatar-box:hover .overlay {
+  display: block;
+}
+
+#profile .overlay i {
+  line-height: 30px;
+  font-size: 18px;
+  color: #ccc;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+#profile .overlay i:hover {
+  background: rgba(0, 0, 0, .5);
+}
+
+#profile #inputFile {
+  display: none;
+}
+
+#profile .edit-row {
+  margin-top: 70px;
 }

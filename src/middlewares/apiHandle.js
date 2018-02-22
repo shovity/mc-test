@@ -38,9 +38,14 @@ const superDispatch = (store, actions, data) => {
 }
 
 const apiHandleMiddleware = store => next => action => {
-  if (!action.call) {
+  if (typeof action === 'function') {
+    // function as actions
+    store.dispatch(action(store))
+  } else if (!action.call) {
+    // plain actions
     next(action)
   } else {
+    // Chain API actions
     // Get data from call bundle
     let {
       path = '',
