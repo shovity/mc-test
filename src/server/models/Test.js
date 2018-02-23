@@ -6,12 +6,17 @@ const testSchema = mongoose.Schema({
     {
       content: String,
       true_answer: String,
+      subject: String,
+      tags: [ String ],
+      level: Number,
+      onwer: String,
       answers: [
         {
           label: String,
           content: String
         }
-      ]
+      ],
+      created_date: { type: Date, default: Date.now }
     }
   ],
   require_level: Number,

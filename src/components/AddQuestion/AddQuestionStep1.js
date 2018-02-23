@@ -21,7 +21,7 @@ class AddQuestionStep1 extends Component {
   render() {
     return (
       <div>
-        <h1>Add question content</h1>
+        <h1>Input content</h1>
         <label>Questions content</label>
         <textarea className="input-content" ref="content"></textarea>
 
