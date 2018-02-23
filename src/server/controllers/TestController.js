@@ -90,8 +90,13 @@ class TestControllers {
       if (err) return res.json({ err })
       return res.json({ id: q._id, onwer })
     })
+  }
 
-
+  static getQuestion(req, res, next) {
+    Question.find({}, (err, questions) => {
+      if (err) return res.json({ err })
+      return res.json({ questions })
+    })
   }
 
   //- end class

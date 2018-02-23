@@ -8,6 +8,7 @@ import {
   LOG_OUT,
   RECEIVE_POST_QUESTION_RESULT,
   POST_QUESTION,
+  RECEIVE_QUESTIONS,
 } from '../constants/actionTypes'
 
 const initialState = {
@@ -24,6 +25,7 @@ const initialState = {
   isFinished: false,
   status: {},
   postQuestionRedult: {},
+  questions: [],
 }
 
 const testRecuder = (state=initialState, action) => {
@@ -45,6 +47,12 @@ const testRecuder = (state=initialState, action) => {
         quest: data.quest,
         current: data.current,
         timeLeft: data.timeLeft
+      }
+
+    case RECEIVE_QUESTIONS:
+      return {
+        ...state,
+        questions: data.questions
       }
 
     case TEST_FINISHED:

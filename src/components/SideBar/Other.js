@@ -8,6 +8,11 @@ const Other = ({ messageUs }) => (
     <a onClick={messageUs}>
       <li className="item"><i className="fa fa-send"></i>Message Us</li>
     </a>
+
+    
+    <Link to='/about'>
+      <li className="item"><i className="fa fa-question-circle-o"></i>About</li>
+    </Link>
   </div>
 )
 

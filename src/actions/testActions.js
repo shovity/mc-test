@@ -7,7 +7,9 @@ import {
   REQUEST_TEST_STATUS,
   RECEIVE_TEST_STATUS,
   POST_QUESTION,
-  RECEIVE_POST_QUESTION_RESULT
+  RECEIVE_POST_QUESTION_RESULT,
+  REQUEST_QUESTIONS,
+  RECEIVE_QUESTIONS,
 } from '../constants/actionTypes'
 
 import {  setWork, doneWork, pushAlert } from './statusActions'
@@ -18,6 +20,17 @@ export const fetchTest = (id) => {
       path: 'test?id=' + id,
       start_calls: [setWork('fetch test'), requestTest],
       success_calls: [ receiveTest, doneWork ],
+      error_calls: [ pushAlert, doneWork ],
+    }
+  }
+}
+
+export const fetchQuestions = (query) => {
+  return {
+    call: {
+      path: 'test/question?query=' + query,
+      start_calls: [ setWork('fetch questons'), requestQuestions ],
+      success_calls: [ receiveQuestions, doneWork ],
       error_calls: [ pushAlert, doneWork ],
     }
   }
@@ -120,6 +133,19 @@ export const postQuestion = () => {
 export const receivePostQuestionResult = (data) => {
   return {
     type: RECEIVE_POST_QUESTION_RESULT,
+    data,
+  }
+}
+
+export const requestQuestions = () => {
+  return {
+    type: REQUEST_QUESTIONS,
+  }
+}
+
+export const receiveQuestions = (data) => {
+  return {
+    type: RECEIVE_QUESTIONS,
     data,
   }
 }

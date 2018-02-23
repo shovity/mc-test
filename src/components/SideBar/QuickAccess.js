@@ -24,10 +24,6 @@ const QuickAccess = ({ username }) => (
     <NavLink to='/messages'>
       <li className="item"><i className="fa fa-envelope"></i>Messages</li>
     </NavLink>
-
-    <NavLink to='/about'>
-      <li className="item"><i className="fa fa-question-circle-o"></i>About</li>
-    </NavLink>
   </div>
 )
 
