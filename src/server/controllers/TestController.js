@@ -1,4 +1,5 @@
 const Test = require('../models/Test')
+const Question = require('../models/Question')
 const TestLog = require('../models/TestLog')
 
 class TestControllers {
@@ -78,6 +79,19 @@ class TestControllers {
       })
 
     })
+  }
+
+  static postQuestion(req, res, next) {
+    const { username } = req
+    const { question } = req.body
+    const onwer = username
+
+    new Question({ ...question, onwer }).save((err, q) => {
+      if (err) return res.json({ err })
+      return res.json({ id: q._id, onwer })
+    })
+
+
   }
 
   //- end class

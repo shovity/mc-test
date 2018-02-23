@@ -7,10 +7,12 @@
   left: 0;
   background-color: #222d32;
   color: #fff;
+  font-size: 12px;
 }
 
 #sidebar.open {
   width: 250px;
+  overflow-y: auto;
 }
 
 #sidebar.open li.header {
@@ -39,6 +41,7 @@
 
 #sidebar li.item > i {
   width: 32px;
+  font-size: 14px;
 }
 
 #sidebar a.active li.item {
@@ -78,11 +81,10 @@
 }
 
 #sidebar.open #search {
-  display: block;
+  /*  */
 }
 
 #search {
-  display: none;
   color: #ddd;
   border-color: #1a2226;
   width: calc(100% - 10px);

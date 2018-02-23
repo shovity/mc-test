@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import Comment from './Comment'
+import codeParser from '../../codeParser'
 
 class Post extends Component {
 
@@ -48,7 +49,7 @@ class Post extends Component {
         </div>
 
         <div className="content">
-          {post.content}
+          {codeParser(post.content)}
         </div>
 
         <div className="comments">

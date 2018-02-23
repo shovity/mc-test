@@ -2,23 +2,36 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
+import QuickAccess from './QuickAccess'
+import Author from './Author'
+import Other from './Other'
+
 import { fetchChatHistory } from '../../actions/chatActions'
-
-import Dumb from './Dumb'
-
+import './style.css'
 
 class SideBar extends Component {
   render() {
-    const { isOpen, isConnected, username, messageUs,avatar } = this.props
+    const { isOpen, isConnected, username, messageUs, avatar, level } = this.props
 
     return (
-      <Dumb
-        isOpen={isOpen}
-        isConnected={isConnected}
-        username={username}
-        avatar={avatar}
-        messageUs={messageUs}
-      />
+      <div id="sidebar" className={isOpen? 'open' : ''}>
+        <ul className="sidebar-menu">
+
+          <li className="user-status">
+            <img src={avatar} alt="" id="avatar" className="avatar"/>
+            <div className="name-label">{username}</div>
+            <i className={`fa fa-circle ${isConnected? 'online' : ''}`}></i>
+          </li>
+
+          <li>
+            <input type="text" id="search" placeholder="Search..."/>
+          </li>
+
+          <QuickAccess username={username} />
+          { level < 21 && <Author /> }
+          <Other messageUs={messageUs}/>
+        </ul>
+      </div>
     )
   }
 }
@@ -28,6 +41,7 @@ const mapStateToProps = (state) => {
     isConnected: state.status.isConnected,
     username: state.auth.username,
     avatar: state.auth.avatar,
+    level: state.auth.level,
   }
 }
 

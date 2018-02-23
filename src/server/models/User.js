@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
   email: String,
   phone: String,
   fullName: String,
-  level: { type: Number, default: 0 },
+  level: { type: Number, default: 21 },
   created_date: { type: Date, default: Date.now }
 })
 
@@ -23,7 +23,7 @@ User.auth = (username, password, callback) => {
 
     if (user) {
       const token = jwt.sign({ username }, jwtSecrect)
-      callback(null, token)
+      callback(null, token, user.level)
     } else {
       callback('Username or password not match')
     }
@@ -58,10 +58,10 @@ User.addUser = (username = '', password = '', callback) => {
 
     const newUser = new User({ username, password: md5(password) })
 
-    newUser.save((err) => {
+    newUser.save((err, u) => {
       if (err) return callback([ err ])
       const token = jwt.sign({ username }, jwtSecrect)
-      callback(null, { username, token })
+      callback(null, { username, token, level: u.level })
     })
 
   })

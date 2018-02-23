@@ -6,6 +6,8 @@ import {
   REQUEST_TEST_STATUS,
   RECEIVE_TEST_STATUS,
   LOG_OUT,
+  RECEIVE_POST_QUESTION_RESULT,
+  POST_QUESTION,
 } from '../constants/actionTypes'
 
 const initialState = {
@@ -20,7 +22,8 @@ const initialState = {
     answers: []
   },
   isFinished: false,
-  status: {}
+  status: {},
+  postQuestionRedult: {},
 }
 
 const testRecuder = (state=initialState, action) => {
@@ -52,6 +55,12 @@ const testRecuder = (state=initialState, action) => {
 
     case RECEIVE_TEST_STATUS:
       return { ...state, status: data.status }
+
+    case POST_QUESTION:
+      return { ...state, postQuestionRedult: { id: '' } }
+
+    case RECEIVE_POST_QUESTION_RESULT:
+      return { ...state, postQuestionRedult: data }
 
     case LOG_OUT:
       return initialState

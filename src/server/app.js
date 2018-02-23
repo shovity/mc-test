@@ -34,11 +34,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
 // fake delay
-app.use((req, res, next) => {
-  setTimeout(() => {
-    next()
-  }, 300)
-})
+// app.use((req, res, next) => {
+//   setTimeout(() => {
+//     next()
+//   }, 1200)
+// })
 
 app.use(api)
 
@@ -49,6 +49,11 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, 'client', 'index.html'))
   })
 }
+
+// 404
+app.use((req, res, next) => {
+  res.json({ err: '404 not found' })
+})
 
 server.listen(port)
 

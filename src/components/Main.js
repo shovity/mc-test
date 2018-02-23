@@ -10,6 +10,8 @@ import Members from './Members'
 import Test from './Test'
 import TestStatus from './TestStatus'
 import Messages from './Messages'
+import AddQuestion from './AddQuestion'
+import CreateTest from './CreateTest'
 import ErrorPage from './ErrorPage'
 
 import './Main.css'
@@ -30,6 +32,8 @@ class Main extends Component {
             <Route exact path='/profile/:name' component={Profile}/>
             <Route exact path='/members' component={Members}/>
             <Route exact path='/messages' component={Messages}/>
+            <Route exact path='/add-question' component={AddQuestion}/>
+            <Route exact path='/create-test' component={CreateTest}/>
 
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>

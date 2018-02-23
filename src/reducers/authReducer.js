@@ -9,16 +9,18 @@ const initialState = {
   username: 'Guest',
   avatar_base: process.env.REACT_APP_API_BASE + '/avatar/',
   avatar: process.env.REACT_APP_API_BASE + '/avatar/guest',
+  level: 21,
 }
 
 const authRecuder = (state=initialState, action) => {
   switch (action.type) {
     case RECEIVE_TOKEN:
       if (!action.data || !action.data.token) return state
-      const { token, username } = action.data
+      const { token, username, level } = action.data
       window.localStorage.token = token
       window.localStorage.username = username
-      return { ...state, token, username, avatar: state.avatar_base + username }
+      window.localStorage.level = +level
+      return { ...state, token, username, avatar: state.avatar_base + username, level: +level }
 
     case RELOAD_AVATAR:
       return { ...state, avatar: state.avatar + '?ts=' + Date.now() }
@@ -27,6 +29,7 @@ const authRecuder = (state=initialState, action) => {
       history.push('/login')
       window.localStorage.removeItem('username');
       window.localStorage.removeItem('token');
+      window.localStorage.removeItem('level');
       return initialState
 
     default:

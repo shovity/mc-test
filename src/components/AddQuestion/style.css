@@ -1,0 +1,112 @@
+#addQuestion {
+  padding: 0 50px;
+}
+
+#addQuestion .process {
+  display: flex;
+  height: 10px;
+  background: #ececec;
+  margin-bottom: 50px;
+  margin-right: 15px;
+}
+
+#addQuestion .process .step {
+  flex: auto;
+  text-align: right;
+  position: relative;
+}
+
+#addQuestion .process .core {
+  font-size: 11px;
+  border-radius: 50%;
+  line-height: 30px;
+  text-align: center;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: -10px;
+  right: -15px;
+  z-index: 2;
+  background: #ececec;
+}
+
+#addQuestion .process .step.active {
+  background: #2196f3;
+}
+
+#addQuestion .process .step.active .core {
+  border: 3px solid #2196f3;
+  background: #fff;
+  line-height: 24px;
+  color: #222;
+}
+
+#addQuestion .process .step.final {
+  background: #2196f3;
+}
+
+#addQuestion .process .step.final .core {
+  color: #fff;
+  background: #2196f3;
+}
+
+#addQuestion .input-content {
+  margin: 10px 0;
+  width: 100%;
+  height: 100px;
+  padding: 5px;
+  resize: vertical;
+}
+
+#addQuestion .btn {
+  margin: 0 10px;
+}
+
+#addQuestion .step-2 label {
+  margin: 10px 0;
+}
+
+#addQuestion .tac {
+  margin: 20px 0;
+}
+
+#addQuestion .title {
+  text-align: left;
+  background-color: #ddd;
+  padding: 10px 30px;
+  border-top: 3px solid #e91e63;
+}
+
+#addQuestion .answer {
+  display: flex;
+  background: #e0e0e0;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+
+#addQuestion .answer-label {
+  width: 30px;
+  background: #00BCD4;
+  margin: -10px;
+  margin-right: 10px;
+  padding: 10px;
+  font-weight: bold;
+  color: #fff;
+  border-right: 3px solid #2196f3;
+  text-transform: uppercase;
+}
+
+#addQuestion .ra {
+  display: flex;
+}
+
+#addQuestion .c1 {
+  flex: auto;
+  padding-right: 10px;
+}
+
+#addQuestion .c2 {
+  flex: auto;
+  padding-left: 10px;
+}

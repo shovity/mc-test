@@ -6,6 +6,8 @@ import {
   TEST_FINISHED,
   REQUEST_TEST_STATUS,
   RECEIVE_TEST_STATUS,
+  POST_QUESTION,
+  RECEIVE_POST_QUESTION_RESULT
 } from '../constants/actionTypes'
 
 import {  setWork, doneWork, pushAlert } from './statusActions'
@@ -16,7 +18,20 @@ export const fetchTest = (id) => {
       path: 'test?id=' + id,
       start_calls: [setWork('fetch test'), requestTest],
       success_calls: [ receiveTest, doneWork ],
-      error_calls: [ pushAlert, doneWork ]
+      error_calls: [ pushAlert, doneWork ],
+    }
+  }
+}
+
+export const requestPostQuestion = (question) => {
+  return {
+    call: {
+      path: 'test/question',
+      method: 'post',
+      body: { question },
+      start_calls: [ setWork('post question'), postQuestion ],
+      success_calls: [ receivePostQuestionResult, doneWork ],
+      error_calls: [ pushAlert, doneWork ],
     }
   }
 }
@@ -27,7 +42,7 @@ export const fetchTestStatus = (id) => {
       path: 'test/status?id=' + id,
       start_calls: [setWork('fetch test status')],
       success_calls: [ receiveTestStatus, doneWork ],
-      error_calls: [ pushAlert, doneWork ]
+      error_calls: [ pushAlert, doneWork ],
     }
   }
 }
@@ -36,7 +51,7 @@ export const fetchQuestion = (id) => {
   return {
     socket: {
       event: 'fetch question',
-      data: { id }
+      data: { id },
     }
   }
 }
@@ -45,53 +60,66 @@ export const sendQuestion = (id, answer, current) => {
   return {
     socket: {
       event: 'send question',
-      data: { id, answer, current }
+      data: { id, answer, current },
     }
   }
 }
 
 export const requestTest = () => {
   return {
-    type: REQUEST_TEST
+    type: REQUEST_TEST,
   }
 }
 
 export const receiveTest = (data) => {
   return {
     type: RECEIVE_TEST,
-    data
+    data,
   }
 }
 
 export const requestQuestion = () => {
   return {
-    type: REQUEST_QUESTION
+    type: REQUEST_QUESTION,
   }
 }
 
 export const receiveQuestion = (data) => {
   return {
     type: RECEIVE_QUESTION,
-    data
+    data,
   }
 }
 
 export const testFinished = (data) => {
   return {
     type: TEST_FINISHED,
-    data
+    data,
   }
 }
 
 export const requestTestStatus = () => {
   return {
-    type: REQUEST_TEST_STATUS
+    type: REQUEST_TEST_STATUS,
   }
 }
 
 export const receiveTestStatus = (data) => {
   return {
     type: RECEIVE_TEST_STATUS,
-    data
+    data,
+  }
+}
+
+export const postQuestion = () => {
+  return {
+    type: POST_QUESTION,
+  }
+}
+
+export const receivePostQuestionResult = (data) => {
+  return {
+    type: RECEIVE_POST_QUESTION_RESULT,
+    data,
   }
 }

@@ -7,9 +7,9 @@ const auth = express.Router()
 auth.post('/', (req, res, next) => {
   const { username, password } = req.body
 
-  User.auth(username, password, (err, token) => {
+  User.auth(username, password, (err, token, level) => {
     if (err) return res.json({ err })
-    res.json({ token, username })
+    res.json({ token, username, level })
   })
 })
 

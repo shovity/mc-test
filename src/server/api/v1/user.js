@@ -23,8 +23,8 @@ user.get('/:name', (req, res, next) => {
 user.post('/', (req, res, next) => {
   const { username, password } = req.body
   User.addUser(username, password, (err, data) => {
-    const { username, token } = data || {}
-    res.json({ err, token, username })
+    const { username, token, level } = data || {}
+    res.json({ err, token, username, level })
   })
 })
 

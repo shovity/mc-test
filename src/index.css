@@ -11,8 +11,12 @@ body {
   overflow: hidden;
 }
 
-pre {
-  display: inline;
+.code {
+  padding: 3px 5px;
+  color: #c7254e;
+  background-color: #ffc9c3;
+  border-radius: 2px;
+  text-decoration: none;
 }
 
 .tac {
@@ -63,6 +67,7 @@ input {
 }
 
 .btn {
+  position: relative;
   cursor: pointer;
   display: inline-block;
   background: #ccc;
@@ -70,11 +75,30 @@ input {
   border-radius: 3px;
   padding: 10px 15px;
   margin: 10px 10px 10px 0;
+  user-select: none;
+}
+
+.btn:hover::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .btn.btn-success {
-  background-color: #5cb85c;
   color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+
+.btn.btn-primary {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
 }
 
 /* heading */
