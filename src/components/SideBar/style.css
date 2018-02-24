@@ -72,6 +72,7 @@
 
 #sidebar .user-status .name-label {
   flex: auto;
+  font-size: 14px;
 }
 
 #sidebar .user-status i {

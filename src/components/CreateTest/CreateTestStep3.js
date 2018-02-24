@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { requestPostQuestion } from '../../actions/testActions'
+import { requestPostTest } from '../../actions/testActions'
 
-class AddQuestionStep3 extends Component {
+class CreateTestStep3 extends Component {
   constructor(props) {
     super(props)
 
@@ -13,70 +13,32 @@ class AddQuestionStep3 extends Component {
   }
 
   componentDidMount() {
-    this.props.requestPostQuestion(this.props.question)
+    // this.props.requestPostQuestion(this.props.question)
   }
 
-  handleDone() {
-    const { putQuestion, pickStep } = this.props
-    putQuestion({}, true)
-    pickStep(1)
+  handlePostTest() {
+    const rawTest = this.props.test
+    const questions = this.props.questions
+
+    const test = {
+      ...rawTest,
+      quests: questions.filter(q => this.props.test.questions.indexOf(q._id) !== -1)
+    }
+
+    console.log(test)
+    this.props.requestPostTest(test)
   }
 
   render() {
-    const { question, postQuestionRedult } = this.props
-
-    if (!postQuestionRedult.id) return <div>Posting question...</div>
-
     return (
       <div>
-      <p className="title">{question.content}</p>
-
-      <div className="ra">
-        <div className="c1">
-          <div className="answer">
-            <div className="answer-label">A</div>
-            <div className="answer-content">
-              {question.answers.find(a => a.label === 'A').content}
-            </div>
-          </div>
-          <div className="answer">
-            <div className="answer-label">B</div>
-            <div className="answer-content">
-              {question.answers.find(a => a.label === 'B').content}
-            </div>
-          </div>
-        </div>
-
-        <div className="c2">
-          <div className="answer">
-            <div className="answer-label">C</div>
-            <div className="answer-content">
-              {question.answers.find(a => a.label === 'C').content}
-            </div>
-          </div>
-          <div className="answer">
-            <div className="answer-label">D</div>
-            <div className="answer-content">
-              {question.answers.find(a => a.label === 'D').content}
-            </div>
-          </div>
-        </div>
-      </div>
-
-        <p>
-          Subject: {question.subject} <br/>
-          Tags: {question.tags.join(', ')} <br/>
-          Level: {question.level} <br/>
-          True answer: {question.true_answer} <br/>
-        </p>
-
-        <p>
-          Onwer: {postQuestionRedult.onwer} <br/>
-          ID: {postQuestionRedult.id}
-        </p>
+        <h1>Test review</h1>
+        <div style={{ wordWrap: 'break-word' }}>{ JSON.stringify(this.props.test) }</div>
 
         <div className="tac">
-          <button className="btn" onClick={this.handleDone.bind(this)}>Add more</button>
+          <button className="btn" onClick={() => this.props.pickStep(2)}>Prev</button>
+          <button className="btn btn-success" onClick={this.handlePostTest.bind(this)}>Post</button>
+          <button className="btn btn-primary">Cancel</button>
         </div>
       </div>
     )
@@ -86,16 +48,16 @@ class AddQuestionStep3 extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    postQuestionRedult: state.test.postQuestionRedult,
+    // postQuestionRedult: state.test.postQuestionRedult,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    requestPostQuestion: (question) => dispatch(requestPostQuestion(question)),
+    requestPostTest: (test) => dispatch(requestPostTest(test)),
   }
 }
 
-AddQuestionStep3 = connect(mapStateToProps, mapDispatchToProps)(AddQuestionStep3)
+CreateTestStep3 = connect(mapStateToProps, mapDispatchToProps)(CreateTestStep3)
 
-export default AddQuestionStep3
+export default CreateTestStep3

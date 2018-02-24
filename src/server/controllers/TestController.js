@@ -71,7 +71,7 @@ class TestControllers {
           // calc points
           status.correct = 0
           status.answers.forEach((a, i) => {
-            if (a === quests[i].true_answer) status.correct++
+            if (a.toLowerCase() === quests[i].true_answer.toLowerCase()) status.correct++
           })
         }
 
@@ -96,6 +96,15 @@ class TestControllers {
     Question.find({}, (err, questions) => {
       if (err) return res.json({ err })
       return res.json({ questions })
+    })
+  }
+
+  static postTest(req, res, next) {
+    const { username, body } = req
+    const test = new Test(body.test)
+    test.save((err, test) => {
+      if (err) return res.json({ err })
+      return res.json({ test })
     })
   }
 

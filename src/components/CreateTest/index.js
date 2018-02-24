@@ -66,7 +66,7 @@ class CreateTest extends Component {
           <CreateTestStep3
             pickStep={this.pickStep}
             test={this.state.test}
-            putTest={this.putTest}
+            questions={this.props.questions}
           />
         )
 
