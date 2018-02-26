@@ -78,6 +78,10 @@ input {
   user-select: none;
 }
 
+.btn-small {
+  padding: 5px 10px;
+}
+
 .btn:hover::before {
   content: "";
   width: 100%;

@@ -23,9 +23,9 @@ class AddQuestionStep3 extends Component {
   }
 
   render() {
-    const { question, postQuestionRedult } = this.props
+    const { question, postQuestionResult } = this.props
 
-    if (!postQuestionRedult.id) return <div>Posting question...</div>
+    if (!postQuestionResult.id) return <div>Posting question...</div>
 
     return (
       <div>
@@ -71,8 +71,8 @@ class AddQuestionStep3 extends Component {
         </p>
 
         <p>
-          Onwer: {postQuestionRedult.onwer} <br/>
-          ID: {postQuestionRedult.id}
+          Onwer: {postQuestionResult.onwer} <br/>
+          ID: {postQuestionResult.id}
         </p>
 
         <div className="tac">
@@ -86,7 +86,7 @@ class AddQuestionStep3 extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    postQuestionRedult: state.test.postQuestionRedult,
+    postQuestionResult: state.test.postQuestionResult,
   }
 }
 

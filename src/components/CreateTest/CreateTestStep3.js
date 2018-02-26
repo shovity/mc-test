@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { requestPostTest } from '../../actions/testActions'
+import { pushAlert } from '../../actions/statusActions'
 
 class CreateTestStep3 extends Component {
   constructor(props) {
@@ -29,11 +30,29 @@ class CreateTestStep3 extends Component {
     this.props.requestPostTest(test)
   }
 
+  copyCode() {
+    this.refs.inputTestCode.select()
+    document.execCommand("Copy")
+    this.props.pushAlert('Test code copied!', 'success')
+  }
+
   render() {
     return (
       <div>
         <h1>Test review</h1>
+
         <div style={{ wordWrap: 'break-word' }}>{ JSON.stringify(this.props.test) }</div>
+
+        <h2>Post test result</h2>
+        { JSON.stringify(this.props.postTestResutl || {}) }
+
+        { this.props.postTestResutl._id &&
+          <div>
+            <label>Test code embed</label>
+            <input type="text" ref="inputTestCode" value={`[test:${this.props.postTestResutl._id}]`} />
+            <button className="btn btn-small" onClick={this.copyCode.bind(this)}>copy code</button>
+          </div>
+        }
 
         <div className="tac">
           <button className="btn" onClick={() => this.props.pickStep(2)}>Prev</button>
@@ -48,13 +67,14 @@ class CreateTestStep3 extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // postQuestionRedult: state.test.postQuestionRedult,
+    postTestResutl: state.test.postTestResutl,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     requestPostTest: (test) => dispatch(requestPostTest(test)),
+    pushAlert: (message, type, time) => dispatch(pushAlert(message, type, time)),
   }
 }
 

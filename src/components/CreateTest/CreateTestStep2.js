@@ -8,6 +8,7 @@ class CreateTestStep2 extends Component {
 
     this.state = {
       selectedQuestions: '',
+      questionDetail: {},
     }
   }
 
@@ -47,10 +48,15 @@ class CreateTestStep2 extends Component {
     })
   }
 
+  showQuestionDetail(target) {
+    const { questions } = this.props
+    this.setState({ questionDetail: questions.find(q => q._id === target.value) })
+  }
+
   render() {
     const { questions } = this.props
 
-    const { selectedQuestions } = this.state
+    const { selectedQuestions, questionDetail } = this.state
     const selectedQuestionsValue = selectedQuestions
 
     // auto select questions
@@ -66,12 +72,16 @@ class CreateTestStep2 extends Component {
     return (
       <div>
         <h1>Select questions</h1>
+        <QuestionDetail questionDetail={questionDetail} />
+
+
         <Select
           multi
           value={selectedQuestionsValue || initQuestions}
           onChange={this.handleChange('selectedQuestions')}
           placeholder="Select questions..."
           options={allQuestions}
+          onValueClick={this.showQuestionDetail.bind(this)}
         />
 
         <div className="tac">
@@ -82,6 +92,47 @@ class CreateTestStep2 extends Component {
     )
   }
 
+}
+
+const QuestionDetail = ({ questionDetail }) => {
+  if (!questionDetail.content) return <div>Select item for show detail</div>
+  return (
+    <div>
+      <p className="title">{questionDetail.content}</p>
+
+      <div className="ra">
+        <div className="c1">
+          <div className="answer">
+            <div className="answer-label">A</div>
+            <div className="answer-content">
+              {questionDetail.answers.find(a => a.label === 'A').content}
+            </div>
+          </div>
+          <div className="answer">
+            <div className="answer-label">B</div>
+            <div className="answer-content">
+              {questionDetail.answers.find(a => a.label === 'B').content}
+            </div>
+          </div>
+        </div>
+
+        <div className="c2">
+          <div className="answer">
+            <div className="answer-label">C</div>
+            <div className="answer-content">
+              {questionDetail.answers.find(a => a.label === 'C').content}
+            </div>
+          </div>
+          <div className="answer">
+            <div className="answer-label">D</div>
+            <div className="answer-content">
+              {questionDetail.answers.find(a => a.label === 'D').content}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default CreateTestStep2

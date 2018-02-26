@@ -11,6 +11,7 @@ import {
   REQUEST_QUESTIONS,
   RECEIVE_QUESTIONS,
   POST_TEST,
+  RECEIVE_POST_TEST_RESULT,
 } from '../constants/actionTypes'
 
 import {  setWork, doneWork, pushAlert } from './statusActions'
@@ -33,7 +34,7 @@ export const requestPostTest = (test) => {
       method: 'post',
       body: { test },
       start_calls: [ setWork('post test'), postTest ],
-      success_calls: [ receiveTest, doneWork ],
+      success_calls: [ receivePostTestResult, doneWork ],
       error_calls: [ pushAlert, doneWork ],
     }
   }
@@ -167,5 +168,12 @@ export const receiveQuestions = (data) => {
 export const postTest = () => {
   return {
     type: POST_TEST,
+  }
+}
+
+export const receivePostTestResult = (data) => {
+  return {
+    type: RECEIVE_POST_TEST_RESULT,
+    data,
   }
 }

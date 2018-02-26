@@ -52,7 +52,7 @@ class TestControllers {
 
     TestLog.findOne({ username, test_id }, (err, testLog) => {
       if (err) return res.json({ err })
-      if (!testLog) return res.json({ err: 'Test log not fond' })
+      if (!testLog) return res.json({ status: { unmake: true } })
 
       // get test
       Test.findById(test_id, (err, test) => {
@@ -75,7 +75,7 @@ class TestControllers {
           })
         }
 
-        res.json({ status })
+        return res.json({ status })
       })
 
     })

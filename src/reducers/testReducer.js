@@ -9,6 +9,8 @@ import {
   RECEIVE_POST_QUESTION_RESULT,
   POST_QUESTION,
   RECEIVE_QUESTIONS,
+  POST_TEST,
+  RECEIVE_POST_TEST_RESULT,
 } from '../constants/actionTypes'
 
 const initialState = {
@@ -24,7 +26,8 @@ const initialState = {
   },
   isFinished: false,
   status: {},
-  postQuestionRedult: {},
+  postQuestionResult: {},
+  postTestResutl: {},
   questions: [],
 }
 
@@ -65,10 +68,16 @@ const testRecuder = (state=initialState, action) => {
       return { ...state, status: data.status }
 
     case POST_QUESTION:
-      return { ...state, postQuestionRedult: { id: '' } }
+      return { ...state, postQuestionResult: { id: '' } }
 
     case RECEIVE_POST_QUESTION_RESULT:
-      return { ...state, postQuestionRedult: data }
+      return { ...state, postQuestionResult: data }
+
+    case POST_TEST:
+      return { ...state, postTestResutl: {} }
+
+    case RECEIVE_POST_TEST_RESULT:
+      return { ...state, postTestResutl: data.test }
 
     case LOG_OUT:
       return initialState
