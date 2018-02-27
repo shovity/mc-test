@@ -111,3 +111,7 @@
   flex: auto;
   padding-left: 10px;
 }
+
+#addQuestion .answer.true .answer-label {
+  background: #4caf50;
+}

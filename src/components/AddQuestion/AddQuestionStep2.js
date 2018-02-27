@@ -60,19 +60,21 @@ class AddQuestionStep2 extends Component {
     const trueAnswerValue = trueAnswer && trueAnswer.value
     const tagsValue = tags
 
+    const true_answer = trueAnswer.value || ''
+
     return (
       <div className="step-2">
         <p className="title">{question.content}</p>
 
         <div className="ra">
           <div className="c1">
-            <div className="answer">
-              <div className="answer-label">A</div>
+            <div className={`answer ${true_answer.toLowerCase() === 'a'? 'true' : ''}`}>
+              <div className="answer-label true">A</div>
               <div className="answer-content">
                 {question.answers.find(a => a.label === 'A').content}
               </div>
             </div>
-            <div className="answer">
+            <div className={`answer ${true_answer.toLowerCase() === 'b'? 'true' : ''}`}>
               <div className="answer-label">B</div>
               <div className="answer-content">
                 {question.answers.find(a => a.label === 'B').content}
@@ -81,13 +83,13 @@ class AddQuestionStep2 extends Component {
           </div>
 
           <div className="c2">
-            <div className="answer">
+            <div className={`answer ${true_answer.toLowerCase() === 'c'? 'true' : ''}`}>
               <div className="answer-label">C</div>
               <div className="answer-content">
                 {question.answers.find(a => a.label === 'C').content}
               </div>
             </div>
-            <div className="answer">
+            <div className={`answer ${true_answer.toLowerCase() === 'd'? 'true' : ''}`}>
               <div className="answer-label">D</div>
               <div className="answer-content">
                 {question.answers.find(a => a.label === 'D').content}

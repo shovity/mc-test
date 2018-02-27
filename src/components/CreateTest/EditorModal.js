@@ -2,9 +2,21 @@ import React, { Component } from 'react'
 
 class EditorModal extends Component {
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      true_answer: ''
+    }
+
+    this.selectAnswer = this.selectAnswer.bind(this)
+  }
+
   componentWillReceiveProps(nextProps) {
     const { question, isShow } = nextProps
     const { content, a, b, c, d } = this.refs
+
+    this.setState({ true_answer: '' })
 
     // not handle for close modal
     if (!isShow) return
@@ -23,6 +35,7 @@ class EditorModal extends Component {
     submit({
       _id: question._id,
       content: content.value,
+      true_answer: this.state.true_answer,
       answers: [
         { label: 'a', content: a.value },
         { label: 'b', content: b.value },
@@ -34,8 +47,15 @@ class EditorModal extends Component {
     close()
   }
 
+  selectAnswer({ target }) {
+    this.setState({
+      true_answer: target.innerHTML.toLowerCase()
+    })
+  }
+
   render() {
-    const { isShow, question, close, submit } = this.props
+    const { isShow, question, close } = this.props
+    const true_answer = this.state.true_answer || question.true_answer
 
     if (!question) return <div></div>
 
@@ -47,17 +67,40 @@ class EditorModal extends Component {
             <i className="fa fa-times controls-bar-btn" onClick={close}></i>
           </div>
 
-          <label>Questions content</label>
+          <h3>Questions content</h3>
           <textarea className="input-content" ref="content"></textarea>
 
-          <label>Answer A</label>
-          <input type="text" ref="a"/>
-          <label>Answer B</label>
-          <input type="text" ref="b"/>
-          <label>Answer C</label>
-          <input type="text" ref="c"/>
-          <label>Answer D</label>
-          <input type="text" ref="d"/>
+          <div className="f-box">
+            <label
+            className={`a-l ${true_answer.toLowerCase() === 'a'? 'true' : ''}`}
+            onClick={this.selectAnswer}
+          >A</label>
+            <input type="text" ref="a"/>
+          </div>
+
+          <div className="f-box">
+            <label
+            className={`a-l ${true_answer.toLowerCase() === 'b'? 'true' : ''}`}
+            onClick={this.selectAnswer}
+          >B</label>
+            <input type="text" ref="b"/>
+          </div>
+
+          <div className="f-box">
+            <label
+            className={`a-l ${true_answer.toLowerCase() === 'c'? 'true' : ''}`}
+            onClick={this.selectAnswer}
+          >C</label>
+            <input type="text" ref="c"/>
+          </div>
+
+          <div className="f-box">
+            <label
+            className={`a-l ${true_answer.toLowerCase() === 'd'? 'true' : ''}`}
+            onClick={this.selectAnswer}
+          >D</label>
+            <input type="text" ref="d"/>
+          </div>
 
           <div className="modal-footer">
             <button className="btn btn-primary" onClick={this.handleSubmit.bind(this)}>Edit</button>

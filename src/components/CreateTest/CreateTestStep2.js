@@ -9,8 +9,12 @@ class CreateTestStep2 extends Component {
   constructor(props) {
     super(props)
 
+    const test = this.props.test
+    // that initial questions if not exists
+    const selectedQuestions = this.initQuestions({ questions: test.questions })
+
     this.state = {
-      selectedQuestions: this.initQuestions(),
+      selectedQuestions,
       isShowModal: false,
       modalQuestion: '',
     }
@@ -18,7 +22,9 @@ class CreateTestStep2 extends Component {
     this.removeQuestion = this.removeQuestion.bind(this)
   }
 
-  selectQuestions({ size, level, subject } = {}) {
+  selectQuestions({ size, level, subject, all } = {}) {
+    if (all) return this.props.questions
+
     const questions = this.props.questions
       .filter(q => {
         return !subject? true : q.subject === subject
@@ -27,30 +33,40 @@ class CreateTestStep2 extends Component {
     return questions
   }
 
-  handleNextStep() {
+  putTestAndGoStep(step) {
     const { putTest, pickStep } = this.props
     const questions = this.state.selectedQuestions
 
     putTest({ questions: questions.map(q => q.value) })
-    pickStep(3)
+    pickStep(step)
   }
 
   handleChange = (target) => {
     return (value) => {
       const dump = {}
       dump[target] = value
-      this.setState(dump)
+      this.setState(dump, () => {
+        // scroll more 500px
+        window.main.scrollBy({
+          top: 500,
+          left: 0,
+          behavior: 'smooth'
+        })
+      })
     }
   }
 
-  initQuestions() {
+  initQuestions({ all, questions } = {}) {
     const { test } = this.props
-    return this.selectQuestions({
+    const objects = questions? questions : this.selectQuestions({
       subject: test.subject,
       size: test.size,
-    }).map(q => {
+      all,
+    })
+
+    return objects.map(q => {
       return {
-        label: `${q._id.substring(15)}(${q.subject}, ${q.content.substring(0, 5)})`,
+        label: `Subject: ${q.subject} - Content:${q.content.substring(0, 32)} - Tags: ${q.tags.join(' ')}`,
         value: q,
       }
     })
@@ -79,26 +95,15 @@ class CreateTestStep2 extends Component {
     // edit clone array
     const targetRef = selectedQuestions.find(q => q.value._id === question._id).value
     targetRef.content = question.content
-    targetRef.a = question.a
-    targetRef.b = question.b
-    targetRef.c = question.c
-    targetRef.d = question.d
+    targetRef.answers = question.answers
+    targetRef.true_answer = question.true_answer
 
     this.setState({ selectedQuestions })
   }
 
   render() {
-    const { questions } = this.props
-
     const { selectedQuestions, isShowModal, modalQuestion } = this.state
     const selectedQuestionsValue = selectedQuestions
-
-    const allQuestionsOptions = questions.map(q => {
-      return {
-        label: `${q._id.substring(15)}(${q.subject}, ${q.content.substring(0, 10)})`,
-        value: q,
-      }
-    })
 
     const listQuestionEditor = selectedQuestions.map((q, index) => {
       return (
@@ -116,15 +121,8 @@ class CreateTestStep2 extends Component {
     return (
       <div>
         <h1>Edit test</h1>
-        {listQuestionEditor}
 
-        <Select
-          multi
-          value={selectedQuestionsValue}
-          onChange={this.handleChange('selectedQuestions')}
-          placeholder="Select questions..."
-          options={allQuestionsOptions}
-        />
+        {listQuestionEditor}
 
         <EditorModal
           isShow={isShowModal}
@@ -133,9 +131,22 @@ class CreateTestStep2 extends Component {
           submit={this.handleSubmitEditQuestion.bind(this)}
         />
 
+        <label>Find question</label>
+        <div className="btn-add">
+          <Select
+            multi
+            clearable={false}
+            backspaceRemoves={false}
+            value={selectedQuestionsValue}
+            onChange={this.handleChange('selectedQuestions')}
+            placeholder="Select questions..."
+            options={this.initQuestions({ all: true })}
+          />
+        </div>
+
         <div className="tac">
-          <button className="btn" onClick={() => this.props.pickStep(1)}>Prev</button>
-          <button className="btn btn-primary" onClick={this.handleNextStep.bind(this)}>Next</button>
+          <button className="btn" onClick={this.putTestAndGoStep.bind(this, 1)}>Prev</button>
+          <button className="btn btn-primary" onClick={this.putTestAndGoStep.bind(this, 3)}>Next</button>
         </div>
       </div>
     )

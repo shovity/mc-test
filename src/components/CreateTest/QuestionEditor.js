@@ -17,13 +17,13 @@ const QuestionEditor = ({ question, index, removeQuestion, showEditorModal }) =>
           <div className={`answer ${question.true_answer.toLowerCase() === 'a'? 'true' : ''}`}>
             <div className="answer-label">A</div>
             <div className="answer-content">
-              {question.answers.find(a => a.label === 'A').content}
+              {question.answers.find(a => a.label.toLowerCase() === 'a').content}
             </div>
           </div>
           <div className={`answer ${question.true_answer.toLowerCase() === 'b'? 'true' : ''}`}>
             <div className="answer-label">B</div>
             <div className="answer-content">
-              {question.answers.find(a => a.label === 'B').content}
+              {question.answers.find(a => a.label.toLowerCase() === 'b').content}
             </div>
           </div>
         </div>
@@ -32,13 +32,13 @@ const QuestionEditor = ({ question, index, removeQuestion, showEditorModal }) =>
           <div className={`answer ${question.true_answer.toLowerCase() === 'c'? 'true' : ''}`}>
             <div className="answer-label">C</div>
             <div className="answer-content">
-              {question.answers.find(a => a.label === 'C').content}
+              {question.answers.find(a => a.label.toLowerCase() === 'c').content}
             </div>
           </div>
           <div className={`answer ${question.true_answer.toLowerCase() === 'd'? 'true' : ''}`}>
             <div className="answer-label">D</div>
             <div className="answer-content">
-              {question.answers.find(a => a.label === 'D').content}
+              {question.answers.find(a => a.label.toLowerCase() === 'd').content}
             </div>
           </div>
         </div>
