@@ -24,14 +24,15 @@ class CreateTestStep3 extends Component {
     const test = {
       ...rawTest,
       time: rawTest.time * 60,
-      quests: questions
+      quests: rawTest.questions
     }
 
     delete test.questions
     delete test._id
     delete test.size
 
-    this.props.requestPostTest(test)
+    // this.props.requestPostTest(test)
+    console.log(test)
   }
 
   copyCode() {

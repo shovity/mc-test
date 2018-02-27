@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import Answer from './Answer'
 import AcceptOverlay from './AcceptOverlay'
@@ -99,7 +99,7 @@ class Test extends Component {
     const { quest, title, current, total, timeLeft, isFinished } = this.props
     const id = this.props.match.params.id
 
-    if (isFinished) return <Redirect to={`/test-status/${id}`} />
+    if (isFinished) return <Link to={`/test-status/${id}`}>Test is done, go to result page</Link>
 
     const label = !this.state.isFetchTest? 'START' : 'fetching...'
 
