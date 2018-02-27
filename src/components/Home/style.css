@@ -14,19 +14,18 @@
 
 #home .card {
   background-color: #ccc;
-  margin: 10px;
+  margin: 15px 10px;
   height: 300px;
   padding: 10px;
 }
 
-#home .c1-h {
+#home .c1-h,
+#home .c3-h {
+  background-color: #607d8b;
   height: 100px;
 }
 
 #home .c2-h {
-  height: 150px;
-}
-
-#home .c3-h {
-  height: 50px;
+  background-color: #607d8b;
+  height: 200px;
 }

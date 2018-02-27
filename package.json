@@ -61,7 +61,8 @@
     "server": "nodemon -w ./src/server ./src/server/app.js",
     "client": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "deploy": "./scripts/deployHeroku.sh"
   },
   "proxy": "http://127.0.0.1:3001",
   "jest": {

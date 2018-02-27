@@ -20,7 +20,7 @@ const testSchema = mongoose.Schema({
     }
   ],
   require_level: Number,
-  time: Number,
+  time: Number, // secends
   created_date: { type: Date, default: Date.now }
 })
 

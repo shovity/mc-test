@@ -76,8 +76,9 @@ class Chat extends Component {
 
         <div className="chat-footer f-box">
           <input ref="chatInput" type="text" className='chat-input'/>
+          <i className="fa fa-smile-o chat-ex chat-smile"></i>
           <i
-            className="fa fa-send chat-send"
+            className="fa fa-send chat-ex"
             onClick={() => this.props.send(this.props.target, this.refs.chatInput.value)}
           >
           </i>

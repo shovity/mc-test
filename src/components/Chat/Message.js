@@ -1,9 +1,11 @@
-import React from 'react';
+import React from 'react'
+
+import codeParser from '../../codeParser'
 
 const Chat = ({ isOwn, content }) => {
   return (
     <div className={`message ${isOwn? 'own' : ''}`}>
-      { content }
+      { codeParser(content) }
     </div>
   )
 };

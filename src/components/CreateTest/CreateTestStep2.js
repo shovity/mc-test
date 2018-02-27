@@ -1,37 +1,45 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
 
+import QuestionEditor from './QuestionEditor'
+import EditorModal from './EditorModal'
+
 class CreateTestStep2 extends Component {
 
   constructor(props) {
     super(props)
 
     this.state = {
-      selectedQuestions: '',
-      questionDetail: {},
+      selectedQuestions: this.initQuestions(),
+      isShowModal: false,
+      modalQuestion: '',
     }
+
+    this.removeQuestion = this.removeQuestion.bind(this)
   }
 
   selectQuestions({ size, level, subject } = {}) {
     const questions = this.props.questions
-      .filter(q => q.subject === subject)
-      .slice(0, size || 10)
+      .filter(q => {
+        return !subject? true : q.subject === subject
+      }).slice(0, size || 10)
 
     return questions
   }
 
   handleNextStep() {
     const { putTest, pickStep } = this.props
-    const questions = (this.state.selectedQuestions || this.initQuestions())
+    const questions = this.state.selectedQuestions
+
     putTest({ questions: questions.map(q => q.value) })
     pickStep(3)
   }
 
   handleChange = (target) => {
     return (value) => {
-      const ob = {}
-      ob[target] = value
-      this.setState(ob)
+      const dump = {}
+      dump[target] = value
+      this.setState(dump)
     }
   }
 
@@ -43,45 +51,86 @@ class CreateTestStep2 extends Component {
     }).map(q => {
       return {
         label: `${q._id.substring(15)}(${q.subject}, ${q.content.substring(0, 5)})`,
-        value: q._id,
+        value: q,
       }
     })
   }
 
-  showQuestionDetail(target) {
-    const { questions } = this.props
-    this.setState({ questionDetail: questions.find(q => q._id === target.value) })
+  removeQuestion(id) {
+    this.setState({
+      selectedQuestions: this.state.selectedQuestions.filter(q => q.value._id !== id)
+    })
+  }
+
+  toggleModal(type) {
+    const isShowModal = type==='close'? false : type==='open'? true : !this.state.isShowModal
+    this.setState({ isShowModal })
+  }
+
+  showEditorModal(modalQuestion) {
+    this.setState({ modalQuestion }, () => {
+      this.toggleModal('open')
+    })
+  }
+
+  handleSubmitEditQuestion(question) {
+    // clone array
+    const selectedQuestions = this.state.selectedQuestions.slice()
+    // edit clone array
+    const targetRef = selectedQuestions.find(q => q.value._id === question._id).value
+    targetRef.content = question.content
+    targetRef.a = question.a
+    targetRef.b = question.b
+    targetRef.c = question.c
+    targetRef.d = question.d
+
+    this.setState({ selectedQuestions })
   }
 
   render() {
     const { questions } = this.props
 
-    const { selectedQuestions, questionDetail } = this.state
+    const { selectedQuestions, isShowModal, modalQuestion } = this.state
     const selectedQuestionsValue = selectedQuestions
 
-    // auto select questions
-    const initQuestions = this.initQuestions()
-
-    const allQuestions = questions.map(q => {
+    const allQuestionsOptions = questions.map(q => {
       return {
         label: `${q._id.substring(15)}(${q.subject}, ${q.content.substring(0, 10)})`,
-        value: q._id,
+        value: q,
       }
+    })
+
+    const listQuestionEditor = selectedQuestions.map((q, index) => {
+      return (
+        <div key={index}>
+          <QuestionEditor
+            question={q.value}
+            index={index}
+            removeQuestion={this.removeQuestion}
+            showEditorModal={this.showEditorModal.bind(this, q.value)}
+          />
+        </div>
+      )
     })
 
     return (
       <div>
-        <h1>Select questions</h1>
-        <QuestionDetail questionDetail={questionDetail} />
-
+        <h1>Edit test</h1>
+        {listQuestionEditor}
 
         <Select
           multi
-          value={selectedQuestionsValue || initQuestions}
+          value={selectedQuestionsValue}
           onChange={this.handleChange('selectedQuestions')}
           placeholder="Select questions..."
-          options={allQuestions}
-          onValueClick={this.showQuestionDetail.bind(this)}
+          options={allQuestionsOptions}
+        />
+
+        <EditorModal
+          isShow={isShowModal}
+          close={this.toggleModal.bind(this, 'close')}
+          question={modalQuestion}
+          submit={this.handleSubmitEditQuestion.bind(this)}
         />
 
         <div className="tac">
@@ -91,48 +140,6 @@ class CreateTestStep2 extends Component {
       </div>
     )
   }
-
-}
-
-const QuestionDetail = ({ questionDetail }) => {
-  if (!questionDetail.content) return <div>Select item for show detail</div>
-  return (
-    <div>
-      <p className="title">{questionDetail.content}</p>
-
-      <div className="ra">
-        <div className="c1">
-          <div className="answer">
-            <div className="answer-label">A</div>
-            <div className="answer-content">
-              {questionDetail.answers.find(a => a.label === 'A').content}
-            </div>
-          </div>
-          <div className="answer">
-            <div className="answer-label">B</div>
-            <div className="answer-content">
-              {questionDetail.answers.find(a => a.label === 'B').content}
-            </div>
-          </div>
-        </div>
-
-        <div className="c2">
-          <div className="answer">
-            <div className="answer-label">C</div>
-            <div className="answer-content">
-              {questionDetail.answers.find(a => a.label === 'C').content}
-            </div>
-          </div>
-          <div className="answer">
-            <div className="answer-label">D</div>
-            <div className="answer-content">
-              {questionDetail.answers.find(a => a.label === 'D').content}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
 }
 
 export default CreateTestStep2

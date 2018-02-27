@@ -15,9 +15,10 @@ class App extends Component {
       isNavbarOpen: true
     }
 
-    setTimeout(() => {
-      this.setState({ isNavbarOpen: false })
-    }, 600)
+    // auto close navigation bar
+    // setTimeout(() => {
+    //   this.setState({ isNavbarOpen: false })
+    // }, 600)
 
     this.toggleNavbar = this.toggleNavbar.bind(this)
   }

@@ -33,6 +33,7 @@
 #test .answers .answer.choice {
   background: #16d6c4;
 }
+
 #test .answers .answer.focus {
   background: #c0c0c0;
 }

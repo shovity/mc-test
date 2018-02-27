@@ -2,7 +2,7 @@
   position: fixed;
   right: 100px;
   bottom: 0;
-  width: 250px;
+  width: 500px;
   height: 350px;
   background: red;
   transition: transform .2s ease-in-out;
@@ -50,14 +50,18 @@
   border-top: #ccc 1px solid;
 }
 
-#chat .chat-send {
+#chat .chat-ex {
   line-height: 35px;
   padding: 0 10px;
   cursor: pointer;
   color: #777;
 }
 
-#chat .chat-send:hover {
+#chat .chat-smile {
+  font-size: 20px;
+}
+
+#chat .chat-ex:hover {
   background-color: #f1f0f0;
 }
 
@@ -90,6 +94,7 @@
   border-radius: 5px;
   margin: 5px;
   margin-right: 50px;
+  word-wrap: break-word;
 }
 
 #chat .message.own {

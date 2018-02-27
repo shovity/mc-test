@@ -12,6 +12,9 @@ class AddQuestionStep2 extends Component {
       level: '',
       trueAnswer: '',
     }
+
+    this.handleNextStep = this.handleNextStep.bind(this)
+    this.handlePrev = this.handlePrev.bind(this)
   }
 
   handleChange = (target) => {
@@ -20,6 +23,19 @@ class AddQuestionStep2 extends Component {
       ob[target] = value
       this.setState(ob)
     }
+  }
+
+  handlePrev() {
+    const putQuestion = this.props.putQuestion
+    const pickStep = this.props.pickStep
+
+    const level = this.state.level.value
+    const tags = this.state.tags.map(tag => tag.value)
+    const subject = this.state.subject.value
+    const true_answer = this.state.trueAnswer.value
+
+    putQuestion({ level, tags, subject, true_answer })
+    pickStep(1)
   }
 
   handleNextStep() {

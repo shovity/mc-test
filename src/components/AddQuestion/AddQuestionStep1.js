@@ -2,6 +2,14 @@ import React, { Component } from 'react'
 
 class AddQuestionStep1 extends Component {
 
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps)
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('component will update')
+  }
+
   handleNextStep() {
     const { pickStep, putQuestion } = this.props
     const { content, a, b, c, d } = this.refs
@@ -19,6 +27,7 @@ class AddQuestionStep1 extends Component {
   }
 
   render() {
+    // const { question } = this.props
     return (
       <div>
         <h1>Input content</h1>

@@ -23,10 +23,14 @@ class CreateTestStep3 extends Component {
 
     const test = {
       ...rawTest,
-      quests: questions.filter(q => this.props.test.questions.indexOf(q._id) !== -1)
+      time: rawTest.time * 60,
+      quests: questions
     }
 
-    console.log(test)
+    delete test.questions
+    delete test._id
+    delete test.size
+
     this.props.requestPostTest(test)
   }
 
@@ -49,7 +53,7 @@ class CreateTestStep3 extends Component {
         { this.props.postTestResutl._id &&
           <div>
             <label>Test code embed</label>
-            <input type="text" ref="inputTestCode" value={`[test:${this.props.postTestResutl._id}]`} />
+            <input type="text" ref="inputTestCode" value={`[test:${this.props.postTestResutl._id}]`} readOnly/>
             <button className="btn btn-small" onClick={this.copyCode.bind(this)}>copy code</button>
           </div>
         }
