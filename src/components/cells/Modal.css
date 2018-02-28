@@ -1,0 +1,68 @@
+.modal .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.modal .modal-dialog {
+  position: fixed;
+  width: 45%;
+  background: #fff;
+  top: 100px;
+  left: 27.5%;
+  z-index: 2;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
+
+.modal .modal-header {
+  /* border-bottom: 1px solid #ccc; */
+  padding: 15px 20px;
+  display: flex;
+}
+
+.modal .modal-header .modal-header-title {
+  flex: auto;
+  font-size: 16px;
+}
+
+.modal .modal-header .modal-header-btn {
+  color: #777;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.modal .modal-header .modal-header-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.modal .modal-content {
+  padding: 0 20px;
+}
+
+/* animates */
+
+.modal.fade-in {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity .2s ease-in-out;
+}
+
+.modal.fade-in .modal-dialog {
+  transition: transform .2s ease-in-out;
+  transform: translateY(0);
+}
+
+.modal.fade-out {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease-in-out;
+}
+
+.modal.fade-out .modal-dialog {
+  transition: transform .2s ease-in-out;
+  transform: translateY(-70px);
+}

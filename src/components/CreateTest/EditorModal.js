@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import Modal from '../cells/Modal'
+
 class EditorModal extends Component {
 
   constructor(props) {
@@ -13,13 +15,13 @@ class EditorModal extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { question, isShow } = nextProps
+    const { question, isOpen } = nextProps
     const { content, a, b, c, d } = this.refs
 
     this.setState({ true_answer: '' })
 
     // not handle for close modal
-    if (!isShow) return
+    if (!isOpen) return
 
     content.value = question.content
     a.value = question.answers.find(a => a.label.toLowerCase() === 'a').content
@@ -54,62 +56,49 @@ class EditorModal extends Component {
   }
 
   render() {
-    const { isShow, question, close } = this.props
+    const { isOpen, question, close } = this.props
     const true_answer = this.state.true_answer || question.true_answer
 
     if (!question) return <div></div>
 
     return (
-      <div className={`${isShow? 'fade-in' : 'fade-out'}`}>
-        <div className="overlay"></div>
-        <div className="editor-modal">
-          <div className="controls-bar">
-            <i className="fa fa-times controls-bar-btn" onClick={close}></i>
-          </div>
+      <Modal isOpen={isOpen} close={close} title="Edit question">
+        <textarea className="input-content" ref="content"></textarea>
 
-          <h3>Questions content</h3>
-          <textarea className="input-content" ref="content"></textarea>
-
-          <div className="f-box">
-            <label
-            className={`a-l ${true_answer.toLowerCase() === 'a'? 'true' : ''}`}
-            onClick={this.selectAnswer}
-          >A</label>
-            <input type="text" ref="a"/>
-          </div>
-
-          <div className="f-box">
-            <label
-            className={`a-l ${true_answer.toLowerCase() === 'b'? 'true' : ''}`}
-            onClick={this.selectAnswer}
-          >B</label>
-            <input type="text" ref="b"/>
-          </div>
-
-          <div className="f-box">
-            <label
-            className={`a-l ${true_answer.toLowerCase() === 'c'? 'true' : ''}`}
-            onClick={this.selectAnswer}
-          >C</label>
-            <input type="text" ref="c"/>
-          </div>
-
-          <div className="f-box">
-            <label
-            className={`a-l ${true_answer.toLowerCase() === 'd'? 'true' : ''}`}
-            onClick={this.selectAnswer}
-          >D</label>
-            <input type="text" ref="d"/>
-          </div>
-
-          <div className="modal-footer">
-            <button className="btn btn-primary" onClick={this.handleSubmit.bind(this)}>Edit</button>
-          </div>
+        <div className="f-box">
+          <label className={`a-l ${true_answer.toLowerCase() === 'a'? 'true' : ''}`} onClick={this.selectAnswer}>
+            A
+          </label>
+          <input type="text" ref="a"/>
         </div>
-      </div>
+
+        <div className="f-box">
+          <label className={`a-l ${true_answer.toLowerCase() === 'b'? 'true' : ''}`} onClick={this.selectAnswer}>
+            B
+          </label>
+          <input type="text" ref="b"/>
+        </div>
+
+        <div className="f-box">
+          <label className={`a-l ${true_answer.toLowerCase() === 'c'? 'true' : ''}`} onClick={this.selectAnswer}>
+            C
+          </label>
+          <input type="text" ref="c"/>
+        </div>
+
+        <div className="f-box">
+          <label className={`a-l ${true_answer.toLowerCase() === 'd'? 'true' : ''}`} onClick={this.selectAnswer}>
+            D
+          </label>
+          <input type="text" ref="d"/>
+        </div>
+
+        <div className="modal-footer">
+          <button className="btn btn-primary" onClick={this.handleSubmit.bind(this)}>Edit</button>
+        </div>
+      </Modal>
     )
   }
-
 }
 
 export default EditorModal

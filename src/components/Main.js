@@ -14,6 +14,8 @@ import AddQuestion from './AddQuestion'
 import CreateTest from './CreateTest'
 import ErrorPage from './ErrorPage'
 
+import T from './cells/T'
+
 import './Main.css'
 
 class Main extends Component {
@@ -40,6 +42,7 @@ class Main extends Component {
 
             <Route exact path='/test/:id' component={Test}/>
             <Route exact path='/test-status/:id' component={TestStatus}/>
+            <Route exact path='/t' component={T}/>
 
             <Route component={ErrorPage}/>
           </Switch>

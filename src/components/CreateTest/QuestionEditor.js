@@ -1,10 +1,11 @@
 import React from 'react'
 
-const QuestionEditor = ({ question, index, removeQuestion, showEditorModal }) => {
+const QuestionEditor = ({ question, index, removeQuestion, showEditorModal, duplicateQuestion }) => {
   if (!question.content) return <div>props question invalid</div>
   return (
-    <div className="question-editor">
+    <div className="question-editor" id={'qe-' + question._id}>
       <div className="controls-bar">
+        <i className="fa fa-copy controls-bar-btn" onClick={duplicateQuestion}></i>
         <i className="fa fa-edit controls-bar-btn" onClick={showEditorModal}></i>
         <i className="fa fa-times controls-bar-btn" onClick={() => removeQuestion(question._id)}></i>
       </div>

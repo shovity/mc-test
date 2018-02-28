@@ -15,7 +15,7 @@ class CreateTestStep2 extends Component {
 
     this.state = {
       selectedQuestions,
-      isShowModal: false,
+      isOpenModal: false,
       modalQuestion: '',
     }
 
@@ -79,8 +79,8 @@ class CreateTestStep2 extends Component {
   }
 
   toggleModal(type) {
-    const isShowModal = type==='close'? false : type==='open'? true : !this.state.isShowModal
-    this.setState({ isShowModal })
+    const isOpenModal = type==='close'? false : type==='open'? true : !this.state.isOpenModal
+    this.setState({ isOpenModal })
   }
 
   showEditorModal(modalQuestion) {
@@ -101,8 +101,24 @@ class CreateTestStep2 extends Component {
     this.setState({ selectedQuestions })
   }
 
+  handleDuplicateQuestion(_id, { target }) {
+    const selectedQuestions = this.state.selectedQuestions.slice()
+    const index = selectedQuestions.findIndex(q => q.value._id === _id)
+    // duplicate index
+    selectedQuestions.splice(index, 0, selectedQuestions[index])
+    this.setState({
+      selectedQuestions,
+    }, () => {
+      window.main.scrollBy({
+        top: target.parentNode.parentNode.clientHeight + 50,
+        left: 0,
+        behavior: 'smooth'
+      })
+    })
+  }
+
   render() {
-    const { selectedQuestions, isShowModal, modalQuestion } = this.state
+    const { selectedQuestions, isOpenModal, modalQuestion } = this.state
     const selectedQuestionsValue = selectedQuestions
 
     const listQuestionEditor = selectedQuestions.map((q, index) => {
@@ -112,6 +128,7 @@ class CreateTestStep2 extends Component {
             question={q.value}
             index={index}
             removeQuestion={this.removeQuestion}
+            duplicateQuestion={this.handleDuplicateQuestion.bind(this, q.value._id)}
             showEditorModal={this.showEditorModal.bind(this, q.value)}
           />
         </div>
@@ -125,7 +142,7 @@ class CreateTestStep2 extends Component {
         {listQuestionEditor}
 
         <EditorModal
-          isShow={isShowModal}
+          isOpen={isOpenModal}
           close={this.toggleModal.bind(this, 'close')}
           question={modalQuestion}
           submit={this.handleSubmitEditQuestion.bind(this)}
