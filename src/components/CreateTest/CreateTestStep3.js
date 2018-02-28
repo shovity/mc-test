@@ -31,8 +31,7 @@ class CreateTestStep3 extends Component {
     delete test._id
     delete test.size
 
-    // this.props.requestPostTest(test)
-    console.log(test)
+    this.props.requestPostTest(test)
   }
 
   copyCode() {

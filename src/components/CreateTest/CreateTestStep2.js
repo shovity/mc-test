@@ -93,10 +93,14 @@ class CreateTestStep2 extends Component {
     // clone array
     const selectedQuestions = this.state.selectedQuestions.slice()
     // edit clone array
-    const targetRef = selectedQuestions.find(q => q.value._id === question._id).value
-    targetRef.content = question.content
-    targetRef.answers = question.answers
-    targetRef.true_answer = question.true_answer
+    const objectQuestion = selectedQuestions.find(q => q.value._id === question._id).value
+
+    selectedQuestions.find(q => q.value._id === question._id).value = {
+      ...objectQuestion,
+      content: question.content,
+      answers: question.answers,
+      true_answer: question.true_answer,
+    }
 
     this.setState({ selectedQuestions })
   }
@@ -104,8 +108,18 @@ class CreateTestStep2 extends Component {
   handleDuplicateQuestion(_id, { target }) {
     const selectedQuestions = this.state.selectedQuestions.slice()
     const index = selectedQuestions.findIndex(q => q.value._id === _id)
-    // duplicate index
-    selectedQuestions.splice(index, 0, selectedQuestions[index])
+
+    // clone question
+    const question = selectedQuestions[index]
+    // insert question, ref is danger for edit
+    selectedQuestions.splice(index, 0, {
+      label: question.label,
+      value: {
+        ...question.value,
+        _id: Date.now(),
+      }
+    })
+
     this.setState({
       selectedQuestions,
     }, () => {
@@ -120,7 +134,7 @@ class CreateTestStep2 extends Component {
   render() {
     const { selectedQuestions, isOpenModal, modalQuestion } = this.state
     const selectedQuestionsValue = selectedQuestions
-
+    console.log(selectedQuestions)
     const listQuestionEditor = selectedQuestions.map((q, index) => {
       return (
         <div key={index}>

@@ -8,7 +8,7 @@ class EditorModal extends Component {
     super(props)
 
     this.state = {
-      true_answer: ''
+      true_answer: '',
     }
 
     this.selectAnswer = this.selectAnswer.bind(this)
@@ -37,7 +37,7 @@ class EditorModal extends Component {
     submit({
       _id: question._id,
       content: content.value,
-      true_answer: this.state.true_answer,
+      true_answer: this.state.true_answer || question.true_answer,
       answers: [
         { label: 'a', content: a.value },
         { label: 'b', content: b.value },
@@ -51,7 +51,7 @@ class EditorModal extends Component {
 
   selectAnswer({ target }) {
     this.setState({
-      true_answer: target.innerHTML.toLowerCase()
+      true_answer: target.innerHTML.toLowerCase(),
     })
   }
 

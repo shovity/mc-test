@@ -11,7 +11,7 @@ class Modal extends Component {
 
     return (
       <div className={`modal ${isOpen? 'fade-in' : 'fade-out'}`}>
-        <div className="modal-overlay"></div>
+        <div className="modal-overlay" onClick={close}></div>
         <div className="modal-dialog">
           <div className="modal-header">
             <span className="modal-header-title">{ title }</span>
