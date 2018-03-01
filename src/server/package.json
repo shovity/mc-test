@@ -19,5 +19,8 @@
     "mongoose": "^4.13.7",
     "multer": "^1.3.0",
     "socket.io": "^2.0.4"
+  },
+  "devDependencies": {
+    "faker": "^4.1.0"
   }
 }

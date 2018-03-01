@@ -4,6 +4,8 @@ const upload = require('../../upload')
 const crypto = require('crypto')
 const fs = require('fs')
 
+const User = require('../../models/User')
+
 const UPLOAD_PATH = path.join(__dirname, '../../uploads')
 
 const avatar = express.Router()
@@ -30,16 +32,22 @@ avatar.get('/:username', (req, res, next) => {
   const avatarUri = path.join(UPLOAD_PATH, avatarName)
   const avatarUriGuest = path.join(UPLOAD_PATH, avatarNameGuest)
 
-  fs.readFile(avatarUri, (err, data) => {
-    if (err && err.code === 'ENOENT') {
-      return fs.readFile(avatarUriGuest, (err, data) => {
+  User.findOne({ username }, (err, user) => {
+    if (err || !user || !user.avatar_image) {
+      return fs.readFile(avatarUri, (err, data) => {
+        if (err && err.code === 'ENOENT') {
+          return fs.readFile(avatarUriGuest, (err, data) => {
+            if (err) return res.json({ err })
+            return res.end(data)
+          })
+        }
+
         if (err) return res.json({ err })
         return res.end(data)
       })
+    } else {
+      return res.redirect(user.avatar_image)
     }
-
-    if (err) return res.json({ err })
-    return res.end(data)
   })
 })
 

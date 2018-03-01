@@ -1,10 +1,7 @@
 #test {
   text-align: center;
   margin: 0 100px;
-}
-
-#test .quest {
-
+  margin-bottom: 25px;
 }
 
 #test .test-header {
@@ -20,6 +17,18 @@
 
 #test .answers {
   margin: 30px 0;
+}
+
+#test .test-title {
+  margin-bottom: 0;
+  padding-left: 10px;
+  border-left: 2px solid #8bc34a;
+}
+
+#test .test-status {
+  margin-top: 0;
+  padding-left: 10px;
+  border-left: 2px solid #8bc34a;
 }
 
 #test .answers .answer {
@@ -53,6 +62,25 @@
   color: #fff;
   border-right: 3px solid #2196f3;
   text-transform: uppercase;
+}
+
+#test .test-controls {
+  margin-bottom: 15px;
+}
+
+#test .toggle-label {
+  color: #555;
+  font-size: 12px;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+#test .test-toggle {
+  margin-bottom: -2px;
+}
+
+#test .btn-next {
+  margin: 0;
 }
 
 #acceptOverlay {

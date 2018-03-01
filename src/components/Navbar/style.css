@@ -52,6 +52,7 @@
 }
 
 i.menu {
+  user-select: none;
   position: relative;
   color: #fff;
   padding: 0 15px;
@@ -236,4 +237,12 @@ li.user-box:first-child {
   width: 50px !important;
   height: 50px !important;
   transform: translate(-25px, -25px) scale(0.25) translate(25px, 25px);
+}
+
+.l-noti {
+  background-color: #009688 !important;
+}
+
+.noti-content {
+  padding: 20px 0;
 }

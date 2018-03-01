@@ -87,7 +87,7 @@
   padding: 10px;
   font-weight: bold;
   color: #fff;
-  border-right: 3px solid #9C27B0;
+  border-right: 1px solid #9C27B0;
   text-transform: uppercase;
 }
 
@@ -103,10 +103,6 @@
 #createTest .c2 {
   flex: auto;
   padding-left: 10px;
-}
-
-#createTest .answer-label {
-  border-right: 3px solid #2196f3;
 }
 
 #createTest .question-editor {
@@ -176,4 +172,18 @@
 #createTest .f-box input {
   border-radius: 0 2px 2px 0;
   border-left: none;
+}
+
+#createTest .test-info div {
+  font-size: 13px;
+  border: 1px solid #f1f0f0;
+  margin: 2px 0;
+}
+
+#createTest .test-info span {
+  padding: 5px;
+  width: 150px;
+  display: inline-block;
+  background-color: #f1f0f0;
+  margin-right: 5px;
 }

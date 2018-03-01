@@ -12,6 +12,18 @@ class Login extends Component {
     this.handleLogin = this.handleLogin.bind(this)
   }
 
+  componentDidMount() {
+    this.refs.password.addEventListener('keyup', ({ keyCode }) => {
+      if (keyCode === 13) {
+        this.handleLogin()
+      }
+    })
+  }
+
+  componentWillUnmount() {
+
+  }
+
   handleLogin() {
     const username = this.refs.username.value
     const password = this.refs.password.value

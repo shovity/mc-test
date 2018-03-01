@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import Answer from './Answer'
 import AcceptOverlay from './AcceptOverlay'
 import { fetchTest, fetchQuestion, sendQuestion } from '../../actions/testActions'
+import Toggle from '../cells/Toggle'
+
 import './style.css'
 
 class Test extends Component {
@@ -18,6 +20,8 @@ class Test extends Component {
       isStarted: false,
       isFetchTest: false,
       time: 0,
+      autoNextQuestion: true,
+      waitToNextQuestion: false,
     }
 
     this.timer = null
@@ -69,6 +73,8 @@ class Test extends Component {
     this.setState({ focus: '', choice: '', })
     // reset time
     this.setState({ time: 0 })
+    // hidden next button
+    this.setState({ waitToNextQuestion: false })
     // fetch next question
     this.props.fetchQuestion(id)
   }
@@ -82,10 +88,20 @@ class Test extends Component {
     } else {
       this.setState({ focus: '', choice: label })
       this.props.sendQuestion(this.props.id, label, this.props.current)
-      // fetch next question
-      setTimeout(() => {
-        this.handleFetchQuestion(this.props.id)
-      }, 500)
+
+      // stop timer
+      clearInterval(this.timer)
+
+      if (this.state.autoNextQuestion) {
+        // auto fetch next question
+        setTimeout(() => {
+          this.handleFetchQuestion(this.props.id)
+        }, 500)
+      } else {
+        this.setState({
+          waitToNextQuestion: true,
+        })
+      }
     }
   }
 
@@ -93,6 +109,16 @@ class Test extends Component {
     if (secends > 3600) return `${Math.floor(secends/3600)}h ${this.parseTime(secends%3600)}`
     if (secends > 60) return `${Math.floor(secends/60)}' ${secends%60}s`
     return `${secends}s`
+  }
+
+  toggleAutoNextQuestion() {
+    this.setState({
+      autoNextQuestion: !this.state.autoNextQuestion,
+    }, () => {
+      if (this.state.autoNextQuestion && this.state.waitToNextQuestion) {
+        this.handleFetchQuestion(this.props.id)
+      }
+    })
   }
 
   render() {
@@ -115,28 +141,33 @@ class Test extends Component {
       )
     })
 
+    const nextBtn = (
+      !this.state.autoNextQuestion &&
+      this.state.waitToNextQuestion &&
+      <button
+        onClick={this.handleFetchQuestion.bind(this, this.props.id)}
+        className="btn btn-primary btn-next">Next
+      </button>
+    )
+
     return (
       <div id="test">
         <div className="test-header">
-          <h2>
-            {title} ({current+1}/{total})
-          </h2>
-          <p>Total time left: {this.parseTime(timeLeft - this.state.time)} / Current question: {this.parseTime(this.state.time)}</p>
+          <h2 className="test-title">{title} ({current+1}/{total})</h2>
+          <p className="test-status">Total time left: {this.parseTime(timeLeft - this.state.time)} | Current question: {this.parseTime(this.state.time)}</p>
+          <div className="test-controls">
+            <Toggle className="test-toggle" isOn={this.state.autoNextQuestion} toggle={this.toggleAutoNextQuestion.bind(this)} />
+            <div className="toggle-label">AUTO NEXT</div>
+          </div>
         </div>
         <div className="quest">
-          <div className="title">
-            <strong>Quest {current + 1}: </strong> { quest.content }
-          </div>
-
-          <div className="answers">
-            { answerList }
-          </div>
-
+          <div className="title"> <strong>Quest {current + 1}: </strong>{ quest.content }</div>
+          <div className="answers">{ answerList }</div>
+          { nextBtn }
         </div>
-
         <AcceptOverlay label={label} isShow={!this.state.isStarted} start={this.handleStart}/>
       </div>
-    );
+    )
   }
 }
 

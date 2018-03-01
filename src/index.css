@@ -11,6 +11,10 @@ body {
   overflow: hidden;
 }
 
+.hint {
+  color: #777;
+}
+
 .code {
   padding: 3px 5px;
   color: #c7254e;

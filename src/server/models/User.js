@@ -7,10 +7,13 @@ const jwtSecrect = process.env.SECRET_KEY_JWT
 const userSchema = mongoose.Schema({
   username: String,
   password: String,
+  status: String,
+  full_name: String,
+  avatar_image: String,
   adress: String,
   email: String,
   phone: String,
-  fullName: String,
+  dob: Date,
   level: { type: Number, default: 21 },
   created_date: { type: Date, default: Date.now }
 })

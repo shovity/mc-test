@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
 
-import Modal from './Modal'
+import Toggle from './Toggle'
 
 
 class T extends Component {
 
+  state = { isOn : true }
+
+  toggle() {
+    this.setState({ isOn: !this.state.isOn })
+  }
+
   render() {
     return (
       <div>
-        <Modal isShow={true}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae beatae, voluptate vel nisi laudantium iure, quam ullam saepe ducimus doloribus nesciunt alias perspiciatis cum iusto repellat recusandae! Eaque, magni sunt.
-        </Modal>
+        <Toggle toggle={this.toggle.bind(this)} isOn={this.state.isOn} />
       </div>
     )
   }

@@ -14,8 +14,9 @@ api.use((req, res, next) => {
   jwt.verify(token, secret, (err, decoded) => {
     if (err) return next(err)
 
-    const { username } = decoded || {}
+    const { username, level } = decoded || {}
     req.username = username
+    req.level = level
     return next()
   })
 })

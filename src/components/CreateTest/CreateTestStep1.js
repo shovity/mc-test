@@ -94,7 +94,7 @@ class AddQuestionStep1 extends Component {
           placeholder="Input test title..."
         />
 
-        <label>Number of questions</label>
+        <label>Number of questions <span className="hint">(options for random test)</span></label>
         <input
           value={size}
           onChange={this.handleOnChangeInput('size')}
@@ -103,7 +103,7 @@ class AddQuestionStep1 extends Component {
           placeholder="Input length of test..."
         />
 
-        <label>Total time (minutes)</label>
+        <label>Total time <span className="hint">(minutes)</span></label>
         <input
           value={time}
           onChange={this.handleOnChangeInput('time')}

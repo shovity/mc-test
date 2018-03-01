@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const assert = require('assert')
-const MONGODB_CONNECT_URL = process.env.MONGODB_CONNECT_URL
+const MONGODB_CONNECT_URL = process.env.MONGODB_CONNECT_URL || 'mongodb://127.0.0.1/mc-test'
 
 mongoose.connect(
   MONGODB_CONNECT_URL,
