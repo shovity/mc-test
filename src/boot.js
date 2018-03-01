@@ -1,5 +1,5 @@
 import { receiveToken, loginSocket } from './actions/authActions';
-import { setWork } from './actions/statusActions';
+import { setWork, doneWork } from './actions/statusActions';
 import { fetchUnread } from './actions/chatActions';
 
 const boot = (store) => {
@@ -10,8 +10,28 @@ const boot = (store) => {
     dispatch(receiveToken({ token, username, level }))
     dispatch(loginSocket())
     dispatch(fetchUnread())
-    dispatch(setWork('Connect to server...'))
   }
+
+  // for fun
+  const work = (name) => {
+    return new Promise((resolve, reject) => {
+      dispatch(setWork(name))
+      setTimeout(() => {
+        dispatch(doneWork)
+        console.log(name)
+        resolve()
+      }, Math.random()*100 + 400)
+    })
+  }
+
+  (async () => {
+    await work('connect to server ...')
+    await work('connect to server ...')
+    await work('authenticating ...')
+    await work('sync preferences ...')
+    await work('get data analytic ...')
+    await work('looking local config ...')
+  })()
 
 }
 

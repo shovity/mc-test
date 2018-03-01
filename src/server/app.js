@@ -34,11 +34,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
 // fake delay
-// app.use((req, res, next) => {
-//   setTimeout(() => {
-//     next()
-//   }, 1200)
-// })
+app.use((req, res, next) => {
+  setTimeout(() => {
+    next()
+  }, 500)
+})
 
 app.use(api)
 
