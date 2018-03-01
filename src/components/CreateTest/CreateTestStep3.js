@@ -13,13 +13,8 @@ class CreateTestStep3 extends Component {
     }
   }
 
-  componentDidMount() {
-    // this.props.requestPostQuestion(this.props.question)
-  }
-
   handlePostTest() {
     const rawTest = JSON.parse(JSON.stringify(this.props.test))
-    const questions = this.props.questions
 
     const test = {
       ...rawTest,
@@ -52,7 +47,6 @@ class CreateTestStep3 extends Component {
 
   render() {
     const { test, username } = this.props
-    console.log(test)
     const testInfo = test && (
       <div className="test-info">
         <div><span>Title</span> {test.title || ''}</div>
@@ -69,11 +63,9 @@ class CreateTestStep3 extends Component {
         <h2>Review</h2>
         { testInfo }
 
-        <h2>Post test result</h2>
-        { JSON.stringify(this.props.postTestResutl || {}) }
-
         { this.props.postTestResutl._id &&
           <div>
+            <h2>Post test success</h2>
             <label>Test code embed</label>
             <input type="text" ref="inputTestCode" value={`[test:${this.props.postTestResutl._id}]`} readOnly/>
             <button className="btn btn-small" onClick={this.copyCode.bind(this)}>copy code</button>
@@ -91,7 +83,6 @@ class CreateTestStep3 extends Component {
       </div>
     )
   }
-
 }
 
 const mapStateToProps = (state) => {

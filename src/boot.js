@@ -13,26 +13,28 @@ const boot = (store) => {
   }
 
   // for fun
-  const work = (name) => {
-    return new Promise((resolve, reject) => {
-      dispatch(setWork(name))
-      setTimeout(() => {
-        dispatch(doneWork)
-        console.log(name)
-        resolve()
-      }, Math.random()*100 + 400)
-    })
+  const work = (name) => new Promise((resolve, reject) => {
+    dispatch(setWork(name))
+    setTimeout(() => {
+      dispatch(doneWork)
+      resolve()
+    }, Math.random()*100 + 400)
+  })
+
+  const working = async (works) => {
+    for (let i = 0, l = works.length; i < l; i++) {
+      await work(works[i])
+    }
   }
 
-  (async () => {
-    await work('connect to server ...')
-    await work('connect to server ...')
-    await work('authenticating ...')
-    await work('sync preferences ...')
-    await work('get data analytic ...')
-    await work('looking local config ...')
-  })()
-
+  working([
+    'connect to server ...',
+    'connect to server ...',
+    'authenticating ...',
+    'sync preferences ...',
+    'get data analytic ...',
+    'looking local config ...',
+  ])
 }
 
 export default boot
