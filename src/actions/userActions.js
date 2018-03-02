@@ -10,7 +10,7 @@ export const putProfile = (body) => {
       header: { }, // content-type must auto set with FormData
       body,
       start_calls: setWork('put user profile'),
-      success_calls: [ reloadAvatar, pushAlert('Put profile success', 'success'), doneWork ],
+      success_calls: [ reloadAvatar, receiveUserInfo, pushAlert('Put profile success', 'success'), doneWork ],
       error_calls: [ pushAlert, doneWork ]
     }
   }

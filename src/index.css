@@ -11,6 +11,10 @@ body {
   overflow: hidden;
 }
 
+*:disabled {
+  cursor: not-allowed;
+}
+
 .hint {
   color: #777;
 }

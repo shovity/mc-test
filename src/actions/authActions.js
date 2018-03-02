@@ -67,8 +67,9 @@ export const logoutSocket = () => {
   }
 }
 
-export const reloadAvatar = () => {
+export const reloadAvatar = (data) => {
   return {
-    type: RELOAD_AVATAR
+    type: RELOAD_AVATAR,
+    data,
   }
 }

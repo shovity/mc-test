@@ -23,6 +23,7 @@ const authRecuder = (state=initialState, action) => {
       return { ...state, token, username, avatar: state.avatar_base + username, level: +level }
 
     case RELOAD_AVATAR:
+      if (!action.data.path) return state
       return { ...state, avatar: state.avatar + '?ts=' + Date.now() }
 
     case LOG_OUT:

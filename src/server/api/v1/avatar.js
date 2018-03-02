@@ -14,14 +14,28 @@ const avatar = express.Router()
 // PUT
 avatar.put('/', upload.single('avatar'), (req, res, next) => {
   const path = req.pathAvatarUploaded
+  const { username, body } = req
+
+
+
   if (req.err) return res.json('You must login before upload')
 
-  if (!path) return res.json( { err: 'upload avatar error' })
+  const info = JSON.parse(body.info)
 
-  return res.json({
-    message: 'upload file completed',
-    path,
+  User.findOneAndUpdate({
+    username
+  }, {
+    $set: info,
+  }, (err, rep) => {
+    if (err) return res.json({ err })
+    return res.json({
+      message: 'upload profile completed',
+      path,
+      userInfo: info,
+    })
   })
+
+
 })
 
 // GET username
