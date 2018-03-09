@@ -7,8 +7,6 @@ class Modal extends Component {
   render() {
     const { isOpen, close, children, title } = this.props
 
-    console.log(isOpen)
-
     return (
       <div className={`modal ${isOpen? 'fade-in' : 'fade-out'}`}>
         <div className="modal-overlay" onClick={close}></div>

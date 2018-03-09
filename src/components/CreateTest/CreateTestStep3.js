@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { requestPostTest } from '../../actions/testActions.js'
 import { pushAlert } from '../../actions/statusActions'
 
+import { parseTime } from '../../utils/time'
+
 class CreateTestStep3 extends Component {
   constructor(props) {
     super(props)
@@ -20,7 +22,7 @@ class CreateTestStep3 extends Component {
       ...rawTest,
       time: rawTest.time * 60,
       quests: rawTest.questions,
-      des: this.refs.des.value,
+      descriptions: this.refs.des.value,
     }
 
     delete test.questions
@@ -51,9 +53,9 @@ class CreateTestStep3 extends Component {
       <div className="test-info">
         <div><span>Title</span> {test.title || ''}</div>
         <div><span>Subject</span> {test.subject || ''}</div>
-        <div><span>Total times</span> {test.time || ''}</div>
+        <div><span>Total times</span> {parseTime(test.time*60 || 0)}</div>
         <div><span>Number of question</span> {test.questions.length}</div>
-        <div><span>Sum level</span> {test.questions.reduce((a, b) => +a.level+b.level, 0)}</div>
+        <div><span>Level</span> {test.questions.reduce((a, b) => a+ +b.level, 0)}</div>
         <div><span>Author</span> {username}</div>
       </div>
     )

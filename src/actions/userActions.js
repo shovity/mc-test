@@ -34,7 +34,7 @@ export const fetchUserInfo = (username) => {
   return {
     call: {
       path: 'user/' + username,
-      start_calls: [ setWork(`fetch ${username}'s user info'`) ],
+      start_calls: [ setWork(`fetch ${username}'s user info`) ],
       success_calls: [ receiveUserInfo, doneWork ],
       error_calls: [ pushAlert, doneWork ]
     }

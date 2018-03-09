@@ -1,6 +1,6 @@
 import React from 'react'
 
-import codeParser from '../../codeParser'
+import codeParser from '../../utils/codeParser'
 
 const Chat = ({ isOwn, content }) => {
   return (

@@ -14,7 +14,7 @@ import {  setWork, doneWork, pushAlert } from './statusActions'
 export const fetchRecents = (num) => {
   return {
     call: {
-      path: 'chatHistory?recents=' + num || 10,
+      path: 'chat-history?recents=' + num || 10,
       start_calls: setWork('fetch recents message'),
       success_calls: [ receiveRecentsChat, doneWork ],
       error_calls: [ pushAlert, doneWork ]
@@ -25,7 +25,7 @@ export const fetchRecents = (num) => {
 export const requestReaded = (target) => {
   return {
     call: {
-      path: 'chatHistory',
+      path: 'chat-history',
       method: 'put',
       body: { target },
       start_calls: setWork('request readed message'),
@@ -38,7 +38,7 @@ export const requestReaded = (target) => {
 export const fetchChatHistory = (target) => {
   return {
     call: {
-      path: `chatHistory?target=${target}`,
+      path: `chat-history?target=${target}`,
       start_calls: setWork('fetch chat history'),
       success_calls: [ receiveChatHistory, showChat, doneWork ],
       error_calls: [ pushAlert, doneWork ]
@@ -72,7 +72,7 @@ export const receiveRecentsChat = (data) => {
 export const fetchUnread = () => {
   return {
     call: {
-      path: 'chatHistory/unread',
+      path: 'chat-history/unread',
       start_calls: setWork('fetch unread message'),
       success_calls: [ receiveUnread, doneWork ],
       error_calls: [ pushAlert, doneWork ]

@@ -1,0 +1,11 @@
+#testDetail .fa-exclamation-circle {
+  color: #ffc107;
+}
+
+#testDetail .fa-check-circle {
+  color: #4caf50;
+}
+
+#testDetail > div {
+  margin-bottom: 50px;
+}

@@ -2,6 +2,7 @@ const mongoose = require('../mongoose')
 
 const testSchema = mongoose.Schema({
   title: String,
+  subject: String,
   quests: [
     {
       content: String,
@@ -10,7 +11,6 @@ const testSchema = mongoose.Schema({
       tags: [ String ],
       level: Number,
       onwer: String,
-      des: String,
       answers: [
         {
           label: String,
@@ -20,8 +20,10 @@ const testSchema = mongoose.Schema({
       created_date: { type: Date, default: Date.now }
     }
   ],
+  author: String,
   require_level: Number,
   time: Number, // secends
+  descriptions: String,
   created_date: { type: Date, default: Date.now }
 })
 

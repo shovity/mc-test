@@ -22,7 +22,7 @@ const passQuestion = id => {
   // TestLog.findByIdAndUpdate(
   //   id,
   //   {
-  //     $set: { modified_date: Math.floor(Date.now()) },
+  //     $set: { modifined_date: Math.floor(Date.now()) },
   //     $push: { answers: "", times: 0 },
   //   },
   //   (err) => { if (err) console.log('Can not update test log') }
@@ -126,7 +126,7 @@ io.on('connection', (socket) => {
           { userx: { $all: userx } },
           {
             $set: {
-              modified_date: Date.now(),
+              modifined_date: Date.now(),
               unread,
               messages: data.messages.concat({ sender: username, content: message })
             }
@@ -190,7 +190,7 @@ io.on('connection', (socket) => {
     TestLog.findOneAndUpdate(
       { username, test_id: id },
       {
-        $set: { modified_date: Math.floor(Date.now(0)) },
+        $set: { modifined_date: Math.floor(Date.now(0)) },
         $push: { answers: answer, times: Math.floor(Date.now()/1000 - socket.startTime) }
       },
       (err) => {

@@ -9,6 +9,7 @@ import Profile from './Profile'
 import Members from './Members'
 import Test from './Test'
 import TestStatus from './TestStatus'
+import TestDetail from './TestDetail'
 import Messages from './Messages'
 import AddQuestion from './AddQuestion'
 import CreateTest from './CreateTest'
@@ -41,6 +42,7 @@ class Main extends Component {
             <Route exact path='/register' component={Register}/>
 
             <Route exact path='/test/:id' component={Test}/>
+            <Route exact path='/test-detail/:id' component={TestDetail}/>
             <Route exact path='/test-status/:id' component={TestStatus}/>
             <Route exact path='/t' component={T}/>
 

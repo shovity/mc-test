@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 import Answer from './Answer'
 import AcceptOverlay from './AcceptOverlay'
+import { parseTime } from '../../utils/time'
 import { fetchTest, fetchQuestion, sendQuestion } from '../../actions/testActions'
 import Toggle from '../cells/Toggle'
 
@@ -105,12 +106,6 @@ class Test extends Component {
     }
   }
 
-  parseTime(secends) {
-    if (secends > 3600) return `${Math.floor(secends/3600)}h ${this.parseTime(secends%3600)}`
-    if (secends > 60) return `${Math.floor(secends/60)}' ${secends%60}s`
-    return `${secends}s`
-  }
-
   toggleAutoNextQuestion() {
     this.setState({
       autoNextQuestion: !this.state.autoNextQuestion,
@@ -125,7 +120,7 @@ class Test extends Component {
     const { quest, title, current, total, timeLeft, isFinished } = this.props
     const id = this.props.match.params.id
 
-    if (isFinished) return <Link to={`/test-status/${id}`}>Test is done, go to result page</Link>
+    if (isFinished) return <Redirect to={`/test-detail/${id}`}/>
 
     const label = !this.state.isFetchTest? 'START' : 'fetching...'
 
@@ -154,7 +149,7 @@ class Test extends Component {
       <div id="test">
         <div className="test-header">
           <h2 className="test-title">{title} ({current+1}/{total})</h2>
-          <p className="test-status">Total time left: {this.parseTime(timeLeft - this.state.time)} | Current question: {this.parseTime(this.state.time)}</p>
+          <p className="test-status">Total time left: {parseTime(timeLeft - this.state.time)} | Current question: {parseTime(this.state.time)}</p>
           <div className="test-controls">
             <Toggle className="test-toggle" isOn={this.state.autoNextQuestion} toggle={this.toggleAutoNextQuestion.bind(this)} />
             <div className="toggle-label">AUTO NEXT</div>

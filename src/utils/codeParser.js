@@ -10,7 +10,7 @@ const codeParser = (raw) => {
   return (
     <div>
       {components[0]}
-      <Link to={`/test/${code}`} className="code">{code}</Link>
+      <Link to={`/test-detail/${code}`} className="code">{code}</Link>
       {components[1]}
     </div>
   )

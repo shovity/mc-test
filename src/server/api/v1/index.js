@@ -5,6 +5,7 @@ const auth = require('./auth')
 const post = require('./post')
 const chatHistory = require('./chatHistory')
 const test = require('./test')
+const testDetail = require('./testDetail')
 const avatar = require('./avatar')
 const TestControllers = require('../../controllers/TestController')
 
@@ -18,8 +19,9 @@ const v1 = express.Router()
 v1.use('/user', user)
 v1.use('/auth', auth)
 v1.use('/post', post)
-v1.use('/chatHistory', chatHistory)
+v1.use('/chat-history', chatHistory)
 v1.use('/avatar', avatar)
+v1.use('/test-detail', testDetail)
 
 const applyAPI = (base, api) => {
   Object.keys(api).forEach(key => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import Comment from './Comment'
-import codeParser from '../../codeParser'
+import codeParser from '../../utils/codeParser'
 
 class Post extends Component {
 

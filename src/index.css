@@ -11,6 +11,26 @@ body {
   overflow: hidden;
 }
 
+table tr:last-child td {
+  border-bottom: 1px solid #ddd;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  display: table-cell;
+  padding: 8px;
+  margin: 0;
+  border-top: 1px solid #ddd;
+}
+
+tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+
 *:disabled {
   cursor: not-allowed;
 }
@@ -84,6 +104,11 @@ input {
   padding: 10px 15px;
   margin: 10px 10px 10px 0;
   user-select: none;
+  text-decoration: none;
+}
+
+.btn.disabled {
+  cursor: not-allowed;
 }
 
 .btn-small {

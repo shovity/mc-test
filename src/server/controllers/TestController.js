@@ -101,7 +101,7 @@ class TestControllers {
 
   static postTest(req, res, next) {
     const { username, body } = req
-    const test = new Test(body.test)
+    const test = new Test({ ...body.test, author: username })
     test.save((err, test) => {
       if (err) return res.json({ err })
       return res.json({ test })
