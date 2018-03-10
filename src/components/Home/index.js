@@ -7,36 +7,36 @@ const data = [
   {
     name: 'Huong',
     children: [
-      { name: 'Test', size: 12 },
-      { name: 'Post', size: 121 },
+      { name: 'Test', size: 11 },
+      { name: 'Post', size: 33 },
     ],
   },
   {
     name: 'Adimin',
     children: [
-      { name: 'Test', size: 21 },
-      { name: 'Post', size: 212 },
+      { name: 'Test', size: 22 },
+      { name: 'Post', size: 44 },
     ],
   },
   {
     name: 'Shovity',
     children: [
-      { name: 'Test', size: 31 },
-      { name: 'Post', size: 313 },
+      { name: 'Test', size: 33 },
+      { name: 'Post', size: 55 },
     ],
   },
   {
     name: 'Adimin2',
     children: [
-      { name: 'Test', size: 21 },
-      { name: 'Post', size: 212 },
+      { name: 'Test', size: 88 },
+      { name: 'Post', size: 99 },
     ],
   },
   {
     name: 'Shovity2',
     children: [
-      { name: 'Test', size: 31 },
-      { name: 'Post', size: 313 },
+      { name: 'Test', size: 55 },
+      { name: 'Post', size: 77 },
     ],
   },
 ]
@@ -74,12 +74,18 @@ const CustomizedContent = (props) => {
 
 class Home extends Component {
   render() {
+    const dataSorted = data.sort((a, b) => {
+      const v1 = a.children.reduce((a, b) => a + b.size, 0)
+      const v2 = b.children.reduce((a, b) => a + b.size, 0)
+      return v2 - v1
+    })
+
     return (
       <div id="home">
         <Treemap
           width={761}
           height={500}
-          data={data}
+          data={dataSorted}
           dataKey="size"
           ratio={4/3}
           stroke="#fff"

@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
+import {
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  Radar,
+  Legend,
+} from 'recharts'
+
 import { putProfile, fetchUserInfo } from '../../actions/userActions'
 
 import './style.css';
+
+const data = [
+  { subject: 'Math', A: 120, B: 110, fullMark: 150 },
+  { subject: 'Chinese', A: 98, B: 130, fullMark: 150 },
+  { subject: 'Geography', A: 99, B: 100, fullMark: 150 },
+  { subject: 'English', A: 86, B: 130, fullMark: 150 },
+  { subject: 'Physics', A: 85, B: 90, fullMark: 150 },
+]
 
 
 class Profile extends Component {
@@ -97,8 +114,10 @@ class Profile extends Component {
 
 
   render() {
-    const { my_username, my_avatar, userInfo, avatar_base } = this.props
+    const { my_username, my_avatar, userInfo, avatar_base, members } = this.props
     const { status, phone, email, full_name, address } = this.state
+
+
 
     let {
       username = 'Guest',
@@ -106,6 +125,8 @@ class Profile extends Component {
     } = userInfo || {}
 
     const editAble = username === my_username
+
+    const isOnline = !!members.find(u => u.username === username)
 
     return (
       <div id='profile'>
@@ -121,18 +142,25 @@ class Profile extends Component {
               </label>
               <input id="inputFile" ref="inputAvatar" onChange={this.handleInputChange} type="file" name="avatar" />
             </div> }
-
           </div>
 
+          <Chart data={data}/>
           <div className="info-text">
-            <div className="username">{username}</div>
-            <div className="status">{status || '...'}</div>
-            <div className="account-type">Account type</div>
-            <div className="point">Points</div>
-            <div className="description">
-              Description Lorem ipsum dolor sit amet, consectetur adipisicing.
-            </div>
+            <table>
+              <tbody>
+                <tr>
+                  <td className="i-username">
+                    <strong>{ username }</strong>
+                    <i className={`fa fa-circle ${isOnline? 'online' : ''}`}></i>
+                  </td>
+                </tr>
+                <tr>
+                  <td><i>{ status }</i></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
+
         </div>
 
 
@@ -157,11 +185,28 @@ class Profile extends Component {
           <button className="btn btn-primary" onClick={this.handlePutData}>Update</button>
         }
       </div>
-
-
     );
   }
 
+}
+
+const Chart = ({ data }) => {
+  return (
+    <div className="chart">
+      <RadarChart
+        cy={130}
+        width={330}
+        height={234}
+        data={data}
+        innerRadius={10}
+        outerRadius={100}>
+
+        <PolarGrid />
+        <PolarAngleAxis dataKey="subject" />
+        <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6}/>
+      </RadarChart>
+    </div>
+  )
 }
 
 const mapStateToProps = (state) => {
@@ -170,6 +215,7 @@ const mapStateToProps = (state) => {
     my_avatar: state.auth.avatar,
     avatar_base: state.auth.avatar_base,
     userInfo: state.user.userInfo,
+    members: state.members.members,
   }
 }
 
