@@ -7,6 +7,7 @@ const chatHistory = require('./chatHistory')
 const test = require('./test')
 const testDetail = require('./testDetail')
 const avatar = require('./avatar')
+const history = require('./history')
 const TestControllers = require('../../controllers/TestController')
 
 const rootController = {
@@ -21,6 +22,7 @@ v1.use('/auth', auth)
 v1.use('/post', post)
 v1.use('/chat-history', chatHistory)
 v1.use('/avatar', avatar)
+v1.use('/history', history)
 v1.use('/test-detail', testDetail)
 
 const applyAPI = (base, api) => {

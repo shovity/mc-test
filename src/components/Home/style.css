@@ -2,6 +2,14 @@
 
 }
 
+#home .tooltip {
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  color: #f1f0f0;
+}
+
+
 #home .card-box {
   display: flex;
 }

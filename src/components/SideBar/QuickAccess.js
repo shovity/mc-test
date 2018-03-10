@@ -13,6 +13,10 @@ const QuickAccess = ({ username }) => (
       <li className="item"><i className="fa fa-newspaper-o"></i>News Feed</li>
     </NavLink>
 
+    <NavLink to='/history'>
+      <li className="item"><i className="fa fa-history"></i>History</li>
+    </NavLink>
+
     <NavLink to={`/profile/${username}`}>
       <li className="item"><i className="fa fa-info-circle"></i>Profile</li>
     </NavLink>

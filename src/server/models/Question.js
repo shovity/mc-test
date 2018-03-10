@@ -13,7 +13,8 @@ const questionSchema = mongoose.Schema({
       content: String
     }
   ],
-  created_date: { type: Date, default: Date.now }
+  created_date: { type: Date, default: Date.now },
+  modified_date: { type: Date, default: Date.now },
 })
 
 const Question = mongoose.model('Question', questionSchema)

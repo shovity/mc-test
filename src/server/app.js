@@ -52,7 +52,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // 404
 app.use((req, res, next) => {
-  res.json({ err: '404 not found' })
+  res.json({ err: '404: API not found' })
 })
 
 server.listen(port)

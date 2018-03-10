@@ -7,6 +7,7 @@ import testDetail from './testDetailReducer'
 import members from './membersReducer'
 import chat from './chatReducer'
 import user from './userReducer'
+import history from './historyReducer'
 
 const rootReducer = combineReducers({
   status,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   testDetail,
   members,
   chat,
-  user
+  user,
+  history,
 })
 
 export default rootReducer

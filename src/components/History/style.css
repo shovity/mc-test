@@ -1,0 +1,22 @@
+#history .go {
+  cursor: pointer;
+  padding: 10px;
+  margin-left: 5px;
+}
+
+#history .go:hover {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+#history .go.detail {
+  color: #fcc107;
+}
+
+#history .go.start {
+  color: #4caf50;
+}
+
+td:last-child {
+  text-align: right;
+  padding: 0;
+}

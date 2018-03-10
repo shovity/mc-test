@@ -102,7 +102,7 @@ const TestStatus = ({ testLog, test, testStatus }) => {
           </tr>
           <tr>
             <td>Date { completed? 'end' : 'pause' }</td>
-            <td>{ parseDate(testLog.modifined_date) }</td>
+            <td>{ parseDate(testLog.modified_date) }</td>
           </tr>
         </tbody>
       </table>

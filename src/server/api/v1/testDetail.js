@@ -9,8 +9,6 @@ testDetail.get('/', (req, res, next) => {
   const { username, query } = req
   const { id } = query
 
-  console.log(id, username)
-
   Test.findOne({ _id: id }, (err, test) => {
     if (err) return res.json({ err })
 

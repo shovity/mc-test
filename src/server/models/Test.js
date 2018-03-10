@@ -14,17 +14,18 @@ const testSchema = mongoose.Schema({
       answers: [
         {
           label: String,
-          content: String
-        }
+          content: String,
+        },
       ],
-      created_date: { type: Date, default: Date.now }
-    }
+      created_date: { type: Date, default: Date.now },
+    },
   ],
   author: String,
   require_level: Number,
   time: Number, // secends
   descriptions: String,
-  created_date: { type: Date, default: Date.now }
+  created_date: { type: Date, default: Date.now },
+  modified_date: { type: Date, default: Date.now },
 })
 
 const Test = mongoose.model('Test', testSchema)

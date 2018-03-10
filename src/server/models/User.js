@@ -15,7 +15,8 @@ const userSchema = mongoose.Schema({
   phone: String,
   dob: Date,
   level: { type: Number, default: 21 },
-  created_date: { type: Date, default: Date.now }
+  created_date: { type: Date, default: Date.now },
+  modified_date: { type: Date, default: Date.now },
 })
 
 const User = mongoose.model('User', userSchema)

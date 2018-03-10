@@ -10,6 +10,10 @@ import { fetchChatHistory } from '../../actions/chatActions'
 import './style.css'
 
 class SideBar extends Component {
+  componentWillReceiveProps(nextProps) {
+    // scroll top while navigating
+    window.main.scroll({ top: 0, lef: 0 })
+  }
   render() {
     const { isOpen, isConnected, username, messageUs, avatar, level } = this.props
 

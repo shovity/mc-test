@@ -6,7 +6,8 @@ const postSchema = mongoose.Schema({
   comments: [{ username: String, content: String }],
   vote_up: { type: Number, default: 0 },
   vote_down: { type: Number, default: 0 },
-  created_date: { type: Date, default: Date.now }
+  created_date: { type: Date, default: Date.now },
+  modified_date: { type: Date, default: Date.now },
 })
 
 const Post = mongoose.model('Post', postSchema)
