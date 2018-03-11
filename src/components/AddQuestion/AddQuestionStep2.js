@@ -133,7 +133,7 @@ class AddQuestionStep2 extends Component {
           ]}
         />
 
-        <label>Tags</label>
+        <label>Tags <i className="fa fa-tags"></i></label>
         <Select.Creatable
 					multi
 					options={[
