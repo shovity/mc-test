@@ -8,6 +8,7 @@ import members from './membersReducer'
 import chat from './chatReducer'
 import user from './userReducer'
 import history from './historyReducer'
+import notifications from './notificationsReducer'
 
 const rootReducer = combineReducers({
   status,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   chat,
   user,
   history,
+  notifications,
 })
 
 export default rootReducer

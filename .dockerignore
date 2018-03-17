@@ -1,0 +1,4 @@
+release/node_modules
+release/.git
+release/.gitignore
+release/npm-debug.log

@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 const ChatHistory = require('./models/ChatHistory')
 const Test = require('./models/Test')
 const TestLog = require('./models/TestLog')
+const Notification = require('./models/Notification')
 
 const secret = process.env.SECRET_KEY_JWT
 const io = socket()
@@ -41,7 +42,7 @@ io.on('connection', (socket) => {
 
       jwt.verify(data.token, secret, (err, decoded) => {
         if (err) return socket.emit('err', err)
-        const extend = { username: decoded.username }
+        const extend = { username: decoded.username, level: decoded.level }
         callback({ ...data, ...extend })
       })
     })
@@ -197,6 +198,23 @@ io.on('connection', (socket) => {
         if (err) return socket.emit('err', 'Can not update test log')
       }
     )
+  })
+
+  /**
+   * PUSH NOTIFICATIONS
+   */
+  socket.listen('notifications push', (data) => {
+    const { username, level, title, content, filter } = data
+    if (level > 10) return socket.emit('notifications psh', { err: 'Only admin groups can push notifications' })
+
+    new Notification({
+      title,
+      content,
+      pusher: username,
+    }).save((err, notification) => {
+      if (err) return socket.emit('notifications push', { err })
+      io.emit('notifications push', { notification })
+    })
   })
 
   //-- END CONECTION

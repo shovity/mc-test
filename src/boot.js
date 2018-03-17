@@ -1,6 +1,7 @@
 import { receiveToken, loginSocket } from './actions/authActions'
 import { setWork, doneWork } from './actions/statusActions'
 import { fetchUnread } from './actions/chatActions'
+import { fetchNotifications } from './actions/notificationsActions'
 
 const boot = (store) => {
   const { token, username, level } = window.localStorage
@@ -10,6 +11,7 @@ const boot = (store) => {
     dispatch(receiveToken({ token, username, level }))
     dispatch(loginSocket())
     dispatch(fetchUnread())
+    dispatch(fetchNotifications())
   }
 
   // for fun
@@ -28,13 +30,13 @@ const boot = (store) => {
   }
 
   working([
-    'connect to server ...',
-    'connect to server ...',
-    'authenticating ...',
-    'get secret key client ...',
-    'sync preferences ...',
-    'get data analytic ...',
-    'looking local config ...',
+    // 'connect to server ...',
+    // 'connect to server ...',
+    // 'authenticating ...',
+    // 'get secret key client ...',
+    // 'sync preferences ...',
+    // 'get data analytic ...',
+    // 'looking local config ...',
   ])
 }
 

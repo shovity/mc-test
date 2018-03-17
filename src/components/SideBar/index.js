@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 
 import QuickAccess from './QuickAccess'
 import Author from './Author'
+import Admin from './Admin'
 import Other from './Other'
 
 import { fetchChatHistory } from '../../actions/chatActions'
@@ -33,7 +34,8 @@ class SideBar extends Component {
 
           <QuickAccess username={username} />
           { level < 21 && <Author /> }
-          <Other messageUs={messageUs}/>
+          { level < 11 && <Admin /> }
+          { level > 20 && <Other messageUs={messageUs}/> }
         </ul>
       </div>
     )

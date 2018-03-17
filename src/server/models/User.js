@@ -26,7 +26,7 @@ User.auth = (username, password, callback) => {
     if (err) return callback(err)
 
     if (user) {
-      const token = jwt.sign({ username }, jwtSecrect)
+      const token = jwt.sign({ username, level: user.level }, jwtSecrect)
       callback(null, token, user.level)
     } else {
       callback('Username or password not match')

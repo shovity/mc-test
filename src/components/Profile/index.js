@@ -5,9 +5,7 @@ import {
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
-  PolarRadiusAxis,
   Radar,
-  Legend,
 } from 'recharts'
 
 import { putProfile, fetchUserInfo } from '../../actions/userActions'
@@ -15,11 +13,11 @@ import { putProfile, fetchUserInfo } from '../../actions/userActions'
 import './style.css';
 
 const data = [
-  { subject: 'Math', A: 120, B: 110, fullMark: 150 },
-  { subject: 'Chinese', A: 98, B: 130, fullMark: 150 },
-  { subject: 'Geography', A: 99, B: 100, fullMark: 150 },
-  { subject: 'English', A: 86, B: 130, fullMark: 150 },
-  { subject: 'Physics', A: 85, B: 90, fullMark: 150 },
+  { subject: 'Foreign Language', value: 110, fullMark: 150 },
+  { subject: 'Other', value: 98, fullMark: 150 },
+  { subject: 'Science', value: 99, fullMark: 150 },
+  { subject: 'society', value: 86, fullMark: 150 },
+  { subject: 'Physics', value: 85, fullMark: 150 },
 ]
 
 
@@ -203,7 +201,7 @@ const Chart = ({ data }) => {
 
         <PolarGrid />
         <PolarAngleAxis dataKey="subject" />
-        <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6}/>
+        <Radar name="Mike" dataKey="value" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6}/>
       </RadarChart>
     </div>
   )

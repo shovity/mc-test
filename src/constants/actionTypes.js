@@ -55,10 +55,14 @@ export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const POST_TEST = 'POST_TEST'
 export const RECEIVE_POST_TEST_RESULT = 'RECEIVE_POST_TEST_RESULT'
 
-// test detail
+// test detail actions
 export const REQUEST_TEST_DETAIL = 'REQUEST_TEST_DETAIL'
 export const RECEIVE_TEST_DETAIL = 'RECEIVE_TEST_DETAIL'
 
-// test history
+// test history actions
 export const REQUEST_HISTORY = 'REQUEST_HISTORY'
 export const RECEIVE_HISTORY = 'RECEIVE_HISTORY'
+
+// notifications actions
+export const RECEIVE_NOTIFICATIONS = 'RECEIVE_NOTIFICATIONS'
+export const REMOVE_NOTIFICATIONS = 'REMOVE_NOTIFICATIONS'

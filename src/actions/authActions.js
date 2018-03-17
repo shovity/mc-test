@@ -3,6 +3,7 @@ import {
 } from '../constants/actionTypes'
 
 import { receiveChatHistory, fetchUnread } from './chatActions'
+import { fetchNotifications } from './notificationsActions'
 
 import {
   setWork, doneWork, pushAlert
@@ -16,7 +17,14 @@ export const getAccessToken = (username, password) => {
       method: 'post',
       body: { username, password },
       start_calls: setWork('request access token'),
-      success_calls: [ receiveToken, loginSocket, fetchUnread, pushAlert('Logged in!', 'success'), doneWork ],
+      success_calls: [
+        receiveToken,
+        loginSocket,
+        fetchUnread,
+        fetchNotifications,
+        pushAlert('Logged in!', 'success'),
+        doneWork
+      ],
       error_calls: [ pushAlert, doneWork ]
     }
   }

@@ -44,7 +44,7 @@ const data = [
 const COLORS = ['#8889DD', '#9597E4', '#8DC77B', '#A5D297', '#E2CF45', '#F8C12D'];
 
 const CustomizedContent = (props) => {
-  const { root, depth, x, y, width, height, index, payload, colors, rank, name, size } = props
+  const { root, depth, x, y, width, height, index, colors, name } = props
   const style = {
     fill: depth < 2 ? colors[Math.floor(index / root.children.length * 6)] : 'rgba(0,0,0,0)',
     stroke: '#fff',
@@ -104,14 +104,6 @@ const CustomizedTooltip = ({ payload }) => {
   const object = pl? pl.payload : {}
   return (
     <div className="tooltip">{object.name}: {object.value}</div>
-  )
-}
-
-const Card = () => {
-  return (
-    <div className="card">
-      Test item
-    </div>
   )
 }
 

@@ -8,6 +8,7 @@ import { setStatus, pushAlert } from '../actions/statusActions'
 import { receiveMembers } from '../actions/membersActions'
 import { receiveChatMessage } from '../actions/chatActions'
 import { receiveQuestion, testFinished } from '../actions/testActions'
+import { receiveNotifications } from '../actions/notificationsActions'
 
 const socket = websocket()
 
@@ -32,12 +33,16 @@ const socketMiddleWare = ({ dispatch, getState }) => {
     dispatch(receiveChatMessage(data))
   })
 
-  socket.on('fetch question', data => {
+  socket.on('fetch question', (data) => {
     dispatch(receiveQuestion(data))
   })
 
-  socket.on('test finished', data => {
+  socket.on('test finished', (data) => {
     dispatch(testFinished(data))
+  })
+
+  socket.on('notifications push', (data) => {
+    dispatch(receiveNotifications(data))
   })
 
   // catch socket actions
@@ -45,8 +50,9 @@ const socketMiddleWare = ({ dispatch, getState }) => {
     if (!action.socket) {
       next(action)
     } else {
-      const { event, data } = action.socket
+      const { event, data, start_calls } = action.socket
       const token = getState().auth.token
+      dispatch({ call: { start_calls } })
       socket.emit(event, { ...data, token })
     }
   }

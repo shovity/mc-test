@@ -101,6 +101,7 @@ i.menu .hide {
   line-height: normal;
   padding: 0 15px;
   line-height: 25px;
+  white-space: nowrap;
 }
 
 #navbar .pop-up ul .unread-name {
@@ -244,5 +245,9 @@ li.user-box:first-child {
 }
 
 .noti-content {
-  padding: 20px 0;
+  padding: 0;
+}
+
+#navbar .notim-footer {
+  text-align: right;
 }

@@ -8,6 +8,8 @@ const test = require('./test')
 const testDetail = require('./testDetail')
 const avatar = require('./avatar')
 const history = require('./history')
+const notifications = require('./notifications')
+
 const TestControllers = require('../../controllers/TestController')
 
 const rootController = {
@@ -24,6 +26,7 @@ v1.use('/chat-history', chatHistory)
 v1.use('/avatar', avatar)
 v1.use('/history', history)
 v1.use('/test-detail', testDetail)
+v1.use('/notifications', notifications)
 
 const applyAPI = (base, api) => {
   Object.keys(api).forEach(key => {

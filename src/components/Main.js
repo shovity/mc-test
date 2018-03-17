@@ -14,6 +14,7 @@ import Messages from './Messages'
 import AddQuestion from './AddQuestion'
 import CreateTest from './CreateTest'
 import History from './History'
+import NotificationsPusher from './NotificationsPusher'
 import ErrorPage from './ErrorPage'
 
 import T from './cells/T'
@@ -39,6 +40,7 @@ class Main extends Component {
             <Route exact path='/add-question' component={AddQuestion}/>
             <Route exact path='/create-test' component={CreateTest}/>
             <Route exact path='/history' component={History}/>
+            <Route exact path='/notifications-pusher' component={NotificationsPusher}/>
 
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>
