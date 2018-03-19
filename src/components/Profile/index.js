@@ -16,7 +16,7 @@ const data = [
   { subject: 'Foreign Language', value: 110, fullMark: 150 },
   { subject: 'Other', value: 98, fullMark: 150 },
   { subject: 'Science', value: 99, fullMark: 150 },
-  { subject: 'society', value: 86, fullMark: 150 },
+  { subject: 'Society', value: 86, fullMark: 150 },
   { subject: 'Physics', value: 85, fullMark: 150 },
 ]
 
