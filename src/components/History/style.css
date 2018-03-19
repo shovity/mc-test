@@ -20,3 +20,8 @@
   text-align: right;
   padding: 0;
 }
+
+#history .go.disabled {
+  color: #777;
+  cursor: not-allowed;
+}

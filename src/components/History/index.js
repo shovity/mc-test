@@ -43,6 +43,8 @@ class History extends Component {
 }
 
 const Item = ({ testLog }) => {
+  const ended = testLog.answers.length === testLog.test.quests.length
+
   return (
     <tr>
       <td>{ testLog.test.title }</td>
@@ -51,7 +53,7 @@ const Item = ({ testLog }) => {
       <td>{ parseDate(testLog.modified_date) }</td>
       <td>
         <Link to={`/test-detail/${testLog.test._id}`}><i className="fa fa fa-info-circle go detail"></i></Link>
-        <Link to={`/test/${testLog.test._id}`}><i className="fa fa-play go start"></i></Link>
+        <Link to={!ended && `/test/${testLog.test._id}`}><i className={`fa fa-play go start ${ended && 'disabled'}`}></i></Link>
       </td>
     </tr>
   )
