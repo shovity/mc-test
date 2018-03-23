@@ -1,10 +1,11 @@
 #db .db-nav {
-  background: #eee;
+  background: #ddd;
   border: #777;
   height: 50px;
   display: flex;
-  padding: 0 100px;
   user-select: none;
+  text-transform: uppercase;
+  font-size: 12px;
 }
 
 #db .db-nav div {
@@ -19,6 +20,50 @@
   background: rgba(0, 0, 0, 0.12);
 }
 
-#db .db-nav div.active {
+#db .db-nav > div.active {
   border-bottom: 3px solid #009688;
+}
+
+#db .db-content {
+  padding: 20px 0;
+}
+
+#db .list-users {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5px -5px;
+}
+
+#db .list-users > div {
+  width: 20%;
+}
+
+#db .list-users .item {
+  display: block;
+  background: #ddd;
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#db .list-users .item:hover {
+  background: #ccc;
+  user-select: none;
+}
+
+#db .list-users .item > i {
+  color: #aaa;
+  margin-right: 7px;
+}
+
+#db .list-users .item > i.online {
+  color: #5cb85c;
+}
+
+#db .modal .footer {
+  text-align: right;
+}
+
+#db .modal label {
+  margin-top: 20px;
 }

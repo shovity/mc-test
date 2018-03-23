@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import UserManager from './UserManager'
+
 import './style.css'
 
 class Dashboard extends Component {
@@ -22,7 +24,7 @@ class Dashboard extends Component {
   renderTab(tab) {
     switch (tab) {
       case 1:
-        return <div>1</div>
+        return <UserManager />
       default:
         return <div>none tab</div>
     }
