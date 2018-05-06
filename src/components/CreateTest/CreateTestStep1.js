@@ -35,7 +35,7 @@ class AddQuestionStep1 extends Component {
     ]
 
     this.levelOptions = [
-      { value: 'Rễ', label: 'Rễ' },
+      { value: 'Dễ', label: 'Dễ' },
       { value: 'Trung bình', label: 'Trung bình' },
       { value: 'Khó', label: 'Khó' },
     ]

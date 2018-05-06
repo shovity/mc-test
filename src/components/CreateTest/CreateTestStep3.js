@@ -65,6 +65,9 @@ class CreateTestStep3 extends Component {
         <h2>Review</h2>
         { testInfo }
 
+        <label>Descriptions <span className="hint">option</span></label>
+        <textarea className="input-content" ref="des" placeholder="input descriptions ..."></textarea>
+
         { this.props.postTestResutl._id &&
           <div>
             <h2>Post test success</h2>
@@ -74,8 +77,7 @@ class CreateTestStep3 extends Component {
           </div>
         }
 
-        <label>Descriptions <span className="hint">option</span></label>
-        <textarea className="input-content" ref="des" placeholder="input descriptions ..."></textarea>
+
 
         <div className="tac">
           <button className="btn" onClick={() => this.props.pickStep(2)}>Prev</button>

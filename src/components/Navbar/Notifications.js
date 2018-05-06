@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import  { connect } from 'react-redux'
 import Modal from '../cells/Modal'
+import codeParser from '../../utils/codeParser'
 
 import { requestReadedNotifications } from '../../actions/notificationsActions'
 
@@ -53,7 +54,7 @@ class Notifications extends Component {
         </i>
         <Modal isOpen={this.state.isOpenModal} close={this.toggleModal.bind(this, 'close')} title={noti.title}>
           <div className="noti-content">
-            { noti.content}
+            { codeParser(noti.content) }
             <div className="notim-footer">
               <button className="btn btn-danger" onClick={this.handleRemove.bind(this)}>Remove</button>
             </div>

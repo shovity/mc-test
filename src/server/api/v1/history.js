@@ -11,6 +11,9 @@ history.get('/', (req, res, next) => {
   TestLog.aggregate(
     [
       {
+        $match: { username }
+      },
+      {
         $lookup: {
           from: "tests",
           localField: "test_id",

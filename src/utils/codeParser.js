@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const codeParser = (raw) => {
+const codeParser = (raw='') => {
   const components = raw.split(/\[.+?\]/)
   if (components.length === 1) return raw
 

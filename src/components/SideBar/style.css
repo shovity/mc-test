@@ -12,7 +12,7 @@
 
 #sidebar.open {
   width: 250px;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
 
 #sidebar.open li.header {
